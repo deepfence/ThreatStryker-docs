@@ -164,4 +164,4 @@ By accessing the Deepfence Cloud hosted service at https://deepfence.cloud and r
 
 14.7 "Service Description" means the then-current version of the Service Offering Service Description document available at https://deepfence.cloud/, which contains technical and other information.
 
-14.8 "Service Level Agreement" means the then-current version of the Service Offering Service Level Agreement document available at https://docs.deepfence.io/deepfencecloud_sla
+14.8 "Service Level Agreement" means the then-current version of the Service Offering Service Level Agreement document available at https://docs.deepfence.io/threatstryker/deepfencecloud_sla
