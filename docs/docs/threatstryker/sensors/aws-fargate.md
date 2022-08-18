@@ -14,9 +14,9 @@ The ThreatStryker management console is installed separately outside of the farg
 # Installing on AWS Fargate
 
 
-1.  Set up Amazon ECS by following the steps outlined here: [Set up to use Amazon ECS](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/get-set-up-for-amazon-ecs.html)
+1. Set up Amazon ECS by following the steps outlined here: [Set up to use Amazon ECS](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/get-set-up-for-amazon-ecs.html)
 
-1.  Add the Deepfence Quay secrets provided to AWS secrets manager by following the steps outlined here: [Introducing private registry authentication support for AWS Fargate](https://aws.amazon.com/blogs/compute/introducing-private-registry-authentication-support-for-aws-fargate) and here: [Private registry authentication for tasks](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/private-auth.html)
+2. Add the Deepfence Quay secrets provided to AWS secrets manager by following the steps outlined here: [Introducing private registry authentication support for AWS Fargate](https://aws.amazon.com/blogs/compute/introducing-private-registry-authentication-support-for-aws-fargate) and here: [Private registry authentication for tasks](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/private-auth.html)
 
     You'll need to perform the following steps:
 
@@ -25,13 +25,13 @@ The ThreatStryker management console is installed separately outside of the farg
     in the license email. Note the created secret name or ARN (you will need to enter them in *task definition creation* step later). You may need to create other secrets to access your own artifacts. 
     1. Create policies (either managed or inlined policy) allowing access to your stored secrets and attach the created policies to the task IAM role. You also need to attach the *AmazonECSTaskExecutionRolePolicy* to the IAM role to run Amazon ECS tasks.
 
-1.  On the AWS ECS home webpage, click on the task definition on the side panel to create a new task definition. Select fargate as launch type and then go to Next step.  
+3. On the AWS ECS home webpage, click on the task definition on the side panel to create a new task definition. Select fargate as launch type and then go to Next step.  
 
     Use the following steps outlined below in  **"Fargate Task definition And Deployment"** instructions to deploy the fargate agent. 
 
     You can configure the task definition either through Json or using the Amazon UI.
 
-1.  Deploy your application on your cluster.
+4. Deploy your application on your cluster.
 
 ## Create New Task Definition in Fargate
 
@@ -90,7 +90,7 @@ The following environment variables are required for the ThreatStryker agent:
 If you are using json to configure your task definitions, you can use the following part in the appropriate container section of task definition json after copying the appropriate IP address and API Key.
 
 ```json
-environment": [
+"environment": [
    {
        "name": "DEEPFENCE_KEY",
        "value": ""

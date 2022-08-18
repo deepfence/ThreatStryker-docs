@@ -14,8 +14,8 @@ Deepfence Cloud currently uses the term **workload** to refer to a ThreatStryker
 ### Task 1 - Deploy a new ThreatStryker Console
 
 
-1.  Log in to the Deepfence Cloud portal.
-1.  From the home page, select the 'New Console' tile.  This will prompt you for the following information:
+1. Log in to the Deepfence Cloud portal.
+2. From the home page, select the 'New Console' tile.  This will prompt you for the following information:
 
     ![Add a new Workload](../img/cloud-newworkload.png)
 
@@ -29,13 +29,13 @@ The request to deploy the console is quickly registered. Deployment can take a f
 
 ### Task 2 - Access a ThreatStryker Console
 
-1.  Log in to the Deepfence Cloud portal.
-1.  From the home page, click on one of the tiles representing existing ThreatStryker consoles.  This action will load the console in your browser.
+1. Log in to the Deepfence Cloud portal.
+2. From the home page, click on one of the tiles representing existing ThreatStryker consoles.  This action will load the console in your browser.
 
 You can quickly switch between different console instances from your browser, or return **Home** to the list of console tiles.
 
 ### Task 3 - Delete a ThreatStryker Console
 
 
-1.  Log in to the Deepfence Cloud portal.
-1.  From the home page, locate the tile representing the ThreatStryker console to be deleted.  Click the 'Delete' icon, and enter the console's identifer to confirm the permanent deletion of that console and its data.
+1. Log in to the Deepfence Cloud portal.
+2. From the home page, locate the tile representing the ThreatStryker console to be deleted.  Click the 'Delete' icon, and enter the console's identifer to confirm the permanent deletion of that console and its data.

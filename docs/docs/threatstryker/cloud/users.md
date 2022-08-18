@@ -17,14 +17,14 @@ Deepfence Cloud is currently in 'Invite Only' mode.  If you are a Deepfence cust
 ### Task 1 - Sign up and create a new Organization
 
 
-1.  Visit Deepfence Cloud: [deepfence.cloud](https://deepfence.cloud/).  Sign up for a new account using your corporate email address.
-1.  Activate that account in the email that will follow.
-1.  Log in to the Deepfence Cloud portal.
+1. Visit Deepfence Cloud: [deepfence.cloud](https://deepfence.cloud/).  Sign up for a new account using your corporate email address.
+2. Activate that account in the email that will follow.
+3. Log in to the Deepfence Cloud portal.
 
 ### Task 2 - Invite users to join your Organization
 
-1.  Log in to the Deepfence Cloud portal.
-1.  From the **Users** tab, select the option to *Add New User*.  Provide the user's email address.
+1. Log in to the Deepfence Cloud portal.
+2. From the **Users** tab, select the option to *Add New User*.  Provide the user's email address.
 
 The user will receive an email from Deepfence Cloud with instructions to follow an invitation link.  The invitation link will create and activate a new user account within your organization.
 
@@ -32,7 +32,7 @@ The user will receive an email from Deepfence Cloud with instructions to follow 
 
 The preferred way to manage users is to use their social logins.  When social logins (Google, Microsoft, GitHub) are tied to an enterprise identity service, this provides synchronization so that if a user is offboarded from the enterprise, their Deepfence Cloud account becomes inaccessible.
 
-1.  Log in to the Deepfence Cloud portal.
-1.  From the **Users** tab, click the 'delete' icon next to the user you wish to remove from your organization.
+1. Log in to the Deepfence Cloud portal.
+2. From the **Users** tab, click the 'delete' icon next to the user you wish to remove from your organization.
 
 You can also toggle the active/inactive state to temporarily prevent a user from accessing your Deepfence Cloud organization. 

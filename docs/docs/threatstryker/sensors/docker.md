@@ -16,20 +16,20 @@ You can observe and manage a bare-metal or VM-based host by installing a docker 
 
 The host or VM to be used for the Deepfence agents needs to have the docker runtime installed on it.
 
-1.  Download the following script: [start-agent.sh 🔗](../files/3.6.0/start-agent.sh) 
-1.  To authenticate to the docker image repository, run the following command:
+1. Download the following script: [start-agent.sh 🔗](../files/3.6.2/start-agent.sh) 
+2. To authenticate to the docker image repository, run the following command:
 
-	```bash
-	docker login quay.io
-	```
+    ```bash
+    docker login quay.io
+    ```
 
     When prompted, please provide the credentials sent by email.
 
-1.  Run the script in that directory as follows:
+3. Run the script in that directory as follows:
 
-	```bash
-	bash start-agent.sh -r <IP_ADDRESS_OF_UI_MACHINE> -k xxxxxxxx
-	```
+    ```bash
+    bash start-agent.sh -r <IP_ADDRESS_OF_UI_MACHINE> -k xxxxxxxx
+    ```
 
 ## ThreatStryker Agents (Windows)
 
@@ -37,21 +37,21 @@ Deepfence Agents on Windows are experimental.  Thy have been tested (but are not
 
 Installation Steps
 
-1.  Open PowerShell command prompt
+1. Open PowerShell command prompt
 
-1.  Execute the command `Set-ExecutionPolicy ‘unrestricted’`
+2. Execute the command `Set-ExecutionPolicy ‘unrestricted’`
 
-1.  Go to the directory `installation_scripts/docker_windows/deepfence_agent`
+3. Go to the directory `installation_scripts/docker_windows/deepfence_agent`
 
-1.  Run the script `./install-deps-all.ps1`
+4. Run the script `./install-deps-all.ps1`
 
-1.  The above scripts checks and installs the dependencies, and if required, will restart the server for the new installations to reflect
+5. The above scripts checks and installs the dependencies, and if required, will restart the server for the new installations to reflect
 
-1.  Now, run the script `./install-deps-post-restart.ps1`
+6. Now, run the script `./install-deps-post-restart.ps1`
 
    The above scripts checks and installs dependencies post restart.
 
-1.  To start the ThreatStryker agent, if the IP address of the VM or host that has the ThreatStryker management console is 192.168.1.10, use the following command:
+7. To start the ThreatStryker agent, if the IP address of the VM or host that has the ThreatStryker management console is 192.168.1.10, use the following command:
 
     ```bash
     /run-deepfence.ps1 -r 192.168.1.10 -cve_scan_dir "C:\Program Files"
