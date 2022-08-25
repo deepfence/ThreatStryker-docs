@@ -30,8 +30,10 @@ In Kubernetes, ThreatStryker agents can be installed using a helm chart.
 	    --set registry.password=<deepfence_password> \
 	    --set managementConsoleUrl=192.168.1.10 \
 	    --set deepfenceKey=xxxxxxxx \
-	    --set image.tag=3.6.2 \
-	    --set image.clusterAgentImageTag=3.6.2
+	    --set image.tag=3.7.0 \
+	    --set image.clusterAgentImageTag=3.7.0 \
+        --namespace deepfence \
+        --create-namespace
 	```
 
     The registry username and password to access the Deepfence Quay registry will be sent by email; check the README inside the package for detailed setup instructions.
@@ -44,5 +46,5 @@ In Kubernetes, ThreatStryker agents can be installed using a helm chart.
 3.  To delete the ThreatStryker release that was installed by the helm chart, run the following command:
 
 	```bash
-	helm delete deepfence-agent
+	helm delete deepfence-agent -n deepfence
 	```

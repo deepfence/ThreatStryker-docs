@@ -21,7 +21,7 @@ If agents need to be stopped:
  * In a kubernetes environment, execute the following command:
 
    ```
-   helm delete deepfence-agent
+   helm delete deepfence-agent -n deepfence
    ```
 
  * Otherwise, for those hosts where we need to stop the deepfence agent, execute the following command on that host:

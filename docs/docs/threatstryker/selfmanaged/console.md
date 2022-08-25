@@ -85,11 +85,13 @@ Helm Chart Install
 2. Run following command:
 
    ```bash
-   helm install deepfence-router deepfence/deepfence-router
+   helm install deepfence-router deepfence/deepfence-router \
+       --namespace default
    helm install deepfence-console deepfence/deepfence-console \
        --set registry.username=<deepfence_username> \
        --set registry.password=<deepfence_password> \
-       --set image.tag=3.6.2
+       --set image.tag=3.7.0 \
+       --namespace default
    ```
 
    The Quay username and password is provided by email. Check the README inside the package for detailed setup instructions.
@@ -108,6 +110,6 @@ Helm Chart Install
 4. To delete deepfence console helm chart, run following command: ::
 
    ```bash
-   helm delete deepfence-router
-   helm delete deepfence-console
+   helm delete deepfence-router -n default
+   helm delete deepfence-console -n default
    ```
