@@ -20,7 +20,7 @@ In Amazon ECS, the ThreatStryker sensors are deployed as a daemon service using 
 4. Create new task definition for deepfence agent
 
 Change the url `<deepfence.customer.com>` to the url / ip address of Deepfence Management Console.
-In `DEEPFENCE_KEY` field, replace `<DEEPFENCE_KEY>` with your [API Key](../console/initial-configuration).
+In `DEEPFENCE_KEY` field, replace `<DEEPFENCE_KEY>` with your api key.
 
 ```json
 {
