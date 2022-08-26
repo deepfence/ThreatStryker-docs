@@ -15,45 +15,28 @@ The system requirements for the ThreatStryker Management Console are as follows:
 | CPU: No of cores                                                  | 8               |
 | RAM                                                               | 16 GB or 32GB   |
 | Disk space                                                        | At-least 120 GB |
-| Port to be opened to view the UI and receive senser agent traffic | 443             |
+| Port to be opened to view the UI and receive sensor agent traffic | 443             |
 
 ## Preparation
 
-Download and extract the Deepfence Deployment Kit (link provided by email), and make a note of the license key from
-the license email shared with you. It should be on the following lines.
+You will get an email with license key and registry credentials.
 
-| Property        | Details                              |
-|-----------------|--------------------------------------|
-| License key     | xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx |
-| Company name    | xxxx corp                            |         
-| Number of hosts | 10                                   |  
-| Admin email     | xxxx@xxxx.com                        |             
+| Property          | Details                                            |
+|-------------------|----------------------------------------------------|
+| License key       | xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx               |
+| Organization      | xxxx corp                                          |         
+| Number of hosts   | 10                                                 |  
+| Admin email       | xxxx@xxxx.com                                      | 
+| Registry username | xxxxxxxx                                           |
+| Registry password | xxxxxxxx                                           |
+| Documentation     | https://community.deepfence.io/docs/threatstryker/ |
 
-
-The deployment kit contains documentation and installation scripts for the deepfence console
-and the deepfence agent components, as a zip file. Please extract the zip file:
-
-1. Copy the contents of the directory **installation_scripts/docker_linux/deepfence_console** to the VM or
-host where deepfence console is to be installed
-2. Copy the contents of the directory
-**installation_scripts/docker_linux/deepfence_agent** to Linux VM or host where deepfence
-agent is to be installed
-
-In the event a Kubernetes cluster is being used:
-
- * Copy the directory
-**installation_scripts/docker_linux/deepfence_agent** to the Kubernetes master node
-
-If the deepfence agent is to be installed on Windows based VM or hosts:
-
- * Use the script in
-the directory **installation_scripts/docker_windows/deepfence_agent**
 
 ## Docker Install
 
 The host or VM to be used for the Deepfence management console needs to have the docker runtime installed. In addition, it also needs the binary **docker-compose** to be installed on it.
 
-1. Go to the directory **installation_scripts/docker_linux/deepfence_console**.  To authenticate to the docker image repository, run the following command:
+1. 1. Download docker compose file from here: [docker-compose.yml 🔗](../files/3.7.0/docker-compose.yml). To authenticate to the docker image repository, run the following command:
 
    ```bash
    docker login quay.io
