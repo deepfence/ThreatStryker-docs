@@ -26,12 +26,12 @@ ThreatStryker supports applications running in cloud-native platforms (kubernete
 
  * If suspicious patterns of behavior are detected, the intent of the behavior is deduced and ThreatStryker takes appropriate and contained remedial action. Tainted workloads are deleted, frozen, or restarted, sources of attack traffic are temporarily or permanently blocked, and alerts are raised to SIEM and monitoring systems. Attackers are stopped in their tracks, attacks are neutralized, and lateral spread is prevented.
 
-## ThreatStryker and ThreatStryker
+## ThreatStryker and ThreatMapper
 
-ThreatStryker builds on the functionality of the open-source [ThreatStryker](https://github.com/deepfence/ThreatStryker/) security platform:
+ThreatStryker builds on the functionality of the open-source [ThreatMapper](https://github.com/deepfence/ThreatMapper/) security platform:
 
 
-* [ThreatStryker](https://github.com/deepfence/ThreatStryker/) identifies security risks - software vulnerabilities, exposed secrets - in your production platforms, and prioritizes them so you know which to fix first
+* [ThreatMapper](https://github.com/deepfence/ThreatMapper/) identifies security risks - software vulnerabilities, exposed secrets - in your production platforms, and prioritizes them so you know which to fix first
 * [ThreatStryker](https://deepfence.io/threatstryker) observes network traffic and application behavior relating to both known (discovered by ThreatStryker) and unknown (zero-day or app-specific) risks, identifies ongoing attacks and provides automated and guided protection to prevent attacks from spreading
 
 Use ThreatStryker to find risks in your production platforms, and ThreatStryker to observe attack behavior and secure against exploit.
