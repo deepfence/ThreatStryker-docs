@@ -22,7 +22,20 @@ const sidebars = {
     },    
 
     'threatstryker/index',
-    'threatstryker/architecture',
+
+    {
+      type: 'category',
+      label: 'Architecture',
+      link: {
+          type: 'doc',
+          id: 'threatstryker/architecture/index'
+      },
+      items: [
+          'threatstryker/architecture/index',
+          'threatstryker/architecture/cloudscanner',
+          'threatstryker/architecture/threatgraph',
+      ],
+    },
 
     {
       type: 'category',
@@ -55,7 +68,22 @@ const sidebars = {
         },
       ],
     },
- 
+
+    {
+      type: 'category',
+      label: 'Cloud Scanner task',
+      link: {
+          type: 'doc',
+          id: 'threatstryker/cloudscanner/index'
+      },
+      items: [
+          'threatstryker/cloudscanner/amazon',
+          'threatstryker/cloudscanner/azure',
+          'threatstryker/cloudscanner/google',
+          'threatstryker/cloudscanner/other',
+      ],
+    },
+
     {
       type: 'category',
       label: 'Sensor Agents',
@@ -83,7 +111,7 @@ const sidebars = {
         'threatstryker/operations/visualization',
         'threatstryker/operations/vulnerability-management',
         'threatstryker/operations/registry-scanning',
-        'threatstryker/operations/runtime-compliance',
+        'threatstryker/operations/compliance',
         'threatstryker/operations/runtime-workload-firewall',
         'threatstryker/operations/east-west-dpi',
         'threatstryker/operations/runtime-integrity',

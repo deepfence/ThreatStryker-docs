@@ -56,7 +56,7 @@ Edit the *Task Definition Name*, *Task Role* and *Task Execution Role etc*. as r
 
 ### Add the Container
 
-Click on the *Add Container* button to create a standard container for the ThreatMapper agent. Set image as *docker.io/deepfenceio/deepfence_agent:FargateScratch*. 
+Click on the *Add Container* button to create a standard container for the ThreatStryker agent. Set image as *docker.io/deepfenceio/deepfence_agent:FargateScratch*. 
 
 **Check** the private repository authentication and add the secret name or ARN from *IAM role creation step* to access Deepfence Quay. In the environment section, do **NOT** mark it as essential.
 

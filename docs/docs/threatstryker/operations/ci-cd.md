@@ -14,8 +14,8 @@ The ThreatStryker CI action supports several CI pipelines, including CircleCI, G
 
 If a build is not blocked, ThreatStryker silently allows it to proceed.
 
-For configuration details, refer to the appropriate [CI/CD Integrations](https://github.com/deepfence/ThreatMapper/tree/master/ci-cd-integrations), including:
+For configuration details, refer to the appropriate [CI/CD Integrations](https://github.com/deepfence/ThreatStryker/tree/master/ci-cd-integrations), including:
 
- * [CircleCI](https://github.com/deepfence/ThreatMapper/tree/master/ci-cd-integrations/circleci)
- * [GitLab](https://github.com/deepfence/ThreatMapper/tree/master/ci-cd-integrations/gitlab)
- * [Jenkins](https://github.com/deepfence/ThreatMapper/tree/master/ci-cd-integrations/jenkins)
+ * [CircleCI](https://github.com/deepfence/ThreatStryker/tree/master/ci-cd-integrations/circleci)
+ * [GitLab](https://github.com/deepfence/ThreatStryker/tree/master/ci-cd-integrations/gitlab)
+ * [Jenkins](https://github.com/deepfence/ThreatStryker/tree/master/ci-cd-integrations/jenkins)

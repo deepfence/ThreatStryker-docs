@@ -15,5 +15,5 @@ deployed on the production infrastructure. The machine assigned to run the Threa
 
 You should control access to the Deepfence Management Console, so that it is only accessible on port 443 from those systems that have installed the Deepfence agent, and from the systems that require access to the Console GUI and API.
 
-If you encounter any security-related issues with ThreatStryker, please [reach out to us](https://github.com/deepfence/ThreatMapper/blob/master/SECURITY.md).
+If you encounter any security-related issues with ThreatStryker, please [reach out to us](https://github.com/deepfence/ThreatStryker/blob/master/SECURITY.md).
 

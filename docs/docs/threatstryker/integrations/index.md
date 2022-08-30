@@ -20,5 +20,5 @@ import {useCurrentSidebarCategory} from '@docusaurus/theme-common';
 ```
 
 :::info
-ThreatStryker and ThreatMapper behave identically with respect to integrations, although ThreatStryker can raise a much broader set of notifications and alerts.
+ThreatStryker and ThreatStryker behave identically with respect to integrations, although ThreatStryker can raise a much broader set of notifications and alerts.
 :::
