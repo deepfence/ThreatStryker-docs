@@ -33,4 +33,4 @@ Refer to the Installation Documentation to [Learn how to install Cloud Scanner t
 
 ThreatStryker can perform compliance posture scanning on linux hosts and Kubernetes master and worker nodes.
 
-Scanning is done directly, using a local [Sensor Agent](sensors) rather than by using the Cloud Scanner task employed by the cloud platform integrations.
+Scanning is done directly, using a local [Sensor Agent](../sensors) rather than by using the Cloud Scanner task employed by the cloud platform integrations.
