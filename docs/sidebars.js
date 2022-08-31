@@ -77,9 +77,9 @@ const sidebars = {
           id: 'threatstryker/cloudscanner/index'
       },
       items: [
-          'threatstryker/cloudscanner/amazon',
+          'threatstryker/cloudscanner/aws',
           'threatstryker/cloudscanner/azure',
-          'threatstryker/cloudscanner/google',
+          'threatstryker/cloudscanner/gcp',
           'threatstryker/cloudscanner/other',
       ],
     },

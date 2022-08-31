@@ -20,7 +20,7 @@ The console allows you to:
 * Classify telemetry using MITRE ATT&CK attack-based TTPs, and interrogate the telemetry for diagnostic and forensic purposes
 * Observe the evolution of attacks against workloads, alerting when they pass a pre-defined threshold of risk
 * Configure remedial action - quarantine workloads, firewall internal and external sources of attack - to be deployed automatically
-* Set up a variety of integrations against external notification, SIEM and ticketing systems, including Slack, PagerDuty, Jira, Splunk, ELK, Sumo Logic, and Amazon S3.
+* Set up a variety of integrations against external notification, SIEM and ticketing systems, including Slack, PagerDuty, Jira, Splunk, ELK, Sumo Logic, and AWS S3.
 
 You may deploy multiple fully-managed instances on the Deepfence Cloud, or standalone (self-hosted) instances in your own infrastructure.
 

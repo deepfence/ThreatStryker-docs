@@ -1,35 +1,35 @@
 ---
-title: Amazon Fargate
+title: AWS Fargate
 ---
 
-# Amazon Fargate
+# AWS Fargate
 
 *Deployed as a sidecar container using a task definition*
 
-In Amazon fargate, the ThreatStryker agents are deployed as a sidecar container using a task definition. 
+In AWS Fargate, the ThreatStryker agents are deployed as a sidecar container using a task definition. 
 
-The ThreatStryker management console is installed separately outside of the fargate and the installation procedure is the same as before.
+The ThreatStryker management console is installed separately outside the fargate and the installation procedure is the same as before.
 
 
 # Installing on AWS Fargate
 
 
-1. Set up Amazon ECS by following the steps outlined here: [Set up to use Amazon ECS](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/get-set-up-for-amazon-ecs.html)
+1. Set up AWS ECS by following the steps outlined here: [Set up to use AWS ECS](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/get-set-up-for-amazon-ecs.html)
 
 2. Add the Deepfence Quay secrets provided to AWS secrets manager by following the steps outlined here: [Introducing private registry authentication support for AWS Fargate](https://aws.amazon.com/blogs/compute/introducing-private-registry-authentication-support-for-aws-fargate) and here: [Private registry authentication for tasks](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/private-auth.html)
 
     You'll need to perform the following steps:
 
-    1. Create an *Amazon ECS task execution IAM role*. 
+    1. Create an *AWS ECS task execution IAM role*. 
     1. Create a secret so that fargate can pull the Deepfence agents from Quay using the username/password provided
     in the license email. Note the created secret name or ARN (you will need to enter them in *task definition creation* step later). You may need to create other secrets to access your own artifacts. 
-    1. Create policies (either managed or inlined policy) allowing access to your stored secrets and attach the created policies to the task IAM role. You also need to attach the *AmazonECSTaskExecutionRolePolicy* to the IAM role to run Amazon ECS tasks.
+    1. Create policies (either managed or inlined policy) allowing access to your stored secrets and attach the created policies to the task IAM role. You also need to attach the *AmazonECSTaskExecutionRolePolicy* to the IAM role to run AWS ECS tasks.
 
 3. On the AWS ECS home webpage, click on the task definition on the side panel to create a new task definition. Select fargate as launch type and then go to Next step.  
 
     Use the following steps outlined below in  **"Fargate Task definition And Deployment"** instructions to deploy the fargate agent. 
 
-    You can configure the task definition either through Json or using the Amazon UI.
+    You can configure the task definition either through Json or using the AWS UI.
 
 4. Deploy your application on your cluster.
 
