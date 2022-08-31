@@ -1,22 +1,22 @@
 ---
-title: Amazon ECS (EC2 Provider)
+title: AWS ECS (EC2 Provider)
 ---
 
-# Amazon ECS (EC2 Provider)
+# AWS ECS (EC2 Provider)
 
 *Deployed as a daemon service using a task definition*
 
-In Amazon ECS, the ThreatStryker sensors are deployed as a daemon service using task definition.
+In AWS ECS, the ThreatStryker sensors are deployed as a daemon service using task definition.
 
 # Prerequisites
 
 Make sure you have the following information:
-- Quay login, later refered as `<QUAY_LOGIN>`
-- Quay password, later refered as `<QUAY_PASSWORD>`
-- Management console URL/IP, later refered as `<MGMT_CONSOLE_URL>`
-- Deepfence API key, later refered as `<DEEPFENCE_KEY>` (This key can be found from the management console, in the settings > User > API Key)
+- Quay login, later referred as `<QUAY_LOGIN>`
+- Quay password, later referred as `<QUAY_PASSWORD>`
+- Management console URL/IP, later referred as `<MGMT_CONSOLE_URL>`
+- Deepfence API key, later referred as `<DEEPFENCE_KEY>` (This key can be found from the management console, in the settings > User > API Key)
 
-# Installing on Amazon ECS (EC2 Provider)
+# Installing on AWS ECS (EC2 Provider)
 
 1. Add secrets for quay login
     - Go to the secret manager dashboard from the AWS Console
@@ -87,14 +87,14 @@ Then create the new policy.
 3. Create new task definition for deepfence agent
 
     - Go to the "Elastic Container Service" dashboard from AWS console
-    - On the top left corner, disable new UI to use the legacy UI.
+    - In the top left corner, disable new UI to use the legacy UI.
     - Go to "Task Definitions"
     - Select "Create new Task Definition"
     - Select EC2, then "Next step"
     - Provide a name to your task definition (e.g. `deepfence-agent-ec2-task`)
     - Select the Task role and execution role (e.g. `deepfence-agent-role`)
     - At the bottom, select "Configure via JSON"
-    - Copy paste the following JSON configuration: (Replace `<DEEPFENCE_KEY>`, `<MGMT_CONSOLE_URL>` and `<ARN_QUAY_CREDS>` with actual values)
+    - Copy and paste the following JSON configuration: (Replace `<DEEPFENCE_KEY>`, `<MGMT_CONSOLE_URL>` and `<ARN_QUAY_CREDS>` with actual values)
 
 ```json
 {
@@ -249,16 +249,16 @@ Then create the new policy.
 Then create the new task definition.
 
 5. Create a new service to execute the Task and deploy the agent
-    - Go to the "Elastic Container Service" dashbaord from the AWS console
+    - Go to the "Elastic Container Service" dashboard from the AWS console
     - Go to "Task definitions"
     - Select previously created task definition
     - Select a revision (latest)
     - Select "Actions" > "Create service"
-    - Select Launch type: EC2
+    - Select Launch type: `EC2`
     - Provide a name to your service (e.g. `deepfence-agent-ec2-service`)
     - Set `Desired tasks` as the number of ec2 instances in the ECS cluster
     - Create the service
 
 6. Monitor the service creation and check if the task is in running state. It can take a couple of minutes
 
-7. If the task is running, your should see the agent appearing in your console, well done!
+7. If the task is running, you should see the agent appearing in your console, well done!
