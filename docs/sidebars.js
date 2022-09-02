@@ -60,10 +60,12 @@ const sidebars = {
           label: 'Self-Managed',
           items: [
             'threatstryker/selfmanaged/index',
+            'threatstryker/selfmanaged/managed-database',
             'threatstryker/selfmanaged/console',
             'threatstryker/selfmanaged/users',
             'threatstryker/selfmanaged/aws-elb',
             'threatstryker/selfmanaged/troubleshooting',
+            'threatstryker/selfmanaged/database-export-import',
           ],
         },
       ],
