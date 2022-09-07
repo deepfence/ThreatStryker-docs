@@ -9,9 +9,8 @@ const config = {
   title: 'Deepfence ThreatStryker',
   tagline: 'ThreatStryker observes, correlates, learns, and acts to protect your applications and keep you one step ahead of attackers',
   url: 'https://threatstryker.local',
-  baseUrl: '/',
-
-  onBrokenLinks: 'throw',
+  baseUrl: '/threatstryker/',
+  onBrokenLinks: 'warn',
   onBrokenMarkdownLinks: 'throw',
   favicon: '/img/deepfence.png',
 
@@ -35,7 +34,7 @@ const config = {
           editUrl:
             'https://github.com/deepfence/ThreatStryker-docs/docs/',
           breadcrumbs: true,
-          routeBasePath: '/',
+          routeBasePath: 'docs',
           // options for remark-admonitions
           admonitions: {}, 
         },
@@ -57,11 +56,13 @@ const config = {
           alt: 'Deepfence',
           src: '/img/deepfence-logo-black.svg',
           srcDark: '/img/deepfence-logo-white.svg',
+          href: 'https://docs.deepfence.io/',
+          target: '_self',
         },
         items: [
           {
             type: 'doc',
-            docId: 'threatstryker/index',
+            docId: 'index',
             label: 'ThreatStryker Documentation',
           },
           { 
@@ -73,6 +74,10 @@ const config = {
             href: 'https://github.com/deepfence',
             label: 'GitHub',
             position: 'right',
+          },
+          {
+            type: 'docsVersionDropdown',
+            position: 'left',
           },
         ],
       },

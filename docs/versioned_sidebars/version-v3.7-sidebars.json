@@ -1,0 +1,120 @@
+{
+  "threatstryker": [
+    {
+      "type": "html",
+      "value": "Deepfence ThreatStryker",
+      "className": "sidebar-title"
+    },
+    "index",
+    {
+      "type": "category",
+      "label": "Architecture",
+      "link": {
+        "type": "doc",
+        "id": "architecture/index"
+      },
+      "items": [
+        "architecture/index",
+        "architecture/cloudscanner",
+        "architecture/threatgraph"
+      ]
+    },
+    {
+      "type": "category",
+      "label": "Management Console",
+      "link": {
+        "type": "doc",
+        "id": "deploy"
+      },
+      "items": [
+        {
+          "type": "category",
+          "label": "Deepfence Cloud",
+          "items": [
+            "cloud/index",
+            "cloud/users",
+            "cloud/consoles",
+            "cloud/agents"
+          ]
+        },
+        {
+          "type": "category",
+          "label": "Self-Managed",
+          "items": [
+            "selfmanaged/index",
+            "selfmanaged/managed-database",
+            "selfmanaged/console",
+            "selfmanaged/users",
+            "selfmanaged/aws-elb",
+            "selfmanaged/troubleshooting",
+            "selfmanaged/database-export-import"
+          ]
+        }
+      ]
+    },
+    {
+      "type": "category",
+      "label": "Cloud Scanner task",
+      "link": {
+        "type": "doc",
+        "id": "cloudscanner/index"
+      },
+      "items": [
+        "cloudscanner/aws",
+        "cloudscanner/azure",
+        "cloudscanner/gcp",
+        "cloudscanner/other"
+      ]
+    },
+    {
+      "type": "category",
+      "label": "Sensor Agents",
+      "link": {
+        "type": "doc",
+        "id": "sensors/index"
+      },
+      "items": [
+        "sensors/kubernetes",
+        "sensors/docker",
+        "sensors/aws-ecs",
+        "sensors/aws-fargate",
+        "sensors/bare-metal"
+      ]
+    },
+    {
+      "type": "category",
+      "label": "Operations",
+      "link": {
+        "type": "doc",
+        "id": "operations/index"
+      },
+      "items": [
+        "operations/visualization",
+        "operations/vulnerability-management",
+        "operations/registry-scanning",
+        "operations/compliance",
+        "operations/runtime-workload-firewall",
+        "operations/east-west-dpi",
+        "operations/runtime-integrity",
+        "operations/attack-disruption",
+        "operations/report-generation",
+        "operations/ci-cd",
+        "operations/notifications"
+      ]
+    },
+    {
+      "type": "category",
+      "label": "Integrations",
+      "link": {
+        "type": "doc",
+        "id": "integrations/index"
+      },
+      "items": [
+        "integrations/slack",
+        "integrations/sumo-logic",
+        "integrations/terraform"
+      ]
+    },
+    "api-reference"
+  ]
+}
