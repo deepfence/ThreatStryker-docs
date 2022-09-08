@@ -70,7 +70,7 @@ const config = {
           src: '/img/deepfence-logo-black.svg',
           srcDark: '/img/deepfence-logo-white.svg',
           href: '../',
-          target: '_self',
+          target: '_blank',
         },
         items: [
           {
