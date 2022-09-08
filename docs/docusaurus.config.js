@@ -36,7 +36,20 @@ const config = {
           breadcrumbs: true,
           routeBasePath: 'docs',
           // options for remark-admonitions
-          admonitions: {}, 
+          admonitions: {},
+          // version
+          lastVersion: 'current',
+          versions: {
+            "current": {
+              label: 'v3.7',
+              banner: 'none',
+            },
+            "v3.6": {
+              label: 'v3.6',
+              path: 'v3.6',
+              banner: 'none',
+            },
+          },
         },
         blog: false,
         theme: {

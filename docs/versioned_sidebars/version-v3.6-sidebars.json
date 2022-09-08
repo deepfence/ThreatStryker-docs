@@ -14,9 +14,7 @@
         "id": "architecture/index"
       },
       "items": [
-        "architecture/index",
-        "architecture/cloudscanner",
-        "architecture/threatgraph"
+        "architecture/index"
       ]
     },
     {
@@ -50,20 +48,6 @@
             "selfmanaged/database-export-import"
           ]
         }
-      ]
-    },
-    {
-      "type": "category",
-      "label": "Cloud Scanner task",
-      "link": {
-        "type": "doc",
-        "id": "cloudscanner/index"
-      },
-      "items": [
-        "cloudscanner/aws",
-        "cloudscanner/azure",
-        "cloudscanner/gcp",
-        "cloudscanner/other"
       ]
     },
     {

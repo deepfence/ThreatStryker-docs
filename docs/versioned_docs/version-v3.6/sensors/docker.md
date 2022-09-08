@@ -16,7 +16,7 @@ You can observe and manage a bare-metal or VM-based host by installing a docker 
 
 The host or VM to be used for the Deepfence agents needs to have the docker runtime installed on it.
 
-1. Download the following script: [start-agent.sh 🔗](../files/3.7.0/start-agent.sh)
+1. Download the following script: [start-agent.sh 🔗](../files/3.6.2/start-agent.sh)
 2. To authenticate to the docker image repository, run the following command:
 
     ```bash

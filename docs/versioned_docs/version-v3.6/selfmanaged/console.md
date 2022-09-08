@@ -36,7 +36,7 @@ You will get an email with license key and registry credentials.
 
 The host or VM to be used for the Deepfence management console needs to have the docker runtime installed. In addition, it also needs the binary **docker-compose** to be installed on it.
 
-1. 1. Download docker compose file from here: [docker-compose.yml 🔗](../files/3.7.0/docker-compose.yml). To authenticate to the docker image repository, run the following command:
+1. 1. Download docker compose file from here: [docker-compose.yml 🔗](../files/3.6.2/docker-compose.yml). To authenticate to the docker image repository, run the following command:
 
    ```bash
    docker login quay.io
@@ -73,7 +73,7 @@ Helm Chart Install
    helm install deepfence-console deepfence/deepfence-console \
        --set registry.username=<deepfence_username> \
        --set registry.password=<deepfence_password> \
-       --set image.tag=3.7.0 \
+       --set image.tag=3.6.2 \
        --namespace default
    ```
 

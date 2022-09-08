@@ -30,8 +30,8 @@ In Kubernetes, ThreatStryker agents can be installed using a helm chart.
 	    --set registry.password=<deepfence_password> \
 	    --set managementConsoleUrl=192.168.1.10 \
 	    --set deepfenceKey=xxxxxxxx \
-	    --set image.tag=3.7.0 \
-	    --set image.clusterAgentImageTag=3.7.0 \
+	    --set image.tag=3.6.2 \
+	    --set image.clusterAgentImageTag=3.6.2 \
         --namespace deepfence \
         --create-namespace
 	```
