@@ -14,7 +14,7 @@ export function siteMetadata() {
 <p>{siteConfig().tagline}</p>
 
 <span>
-	<a href={siteConfig().themeConfig.navbar.items[0].docId.replace('/index', '')}>
+	<a href={siteConfig().themeConfig.navbar.items[0].docId.replace('index', 'docs')}>
 		<div class="deepfence-button">
 			{siteConfig().themeConfig.navbar.items[0].label}
 		</div>

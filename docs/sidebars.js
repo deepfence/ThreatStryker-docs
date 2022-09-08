@@ -19,21 +19,21 @@ const sidebars = {
       type: 'html',
       value: 'Deepfence ThreatStryker',
       className: 'sidebar-title',
-    },    
+    }, 
 
-    'threatstryker/index',
+    'index',
 
     {
       type: 'category',
       label: 'Architecture',
       link: {
           type: 'doc',
-          id: 'threatstryker/architecture/index'
+          id: 'architecture/index'
       },
       items: [
-          'threatstryker/architecture/index',
-          'threatstryker/architecture/cloudscanner',
-          'threatstryker/architecture/threatgraph',
+          'architecture/index',
+          'architecture/cloudscanner',
+          'architecture/threatgraph',
       ],
     },
 
@@ -42,30 +42,30 @@ const sidebars = {
       label: 'Management Console',
        link: {
         type: 'doc',
-        id: 'threatstryker/deploy'
+        id: 'deploy'
       },
       items: [
         {
           type: 'category',
           label: 'Deepfence Cloud',
           items: [
-            'threatstryker/cloud/index',
-            'threatstryker/cloud/users',
-            'threatstryker/cloud/consoles',
-            'threatstryker/cloud/agents',
+            'cloud/index',
+            'cloud/users',
+            'cloud/consoles',
+            'cloud/agents',
           ],
         },
         {
           type: 'category',
           label: 'Self-Managed',
           items: [
-            'threatstryker/selfmanaged/index',
-            'threatstryker/selfmanaged/managed-database',
-            'threatstryker/selfmanaged/console',
-            'threatstryker/selfmanaged/users',
-            'threatstryker/selfmanaged/aws-elb',
-            'threatstryker/selfmanaged/troubleshooting',
-            'threatstryker/selfmanaged/database-export-import',
+            'selfmanaged/index',
+            'selfmanaged/managed-database',
+            'selfmanaged/console',
+            'selfmanaged/users',
+            'selfmanaged/aws-elb',
+            'selfmanaged/troubleshooting',
+            'selfmanaged/database-export-import',
           ],
         },
       ],
@@ -76,13 +76,13 @@ const sidebars = {
       label: 'Cloud Scanner task',
       link: {
           type: 'doc',
-          id: 'threatstryker/cloudscanner/index'
+          id: 'cloudscanner/index'
       },
       items: [
-          'threatstryker/cloudscanner/aws',
-          'threatstryker/cloudscanner/azure',
-          'threatstryker/cloudscanner/gcp',
-          'threatstryker/cloudscanner/other',
+          'cloudscanner/aws',
+          'cloudscanner/azure',
+          'cloudscanner/gcp',
+          'cloudscanner/other',
       ],
     },
 
@@ -91,14 +91,14 @@ const sidebars = {
       label: 'Sensor Agents',
       link: {
         type: 'doc',
-        id: 'threatstryker/sensors/index'
+        id: 'sensors/index'
       },
       items: [
-        'threatstryker/sensors/kubernetes',
-        'threatstryker/sensors/docker',
-        'threatstryker/sensors/aws-ecs',
-        'threatstryker/sensors/aws-fargate',
-        'threatstryker/sensors/bare-metal',
+        'sensors/kubernetes',
+        'sensors/docker',
+        'sensors/aws-ecs',
+        'sensors/aws-fargate',
+        'sensors/bare-metal',
       ],
     },
 
@@ -107,20 +107,20 @@ const sidebars = {
       label: 'Operations',
       link: {
         type: 'doc',
-        id: 'threatstryker/operations/index'
+        id: 'operations/index'
       },
       items: [
-        'threatstryker/operations/visualization',
-        'threatstryker/operations/vulnerability-management',
-        'threatstryker/operations/registry-scanning',
-        'threatstryker/operations/compliance',
-        'threatstryker/operations/runtime-workload-firewall',
-        'threatstryker/operations/east-west-dpi',
-        'threatstryker/operations/runtime-integrity',
-        'threatstryker/operations/attack-disruption',
-        'threatstryker/operations/report-generation',
-        'threatstryker/operations/ci-cd',
-        'threatstryker/operations/notifications',
+        'operations/visualization',
+        'operations/vulnerability-management',
+        'operations/registry-scanning',
+        'operations/compliance',
+        'operations/runtime-workload-firewall',
+        'operations/east-west-dpi',
+        'operations/runtime-integrity',
+        'operations/attack-disruption',
+        'operations/report-generation',
+        'operations/ci-cd',
+        'operations/notifications',
       ],
     },
 
@@ -129,15 +129,15 @@ const sidebars = {
       label: 'Integrations',
       link: {
         type: 'doc',
-        id: 'threatstryker/integrations/index'
+        id: 'integrations/index'
       },
       items: [
-        'threatstryker/integrations/slack',
-        'threatstryker/integrations/sumo-logic',
-        'threatstryker/integrations/terraform',
+        'integrations/slack',
+        'integrations/sumo-logic',
+        'integrations/terraform',
        ],
     },
-    "threatstryker/api-reference",
+    "api-reference",
   ],
 };
 
