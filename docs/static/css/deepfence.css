@@ -107,7 +107,7 @@ div[role=banner] button {
 /* Style the sidebar */
 
 .theme-doc-sidebar-container {
-  background-image: url(/img/backgrounds/Deepfence_BR_backgrounds_1a.jpg);
+  background-image: url(/img/backgrounds/df-home-bg.jpg);
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
@@ -116,7 +116,7 @@ div[role=banner] button {
 }
 
 [data-theme='dark'] .theme-doc-sidebar-container {
-  background-image: url(/img/backgrounds/Deepfence_BR_backgrounds_1b.jpg);
+  background-image: url(/img/backgrounds/df-home-bg.jpg);
 }
 
 
@@ -125,7 +125,7 @@ div[role=banner] button {
   background-color: var(--ifm-navbar-background-color);
 }
 .navbar-sidebar {
-  background-image: url(/img/backgrounds/Deepfence_BR_backgrounds_1a.jpg);
+  background-image: url(/img/backgrounds/df-home-bg.jpg);
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
@@ -133,7 +133,7 @@ div[role=banner] button {
   font-size: 0.9rem !important;
 }
 [data-theme='dark'] .navbar-sidebar {
-  background-image: url(/img/backgrounds/Deepfence_BR_backgrounds_1b.jpg);
+  background-image: url(/img/backgrounds/df-home-bg.jpg);
 }
 
 .navbar-sidebar .nav-dropdown-title {
@@ -370,7 +370,7 @@ a.theme-edit-this-page:hover:after {
 }
 
 #hero {
-  background-image: url(/img/backgrounds/Deepfence_BR_backgrounds_1a.jpg);
+  background-image: url(/img/backgrounds/df-home-bg.jpg);
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
@@ -379,7 +379,7 @@ a.theme-edit-this-page:hover:after {
 }
 
 [data-theme='dark'] #hero {
-  background-image: url(/img/backgrounds/Deepfence_BR_backgrounds_1b.jpg);
+  background-image: url(/img/backgrounds/df-home-bg.jpg);
 }
 
 .homepage-section {
