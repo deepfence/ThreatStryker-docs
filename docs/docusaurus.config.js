@@ -32,7 +32,7 @@ const config = {
           // Please change this to your repo.
           // Remove this to remove the "edit this page" links.
           editUrl:
-            'https://github.com/deepfence/ThreatStryker-docs/docs/',
+            'https://github.com/deepfence/ThreatStryker-docs/tree/main/docs',
           breadcrumbs: true,
           routeBasePath: 'docs',
           // options for remark-admonitions
