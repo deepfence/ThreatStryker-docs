@@ -6,7 +6,7 @@ title: CI-CD Integration
 
 *Integrate with popular CI/CD pipelines*
 
-You can use ThreatStryker to scan artifacts in a CI (Continuous Integration) pipeline.  If a vulnerability is detected and the CI build is blocked, the ThreatStryker agent will submit the details to the ThreatStryker management console. The console will then forward details to the configured notification services.
+You can use ThreatStryker to scan artifacts in a CI (Continuous Integration) pipeline.  If a vulnerability is detected and the CI build is blocked, the ThreatStryker agent will submit the details to the ThreatStryker management console. The console will then forward the details to the configured notification services.
 
 ## Configuring CI Scanning
 

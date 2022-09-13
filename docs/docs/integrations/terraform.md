@@ -29,7 +29,7 @@ gcp_project_id = "deepfence-console-123456"
 gcp_service_account_json = "~/deepfence/terraform-123456-458c1e0fce03.json"
 ```
 
- * Setup a service account in GCP: https://cloud.google.com/docs/authentication/getting-started#cloud-console
+ * Set up a service account in GCP: https://cloud.google.com/docs/authentication/getting-started#cloud-console
  * This service account should have permissions to create vm
  * The GCP zone is set to `us-west1-a`. Please change it if needed in `vars.tf`
 

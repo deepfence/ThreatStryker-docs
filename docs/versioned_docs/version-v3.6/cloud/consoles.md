@@ -38,4 +38,4 @@ You can quickly switch between different console instances from your browser, or
 
 
 1. Log in to the Deepfence Cloud portal.
-2. From the home page, locate the tile representing the ThreatStryker console to be deleted.  Click the 'Delete' icon, and enter the console's identifer to confirm the permanent deletion of that console and its data.
+2. From the home page, locate the tile representing the ThreatStryker console to be deleted.  Click the 'Delete' icon, and enter the console's identifier to confirm the permanent deletion of that console and its data.

@@ -31,7 +31,7 @@ ThreatStryker supports applications running in cloud-native platforms (kubernete
 ThreatStryker builds on the functionality of the open-source [ThreatMapper](https://github.com/deepfence/ThreatMapper/) security platform:
 
 
-* [ThreatMapper](https://github.com/deepfence/ThreatMapper/) identifies security risks - software vulnerabilities, exposed secrets - in your production platforms, and prioritizes them so you know which to fix first
+* [ThreatMapper](https://github.com/deepfence/ThreatMapper/) identifies security risks - software vulnerabilities, exposed secrets - in your production platforms, and prioritizes them, so you know which to fix first
 * [ThreatStryker](https://deepfence.io/threatstryker) observes network traffic and application behavior relating to both known (discovered by ThreatStryker) and unknown (zero-day or app-specific) risks, identifies ongoing attacks and provides automated and guided protection to prevent attacks from spreading
 
 Use ThreatStryker to find risks in your production platforms, and ThreatStryker to observe attack behavior and secure against exploit.

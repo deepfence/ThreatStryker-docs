@@ -10,7 +10,7 @@ Navigate to `https://[Your Workspace].slack.com/apps` and search for the "Incomi
 
 ![Incoming Webhooks](../img/deepfence_webhooks.jpg)
 
-Click on "Add to Slack", where you will be asked to choose a channel"
+Click on "Add to Slack", where you will be asked to choose a channel
 
 ![Post to Channel](../img/deepfence_integrationspost.jpg)
 
@@ -18,4 +18,4 @@ Follow the "Setup Instructions":
 
 ![Setup Instructions](../img/deepfence_integrationssetup.jpg)
 
-Paste the webhook URL and the correspoding channel name into Deepfence Slack integration page.
+Paste the webhook URL and the corresponding channel name into Deepfence Slack integration page.

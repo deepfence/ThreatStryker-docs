@@ -2,7 +2,7 @@
 title: Notifications
 ---
 
-# Norifications
+# Notifications
 
 *Forward Notifications to External Services*
 

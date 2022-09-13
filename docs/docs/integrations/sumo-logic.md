@@ -43,5 +43,5 @@ Enter this into the "HTTP Endpoint" parameter in the ThreatStryker configuration
 
 User activity logs or user audit logs can be exported to Sumo Logic integration.
 
-Follow the steps to add the Sumo Logic Integration in Deepfence and select the option "User Activities" in alert type. Choose the duration from the drop down and click on "Subscribe".
+Follow the steps to add the Sumo Logic Integration in Deepfence and select the option "User Activities" in alert type. Choose the duration from the drop-down and click on "Subscribe".
 
