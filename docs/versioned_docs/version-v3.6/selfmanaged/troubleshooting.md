@@ -9,9 +9,9 @@ title: Troubleshooting
 If the Deepfence management console VM or host has been reset/rebooted, run a following commands on the VM or host that has the Deepfence management console to restart the services:
 
 ```
-docker-compose -f docker-compose.yml down
+docker compose -f docker-compose.yml down
 sudo sysctl -w vm.max_map_count=262144
-docker-compose -f docker-compose.yml up -d
+docker compose -f docker-compose.yml up -d
 ```
 
 ### Agent Management
