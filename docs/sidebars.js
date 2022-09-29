@@ -53,6 +53,7 @@ const sidebars = {
             'cloud/users',
             'cloud/consoles',
             'cloud/agents',
+            'cloud/sso',
           ],
         },
         {
@@ -73,7 +74,7 @@ const sidebars = {
 
     {
       type: 'category',
-      label: 'Cloud Scanner task',
+      label: 'Cloud Scanner',
       link: {
           type: 'doc',
           id: 'cloudscanner/index'
@@ -84,6 +85,16 @@ const sidebars = {
           'cloudscanner/gcp',
           'cloudscanner/other',
       ],
+    },
+
+    {
+      type: 'category',
+      label: 'Kubernetes Scanner',
+      link: {
+        type: 'doc',
+        id: 'kubernetes-scanner/index'
+      },
+      items: [],
     },
 
     {
