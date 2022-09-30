@@ -17,9 +17,9 @@ Deepfence Cloud currently uses the term **workload** to refer to a ThreatStryker
 1. Log in to the Deepfence Cloud portal.
 2. From the home page, select the '**Create new Management Console**' tile.  This will prompt you for the following information:
 
-    ![Add a new Workload](../img/cloud-newworkload.png)
-
     Provide an **identifier** and select a **region** where that console should be deployed.
+
+    ![Add a new Workload](../img/cloud-newworkload.png)
 
 :::info
 The identifier you provide will be used to construct a DNS name. You'll use that DNS name to refer to your console when you  install ThreatStryker sensor agents.

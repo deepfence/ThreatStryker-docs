@@ -40,7 +40,10 @@ To configure Okta as ID provider for Deepfence Cloud, please follow these steps
 
 3. Enter the `Client ID` and `Cliet Secret` from the OpenID Connect provider, in this example, from Okta.
 4. `Issuer URL` is the ID provider's URL. Example: `https://organization.okta.com`
-5. Optionally you can disable `password login` and `social login (Google, GitHub, Microsoft)`.
-6. Logout. On the login page, click `Login with OpenID` and enter your email id to log in with the configured SSO. 
+5. Optionally you can disable password login and social login (Google, GitHub, Microsoft).
+:::info
+When password login is disabled, users invited to the platform will continue to provide a password during registration. However, OpenID Connect will be used for authentication.
+:::
+6. On the login page, click `Login with OpenID` and enter your email id to log in with the configured SSO. 
 
    ![SSO](../img/sso-3.png)
