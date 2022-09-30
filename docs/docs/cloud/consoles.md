@@ -15,11 +15,11 @@ Deepfence Cloud currently uses the term **workload** to refer to a ThreatStryker
 
 
 1. Log in to the Deepfence Cloud portal.
-2. From the home page, select the 'New Console' tile.  This will prompt you for the following information:
+2. From the home page, select the '**Create new Management Console**' tile.  This will prompt you for the following information:
 
     ![Add a new Workload](../img/cloud-newworkload.png)
 
-    Provide an *identifier*, select a console type, and select a region where that console should be deployed.
+    Provide an **identifier** and select a **region** where that console should be deployed.
 
 :::info
 The identifier you provide will be used to construct a DNS name. You'll use that DNS name to refer to your console when you  install ThreatStryker sensor agents.
@@ -32,7 +32,8 @@ The request to deploy the console is quickly registered. Deployment can take a f
 1. Log in to the Deepfence Cloud portal.
 2. From the home page, click on one of the tiles representing existing ThreatStryker consoles.  This action will load the console in your browser.
 
-You can quickly switch between different console instances from your browser, or return **Home** to the list of console tiles.
+You can quickly switch between different console instances from your browser, or return **Home** to the list of console tiles using the top bar.
+    ![cloud ui top-bar](../img/console-top-bar.png)
 
 ### Task 3 - Delete a ThreatStryker Console
 
