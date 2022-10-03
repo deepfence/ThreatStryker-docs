@@ -2,7 +2,19 @@
 title: AWS
 ---
 
-# Configuring Cloud Scanner for Amazon Web Services
+# Configuring Cloud Scanner for AWS
+
+## CloudFormation
+
+Open the following url link to deploy Cloud Scanner using CloudFormation in `us-east-1` region.
+
+[https://us-east-1.console.aws.amazon.com/cloudformation/home?region=us-east-1#/stacks/create/review?templateURL=https://deepfence-public.s3.amazonaws.com/cloud-scanner/deepfence-cloud-scanner.template&stackName=Deepfence-Cloud-Scanner](https://us-east-1.console.aws.amazon.com/cloudformation/home?region=us-east-1#/stacks/create/review?templateURL=https://deepfence-public.s3.amazonaws.com/cloud-scanner/deepfence-cloud-scanner.template&stackName=Deepfence-Cloud-Scanner)
+
+(Template URL: https://deepfence-public.s3.amazonaws.com/cloud-scanner/deepfence-cloud-scanner.template)
+
+## Terraform
+
+https://registry.terraform.io/modules/deepfence/cloud-scanner/aws/latest/examples/single-account-ecs#usage
 
 Cloud Scanner is deployed as a task within your AWS infrastructure. The ThreatStryker console provides a simple terraform script to perform the deployment.
 

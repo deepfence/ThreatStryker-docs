@@ -4,6 +4,8 @@ title: Microsoft Azure
 
 # Configuring Cloud Scanner for Microsoft Azure
 
+https://registry.terraform.io/modules/deepfence/cloud-scanner/azure/latest/examples/single-subscription#usage
+
 Cloud Scanner is deployed as a task within your Azure infrastructure. The ThreatStryker console provides a simple terraform script to perform the deployment.
 
 | ![Compliance Install - Microsoft Azure](../img/compliance-install-azure.jpg) |
