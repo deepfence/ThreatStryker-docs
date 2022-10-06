@@ -32,9 +32,14 @@ In Kubernetes, ThreatStryker agents can be installed using a helm chart.
 	    --set deepfenceKey=xxxxxxxx \
 	    --set image.tag=3.7.1 \
 	    --set image.clusterAgentImageTag=3.7.1 \
+	    --set clusterName=xxxxxxxx \
         --namespace deepfence \
         --create-namespace
 	```
+
+    :::info
+    `clusterName` is the name / identifier of the cluster. It should be different for different kubernetes clusters. Example: prod-cluster-1, test-cluster.
+    :::
 
     The registry username and password to access the Deepfence Quay registry will be sent by email; check the README inside the package for detailed setup instructions.
 
