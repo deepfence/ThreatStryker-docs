@@ -2,10 +2,21 @@
 title: Deploying with Self-Managed
 ---
 
-# Deploying with Self-Managed
+## Preparation
 
-Deployment Architecture
-=======================
+You will get an email with license key and registry credentials.
+
+| Property          | Details                                       |
+|-------------------|-----------------------------------------------|
+| License key       | xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx          |
+| Organization      | xxxx corp                                     |         
+| Number of hosts   | 20                                            |  
+| Admin email       | xxxx@xxxx.com                                 | 
+| Registry username | xxxxxxxx                                      |
+| Registry password | xxxxxxxx                                      |
+| Documentation     | https://docs.deepfence.io/threatstryker/docs/ |
+
+## Deployment Architecture
 
 ![Enterprise Deployment Architecture](../img/entdeployment_arch.jpg)
 

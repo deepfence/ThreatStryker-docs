@@ -61,8 +61,9 @@ const sidebars = {
           label: 'Self-Managed',
           items: [
             'selfmanaged/index',
+            'selfmanaged/docker',
+            'selfmanaged/kubernetes',
             'selfmanaged/managed-database',
-            'selfmanaged/console',
             'selfmanaged/users',
             'selfmanaged/aws-elb',
             'selfmanaged/troubleshooting',
