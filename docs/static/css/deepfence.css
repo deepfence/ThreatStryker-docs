@@ -83,9 +83,9 @@ a.navbar__link:hover {
 
 /* hide the toc, but leave the space
    For reference, can also suppress the toc completely with frontmatter hide_table_of_contents: true */
-.table-of-contents, .theme-doc-toc-desktop, .theme-doc-toc-mobile {
-  display: none;
-}
+/*.table-of-contents, .theme-doc-toc-desktop, .theme-doc-toc-mobile {*/
+/*  display: none;*/
+/*}*/
 
 
 /* Style the announcement bar, using similar styles to the footer */
