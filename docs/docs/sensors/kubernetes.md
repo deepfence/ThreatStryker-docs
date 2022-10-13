@@ -134,59 +134,13 @@ kubectl get daemonset -n deepfence
 kubectl get pods -n deepfence
 ```
 
-## Delete 
+## Uninstall agents 
 
 	```bash
 	helm delete deepfence-agent -n deepfence
 	```
 
-## ThreatStryker Agents for openshift (Helm Chart)
-
-1.  Add helm repo:
-
-	```bash
-	helm repo add deepfence https://deepfence-helm-charts.s3.amazonaws.com/enterprise
-	helm repo update
-	helm search repo deepfence/deepfence-agent
-	```
-
-2.  Identify the IP address or DNS name used to access the ThreatStryker management console.  For example, if the address is *192.168.1.10*, use the following command:
-
-	```bash
-	helm install deepfence-agent deepfence/deepfence-agent \
-	    --set registry.username=<registry_username> \
-	    --set registry.password=<registry_password> \
-	    --set managementConsoleUrl=192.168.1.10 \
-	    --set deepfenceKey=xxxxxxxx \
-	    --set image.tag=3.7.1 \
-	    --set image.clusterAgentImageTag=3.7.1 \
-		--set mountContainerRuntimeSocket.dockerSock=false \
-		--set mountContainerRuntimeSocket.containerdSock=true \
-		--set mountContainerRuntimeSocket.containerdSockPath="/var/run/crio/crio.sock" \
-        --namespace deepfence \
-        --create-namespace
-	```
-
-    The registry username and password to access the Deepfence Quay registry will be sent by email; check the README inside the package for detailed setup instructions.
-
-	```bash
-	helm show readme deepfence/deepfence-agent
-	helm show values deepfence/deepfence-agent
-	```
-
-3. ThreatStryker agents need previliged permisions to execute on openshift, run below commands to add privileged permisions to deepfence-agent service account
-
-   ```bash 
-   oc adm policy add-scc-to-user privileged -z deepfence-agent -n deepfence
-   ```
-
-3.  To delete the ThreatStryker release that was installed by the helm chart, run the following command:
-
-	```bash
-	helm delete deepfence-agent -n deepfence
-	```
-
-## ThreatStryker Agents for openshift (Helm Chart)
+## Openshift
 
 1.  Add helm repo:
 
