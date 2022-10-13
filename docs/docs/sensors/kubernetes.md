@@ -215,6 +215,7 @@ kubectl get pods -n deepfence
 		--set mountContainerRuntimeSocket.dockerSock=false \
 		--set mountContainerRuntimeSocket.containerdSock=true \
 		--set mountContainerRuntimeSocket.containerdSockPath="/var/run/crio/crio.sock" \
+		--set tolerations=null \
 		--namespace deepfence \
 		--create-namespace
 	```
