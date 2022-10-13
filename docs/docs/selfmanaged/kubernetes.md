@@ -250,3 +250,57 @@ helm install -f deepfence_router_values.yaml \
 ```bash
 helm delete deepfence-router
 ```
+
+
+## Deploying on Openshift using Helm
+
+1. Add helm repo:
+
+   ```bash
+   helm repo add deepfence https://deepfence-helm-charts.s3.amazonaws.com/enterprise
+   helm repo update
+   helm search repo deepfence/deepfence-console
+   ```
+
+2. After adding helm repo run below command, this installs router and console
+
+   ```bash
+   helm install deepfence-router deepfence/deepfence-router \
+      --namespace deepfence-console \
+      --create-namespace
+
+   helm install deepfence-console deepfence/deepfence-console \
+       --set registry.username=<registry_username> \
+       --set registry.password=<registry_password> \
+       --set image.tag=3.7.1 \
+       --set discovery.runConsoleDiscovery=false \
+       --namespace deepfence-console
+       --create-namespace
+   ```
+
+   The Quay registry username and password is provided by email. Check the README inside the package for detailed setup instructions.
+
+   ```bash
+   helm show readme deepfence/deepfence-console
+   helm show values deepfence/deepfence-console
+   ```
+
+3. Some of the components of Deepfence console needs previliged permisions, run below commands to add privileged and anyuid permisions to deepfence-console service account
+
+   ```bash
+   oc adm policy add-scc-to-user anyuid -z deepfence-console -n deepfence-console
+   oc adm policy add-scc-to-user privileged -z deepfence-console -n deepfence-console
+   ```
+
+4. To get the management console ip address, run following command: ::
+
+   ```bash
+   kubectl get --namespace deepfence-console svc deepfence-router -w
+   ```
+
+4. To delete deepfence console helm chart, run following command: ::
+
+   ```bash
+   helm delete deepfence-router -n deepfence-console
+   helm delete deepfence-console -n deepfence-console
+   ```

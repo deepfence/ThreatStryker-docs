@@ -36,3 +36,17 @@ The preferred way to manage users is to use their social logins.  When social lo
 2. From the **Users** tab, click the 'delete' icon next to the user you wish to remove from your organization.
 
 You can also toggle the active/inactive state to temporarily prevent a user from accessing your Deepfence Cloud organization. 
+
+### User Roles Portal
+|Permissions|Admin|User|
+|---|---|---|
+|   |   |   |
+|   |   |   |
+|   |   |   |
+
+### User Roles Consoles
+|Permissions|Admin|User|
+|---|---|---|
+|   |   |   |
+|   |   |   |
+|   |   |   |
