@@ -265,10 +265,6 @@ helm delete deepfence-router
 2. After adding helm repo run below command, this installs router and console
 
    ```bash
-   helm install deepfence-router deepfence/deepfence-router \
-      --namespace deepfence-console \
-      --create-namespace
-
    helm install deepfence-console deepfence/deepfence-console \
        --set registry.username=<registry_username> \
        --set registry.password=<registry_password> \
@@ -292,15 +288,77 @@ helm delete deepfence-router
    oc adm policy add-scc-to-user privileged -z deepfence-console -n deepfence-console
    ```
 
-4. To get the management console ip address, run following command: ::
+4. To connect to Management console install deepfence-router, this creates a loadbalancer service which can be used to access the console, run below command to install:
 
-   ```bash
-   kubectl get --namespace deepfence-console svc deepfence-router -w
-   ```
+    ```bash
+    helm install deepfence-router deepfence/deepfence-router \
+      --namespace deepfence-console \
+      --create-namespace
+    ```
 
-4. To delete deepfence console helm chart, run following command: ::
+    get the loadbalancer ip using below command
 
-   ```bash
-   helm delete deepfence-router -n deepfence-console
-   helm delete deepfence-console -n deepfence-console
-   ```
+    ```bash
+    kubectl get --namespace deepfence-console svc deepfence-router -w
+    ```
+
+5. Openshift provides Route which can be used instead of Loadbalancer
+
+    - to create a route for management console first install deepfence-router helm chart with service type ClusterIP
+
+      ```bash
+      helm install deepfence-router deepfence/deepfence-router \
+          --set service.type=ClusterIP \
+          --namespace deepfence-console \
+          --create-namespace
+      ```
+
+    - get the openshift cluster domain
+      ```bash
+      oc get ingresses.config/cluster -o jsonpath={.spec.domain}
+      ```
+
+    - create the route.yaml using below sample
+
+      ```yaml
+      apiVersion: route.openshift.io/v1
+      kind: Route
+      metadata:
+        name: deepfence-console
+        namespace: deepfence-console
+      spec:
+        host: deepfence-console.<< cluster domain>>
+        port:
+          targetPort: https-port
+        tls:
+          termination: passthrough
+        to:
+          kind: Service
+          name: deepfence-router
+          weight: 100
+        wildcardPolicy: None
+      ```
+
+    - apply the route.yaml using below command:
+      ```bash
+      kubectl apply -f route.yaml
+      ```
+
+   - Management console will be accesable at the url **https://deepfence-console.<< cluster domain>>**
+
+
+6. To delete deepfence console helm chart, run following command:
+
+    ```bash
+    helm delete deepfence-router -n deepfence-console
+    helm delete deepfence-console -n deepfence-console
+    ```
+
+    if route is created
+    ```bash
+    oc delete route -n deepfence-console deepfence-console
+    ```
+    or
+    ```bash
+    kubectl delete routes.route.openshift.io -n deepfence-console deepfence-console
+    ```
