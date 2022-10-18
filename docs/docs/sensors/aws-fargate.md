@@ -89,7 +89,7 @@ The following environment variables are required for the ThreatStryker agent:
  
 If you are using json to configure your task definitions, you can use the following part in the appropriate container section of task definition json after copying the appropriate IP address and API Key.
 
-```json
+```
 "environment": [
    {
        "name": "DEEPFENCE_KEY",
@@ -140,7 +140,7 @@ In the application container, update storage to allow read/write from deepfence 
 
 If you are using json to configure your task definitions, you can copy the following settings to the appropriate container section of the json after changing the Container name:
 
-```json
+```
 "volumesFrom": [
    {
        "sourceContainer": "FargateAgentSidecarScratch",
@@ -193,7 +193,7 @@ The second option does not require any change in the application container. You 
 
 If you are using json to configure your task definitions, then you can specify the entrypoint and/or command as follows using appropriate quoting:
 
-```json
+```
 "entryPoint": [
    "/deepfence/usr/local/bin/deepfence-entry-point-scratch.sh",
    "customer-entry-point.sh.sh",
@@ -211,7 +211,7 @@ If you are using json to configure your task definitions, then you can specify t
 
 If you are using json to configure your task definitions, then you can specify the entrypoint and/or command as follows using appropriate quoting:
 
-```json
+```
 "entryPoint": [
    "/deepfence/usr/local/bin/deepfence-entry-point-scratch.sh"
 ],

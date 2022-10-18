@@ -181,7 +181,7 @@ kubectl get pods -n deepfence
 	helm show values deepfence/deepfence-agent
 	```
 
-3. ThreatStryker agents need previliged permisions to execute on openshift, run below commands to add privileged permisions to deepfence-agent service account
+3. ThreatStryker agents need privileged permissions to execute on openshift, run below commands to add privileged permisions to deepfence-agent service account
 
    ```bash 
    oc adm policy add-scc-to-user privileged -z deepfence-agent -n deepfence

@@ -281,7 +281,7 @@ helm delete deepfence-router
    helm show values deepfence/deepfence-console
    ```
 
-3. Some of the components of Deepfence console needs previliged permisions, run below commands to add privileged and anyuid permisions to deepfence-console service account
+3. Some components of Deepfence console needs privileged permissions, run below commands to add privileged and anyuid permisions to deepfence-console service account
 
    ```bash
    oc adm policy add-scc-to-user anyuid -z deepfence-console -n deepfence-console
@@ -344,7 +344,7 @@ helm delete deepfence-router
       kubectl apply -f route.yaml
       ```
 
-   - Management console will be accesable at the url **https://deepfence-console.<< cluster domain>>**
+   - Management console will be accessible at the url **https://deepfence-console.<< cluster domain>>**
 
 
 6. To delete deepfence console helm chart, run following command:

@@ -7,10 +7,6 @@ title: Deploying Consoles
 
 Any **admin** user in your Deepfence Cloud organization can deploy a ThreatStryker management console.  Once deployed, any user in the organization can access that console without any additional login steps.
 
-:::caution
-Deepfence Cloud currently uses the term **workload** to refer to a ThreatStryker console.  This will be updated to the term **console** and the following documentation uses the new term.
-:::
-
 ### Task 1 - Deploy a new ThreatStryker Console
 
 
@@ -36,7 +32,6 @@ You can quickly switch between different console instances from your browser, or
     ![cloud ui top-bar](../img/console-top-bar.png)
 
 ### Task 3 - Delete a ThreatStryker Console
-
 
 1. Log in to the Deepfence Cloud portal.
 2. From the home page, locate the tile representing the ThreatStryker console to be deleted.  Click the 'Delete' icon, and enter the console's identifier to confirm the permanent deletion of that console and its data.
