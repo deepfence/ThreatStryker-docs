@@ -27,3 +27,13 @@ helm install deepfence-k8s-scanner deepfence-k8s-scanner/deepfence-k8s-scanner \
     --namespace deepfence-k8s-scanner \
     --create-namespace
 ```
+
+## Kuberntes Scanner on Openshift 
+
+- Use steps from previous section to install k8s-scanner on openshift
+- Add anyuid and previliged permisions to k8s-scanner for it to work properly on openshift
+
+```shell
+oc adm policy add-scc-to-user privileged -z deepfence-k8s-scanner -n deepfence-k8s-scanner
+oc adm policy add-scc-to-user anyuid -z deepfence-k8s-scanner -n deepfence-k8s-scanner
+```
