@@ -48,71 +48,17 @@ Intent detection rules empower users to perform advanced correlation on alerts b
 Protection policy can be enforced using Cloud WAF if configured by the user. Only AWS WAF is supported at this moment.
 Deepfence will create [IP Set](https://docs.aws.amazon.com/waf/latest/developerguide/waf-ip-set-creating.html) and add a [rule](https://docs.aws.amazon.com/waf/latest/developerguide/waf-rule-statement-type-ipset-match.html) in the Web ACL's provided by the user.
 
-### IAM Role
+:::note
+This feature is available from v3.7.1
+:::
+
+### IAM role
 
 1. Deepfence Management Console requires write permissions to WAF for policy enforcement. 
-2. Create an IAM role and add the following policy (`arn:aws:iam::aws:policy/AWSWAFFullAccess`) and set the role as EC2 instance IAM Role. In case of EKS (Kubernetes), this policy should be added to `Cluster IAM role`.
-    ```json
-    {
-        "Version": "2012-10-17",
-        "Statement": [
-            {
-                "Sid": "AllowUseOfAWSWAF",
-                "Effect": "Allow",
-                "Action": [
-                    "waf:*",
-                    "waf-regional:*",
-                    "wafv2:*",
-                    "elasticloadbalancing:SetWebACL",
-                    "apigateway:SetWebACL",
-                    "appsync:SetWebACL",
-                    "logs:DescribeResourcePolicies",
-                    "logs:DescribeLogGroups",
-                    "cognito-idp:AssociateWebACL",
-                    "cognito-idp:DisassociateWebACL",
-                    "cognito-idp:ListResourcesForWebACL",
-                    "cognito-idp:GetWebACLForResource"
-                ],
-                "Resource": "*"
-            },
-            {
-                "Sid": "AllowLogDeliverySubscription",
-                "Effect": "Allow",
-                "Action": [
-                    "logs:CreateLogDelivery",
-                    "logs:DeleteLogDelivery"
-                ],
-                "Resource": "*"
-            },
-            {
-                "Sid": "GrantLogDeliveryPermissionForS3Bucket",
-                "Effect": "Allow",
-                "Action": [
-                    "s3:PutBucketPolicy",
-                    "s3:GetBucketPolicy"
-                ],
-                "Resource": [
-                    "arn:aws:s3:::aws-waf-logs-*"
-                ]
-            },
-            {
-                "Sid": "GrantLogDeliveryPermissionForCloudWatchLogGroup",
-                "Effect": "Allow",
-                "Action": [
-                    "logs:PutResourcePolicy"
-                ],
-                "Resource": "*",
-                "Condition": {
-                    "ForAnyValue:StringEquals": {
-                        "aws:CalledVia": [
-                            "wafv2.amazonaws.com"
-                        ]
-                    }
-                }
-            }
-        ]
-    }
-    ```
+2. If console is deployed in a EC2 vm, add the policy `AWSWAFFullAccess` to the instance IAM role.
+   ![Instance IAM Role](../img/aws-waf-4.png)
+3. In case of EKS (Kubernetes), this policy (`AWSWAFFullAccess`) should be added to `Node IAM role` of the node group.
+   ![AWS WAF](../img/kubernetes-node-role.png)
 
 ### Configuration
 1. Copy ARN's of all Web ACL's in all regions that needs protection.
@@ -121,5 +67,10 @@ Deepfence will create [IP Set](https://docs.aws.amazon.com/waf/latest/developerg
    ![Cloud WAF](../img/cloud-waf-1.png)
 3. Deepfence will automatically create IP Set for each Web ACL provided and update those Web ACL's with new rule.
    ![AWS WAF](../img/aws-waf-2.png)
-4. Set network protection policies based on intents/classtypes. Alerts matching the policies will result in source ip getting added to the IP Set managed by Deepfence and blocked.
+   ![AWS WAF](../img/aws-waf-3.png)
+
+### Set policy
+1. Set network protection policies based on intents/classtypes. Alerts matching the policies will result in source ip getting added to the IP Set managed by Deepfence and blocked.
+   ![View Network Policies](../img/deepfence_network_policy_2.png)
+2. Setting a blacklist node network policy will add the ip address to the WAF IP sets for blocking.
    ![Define New Network Policy](../img/deepfence_networkpolicy.jpg)
