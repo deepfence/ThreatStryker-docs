@@ -12,9 +12,9 @@ ThreatStryker logs and scanning reports can be routed to various SIEMs and notif
 
 For detailed instructions on integrations, refer to the corresponding appropriate documentation:
 
- * [Slack Integration](../Integrations/slack)
- * [Sumo Logic Integration](../Integrations/sumo-logic)
- * [Terraform Integration](../Integrations/terraform)
+ * [Slack Integration](../integrations/slack)
+ * [Sumo Logic Integration](../integrations/sumo-logic)
+ * [Terraform Integration](../integrations/terraform)
 
 
 :::info

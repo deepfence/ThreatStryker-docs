@@ -29,7 +29,7 @@ You will get an email with license key and registry credentials.
 | Admin email       | xxxx@xxxx.com                                      | 
 | Registry username | xxxxxxxx                                           |
 | Registry password | xxxxxxxx                                           |
-| Documentation     | https://community.deepfence.io/docs/threatstryker/ |
+| Documentation     | https://community.deepfence.io/threatstryker/docs  |
 
 
 ## Docker Install
