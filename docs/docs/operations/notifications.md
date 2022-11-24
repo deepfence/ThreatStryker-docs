@@ -15,6 +15,12 @@ For detailed instructions on integrations, refer to the corresponding appropriat
  * [Slack Integration](/docs/integrations/slack)
  * [Sumo Logic Integration](/docs/integrations/sumo-logic)
  * [Terraform Integration](/docs/integrations/terraform)
+ * [Email Integration](/docs/integrations/email)
+ * [HTTP Endpoint Integration](/docs/integrations/http-endpoint)
+ * [Jira Integration](/docs/integrations/jira)
+ * [PagerDuty Integration](/docs/integrations/pager-duty)
+ * [S3 Integration](/docs/integrations/s3)
+ * [XLSX and PDF Reports ](/docs/integrations/xlsx-pdf)
 
 
 :::info
