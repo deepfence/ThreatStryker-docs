@@ -5,8 +5,10 @@ title: Registering Agents
 # Register a Sensor Agent with Deepfence Cloud
 
 :::info
-If you are installing docker agent or kubernetes agent, in the console select '**settings**' from sidebar and select '**Agent setup**'. This page shows commands for installing agents on docker and kubernetes, the same page appears first time when no agents are configured to connect to the console
+If you are installing docker agent or kubernetes agent, in the console select '**settings**' from sidebar and select '**Agent setup**'. This page shows commands for installing agents on docker and kubernetes, the same page appears first time when no agents are configured to connect to the console. You can also get the Deepfence container registry credentials here.
 :::
+
+![Agent Setup](../img/agent-setup.png)
 
 To register a ThreatStryker agent, you need two items of information:
 
