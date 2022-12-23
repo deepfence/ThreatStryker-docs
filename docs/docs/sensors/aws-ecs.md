@@ -37,7 +37,7 @@ Be careful with the double quotes, sometimes the AWS UI transforms them into a s
 2. Create a new role (e.g.: `deepfence-agent-role`)
     - Go to the IAM dashboard from AWS Console
     - Go to Access management > roles
-    - Select "Create Role", 
+    - Select "Create Role",
     - Select "Custom trust policy"
     - Paste the following:
 
@@ -192,7 +192,7 @@ Then create the new policy.
     ],
     "placementConstraints": [],
     "memory": "2048",
-    "family": "deepfence-agent-ec2-provider-thomas",
+    "family": "deepfence-agent-ec2-provider",
     "pidMode": null,
     "requiresCompatibilities": [
     "EC2"
