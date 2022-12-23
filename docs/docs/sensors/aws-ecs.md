@@ -116,7 +116,7 @@ Then create the new policy.
         },
         {
           "name": "DF_FIM_ON",
-          "value": "Y"
+          "value": "N"
         },
         {
           "name": "DF_TRAFFIC_ANALYSIS_MODE",
