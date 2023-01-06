@@ -145,6 +145,7 @@ const sidebars = {
       },
       items: [
         'integrations/slack',
+        'integrations/microsoft-teams',
         'integrations/sumo-logic',
         'integrations/terraform',
         'integrations/email',
