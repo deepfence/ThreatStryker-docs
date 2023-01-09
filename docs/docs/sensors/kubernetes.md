@@ -28,7 +28,7 @@ helm install deepfence-agent deepfence/deepfence-agent \
     --set mountContainerRuntimeSocket.containerdSock=true \
     --set trafficAnalysis.start=Y \
     --set trafficAnalysis.mode=all \
-    --set dfFim=Y \
+    --set dfFim=N \
     --namespace deepfence \
     --create-namespace
 ```
@@ -168,7 +168,7 @@ kubectl get pods -n deepfence
 		--set mountContainerRuntimeSocket.containerdSock=true \
 		--set trafficAnalysis.start=Y \
 		--set trafficAnalysis.mode=all \
-		--set dfFim=Y \
+		--set dfFim=N \
 		--set mountContainerRuntimeSocket.dockerSock=false \
 		--set mountContainerRuntimeSocket.containerdSock=true \
 		--set mountContainerRuntimeSocket.containerdSockPath="/var/run/crio/crio.sock" \
