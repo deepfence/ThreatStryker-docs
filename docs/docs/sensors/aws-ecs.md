@@ -45,13 +45,13 @@ Be careful with the double quotes, sometimes the AWS UI transforms them into a s
 {
     "Version": "2012-10-17",
     "Statement": [
-    {
-        "Effect": "Allow",
-        "Principal": {
-            "Service": "ecs-tasks.amazonaws.com"
-        },
-        "Action": "sts:AssumeRole"
-    }
+        {
+            "Effect": "Allow",
+            "Principal": {
+                "Service": "ecs-tasks.amazonaws.com"
+            },
+            "Action": "sts:AssumeRole"
+        }
     ]
 }
 ```
@@ -60,7 +60,8 @@ Then continue:
 
   - Search in the "Permissions policies" for "Task" > Select the following policy: `AmazonECSTaskExecutionRolePolicy`
   - Click "Next", name the role `deepfence-agent-role`, then "Create role"
-  - Search for your newly created roles
+  - Store the Role ARN. We will refer to it as `<AGENT_TASK_ROLE_ARN>`
+  - Search for your newly created role
   - Click on it (`deepfence-agent-role` in our example)
   - Select "Add permissions" > "Create inline policy" and add:
 
@@ -69,15 +70,36 @@ Then continue:
 {
     "Version": "2012-10-17",
     "Statement": [
-    {
-        "Effect": "Allow",
-        "Action": [
-        "secretsmanager:GetSecretValue"
-        ],
-        "Resource": [
-        "<ARN_QUAY_CREDS>"
-        ]
-    }
+        {
+            "Effect": "Allow",
+            "Action": [
+                "secretsmanager:GetSecretValue"
+            ],
+            "Resource": [
+                "<ARN_QUAY_CREDS>"
+            ]
+        }
+    ]
+}
+```
+
+If you are using a custom KMS key for your secrets and not using the default key, you will also need to add the KMS key permissions to your inline policy:
+```json
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Effect": "Allow",
+            "Action": [
+                "kms:Decrypt",
+                "ssm:GetParameters",
+                "secretsmanager:GetSecretValue"
+            ],
+            "Resource": [
+                "<ARN_QUAY_CREDS>",
+                "<custom_kms_key_arn>"
+            ]
+        }
     ]
 }
 ```
@@ -94,7 +116,7 @@ Then create the new policy.
   - Provide a name to your task definition (e.g. `deepfence-agent-ec2-task`)
   - Select the Task role and execution role (e.g. `deepfence-agent-role`)
   - At the bottom, select "Configure via JSON"
-  - Copy and paste the following JSON configuration: (Replace `<DEEPFENCE_KEY>`, `<MGMT_CONSOLE_URL>` and `<ARN_QUAY_CREDS>` with actual values)
+  - Copy and paste the following JSON configuration: (Replace `<DEEPFENCE_KEY>`, `<MGMT_CONSOLE_URL>`, `<ARN_QUAY_CREDS>` and `<AGENT_TASK_ROLE_ARN>` with actual values)
 
 ```json
 {
@@ -191,6 +213,7 @@ Then create the new policy.
     }
   ],
   "placementConstraints": [],
+  "executionRoleArn": "<AGENT_TASK_ROLE_ARN>",
   "memory": "2048",
   "family": "deepfence-agent-ec2-provider",
   "pidMode": null,
