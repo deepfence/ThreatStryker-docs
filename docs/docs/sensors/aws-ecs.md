@@ -192,7 +192,7 @@ Then create the new policy.
       "memoryReservation": null,
       "volumesFrom": [],
       "stopTimeout": null,
-      "image": "quay.io/deepfenceio/deepfence_agent:3.7.1",
+      "image": "quay.io/deepfenceio/deepfence_agent:3.7.2",
       "startTimeout": null,
       "firelensConfiguration": null,
       "dependsOn": null,

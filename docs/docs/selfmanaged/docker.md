@@ -36,7 +36,7 @@ The host or VM to be used for the Deepfence management console needs to have the
 
    When prompted, please provide the credentials sent by email.
 
-3. Download docker compose file from here: [docker-compose.yml 🔗](../files/3.7.1/docker-compose.yml). Run docker-compose file in that directory as follows:
+3. Download docker compose file from here: [docker-compose.yml 🔗](../files/3.7.2/docker-compose.yml). Run docker-compose file in that directory as follows:
 
    ```bash
    docker compose -f docker-compose.yml up -d

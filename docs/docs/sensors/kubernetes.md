@@ -21,8 +21,8 @@ helm install deepfence-agent deepfence/deepfence-agent \
     --set registry.password=<deepfence_password> \
     --set managementConsoleUrl=192.168.1.10 \
     --set deepfenceKey=xxxxxxxx \
-    --set image.tag=3.7.1 \
-    --set image.clusterAgentImageTag=3.7.1 \
+    --set image.tag=3.7.2 \
+    --set image.clusterAgentImageTag=3.7.2 \
     --set clusterName=xxxxxxxx \
     --set mountContainerRuntimeSocket.dockerSock=false \
     --set mountContainerRuntimeSocket.containerdSock=true \
@@ -69,10 +69,10 @@ managementConsoleUrl: ""
 image:
   # deepfence agent runs as a daemonset in all nodes in the cluster
   name: quay.io/deepfenceio/deepfence_agent
-  tag: 3.7.1
+  tag: 3.7.2
   # cluster agent runs as a single pod
   clusterAgentImageName: quay.io/deepfenceio/deepfence_discovery
-  clusterAgentImageTag: 3.7.1
+  clusterAgentImageTag: 3.7.2
   pullPolicy: Always
   pullSecretName: deepfence-docker-secret
 ```
@@ -161,8 +161,8 @@ kubectl get pods -n deepfence
 		--set registry.password=<registry_password> \
 		--set managementConsoleUrl=192.168.1.10 \
 		--set deepfenceKey=xxxxxxxx \
-		--set image.tag=3.7.1 \
-		--set image.clusterAgentImageTag=3.7.1 \
+		--set image.tag=3.7.2 \
+		--set image.clusterAgentImageTag=3.7.2 \
 		--set clusterName=xxxxxxxx \
 		--set mountContainerRuntimeSocket.dockerSock=false \
 		--set mountContainerRuntimeSocket.containerdSock=true \
