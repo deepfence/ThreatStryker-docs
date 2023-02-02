@@ -18,9 +18,9 @@ Make sure you have the following information:
 
 # Installing on AWS ECS (EC2 Provider)
 
-1. Add secrets for quay login
+1(a). Add secret for quay login
   - Go to the secret manager dashboard from the AWS Console
-  - Select "store new secret"
+  - Select "Store a new secret"
   - Select "Other type of secret"
   - Select "Plaintext" and paste the following:
 ```json
@@ -31,6 +31,19 @@ Make sure you have the following information:
 ```
 
 Create the secret and store the ARN. We will refer to it as `<ARN_QUAY_CREDS>`
+
+1(b). Add secret for Deepfence API key
+  - Go to the secret manager dashboard from the AWS Console
+  - Select "Store a new secret"
+  - Select "Other type of secret"
+  - Select "Plaintext" and paste the following:
+```json
+{
+    "deepfence_api_key" : "<DEEPFENCE_KEY>"
+}
+```
+
+Create the secret and store the ARN. We will refer to it as `<API_KEY_SECRET_ARN>`
 
 Be careful with the double quotes, sometimes the AWS UI transforms them into a special character that is not recognized as valid JSON.
 
@@ -76,7 +89,8 @@ Then continue:
                 "secretsmanager:GetSecretValue"
             ],
             "Resource": [
-                "<ARN_QUAY_CREDS>"
+                "<ARN_QUAY_CREDS>",
+                "<API_KEY_SECRET_ARN>"
             ]
         }
     ]
@@ -92,11 +106,11 @@ If you are using a custom KMS key for your secrets and not using the default key
             "Effect": "Allow",
             "Action": [
                 "kms:Decrypt",
-                "ssm:GetParameters",
                 "secretsmanager:GetSecretValue"
             ],
             "Resource": [
                 "<ARN_QUAY_CREDS>",
+                "<API_KEY_SECRET_ARN>",
                 "<custom_kms_key_arn>"
             ]
         }
@@ -113,10 +127,8 @@ Then create the new policy.
   - Go to "Task Definitions"
   - Select "Create new Task Definition"
   - Select EC2, then "Next step"
-  - Provide a name to your task definition (e.g. `deepfence-agent-ec2-task`)
-  - Select the Task role and execution role (e.g. `deepfence-agent-role`)
   - At the bottom, select "Configure via JSON"
-  - Copy and paste the following JSON configuration: (Replace `<DEEPFENCE_KEY>`, `<MGMT_CONSOLE_URL>`, `<ARN_QUAY_CREDS>` and `<AGENT_TASK_ROLE_ARN>` with actual values)
+  - Copy and paste the following JSON configuration: (Replace `<DEEPFENCE_KEY>`, `<MGMT_CONSOLE_URL>`, `<ARN_QUAY_CREDS>`, `<API_KEY_SECRET_ARN>` and `<AGENT_TASK_ROLE_ARN>` with actual values)
 
 ```json
 {
@@ -132,10 +144,6 @@ Then create the new policy.
       "linuxParameters": null,
       "cpu": 0,
       "environment": [
-        {
-          "name": "DEEPFENCE_KEY",
-          "value": "<DEEPFENCE_KEY>"
-        },
         {
           "name": "DF_FIM_ON",
           "value": "N"
@@ -195,7 +203,12 @@ Then create the new policy.
         }
       ],
       "workingDirectory": null,
-      "secrets": null,
+      "secrets": [
+        {
+          "name": "DEEPFENCE_KEY",
+          "valueFrom": "<API_KEY_SECRET_ARN>:deepfence_api_key::"
+        }
+      ],
       "dockerSecurityOptions": [],
       "memory": null,
       "memoryReservation": null,
@@ -223,8 +236,9 @@ Then create the new policy.
   ],
   "placementConstraints": [],
   "executionRoleArn": "<AGENT_TASK_ROLE_ARN>",
+  "taskRoleArn": "<AGENT_TASK_ROLE_ARN>",
   "memory": "2048",
-  "family": "deepfence-agent-ec2-provider",
+  "family": "deepfence-agent-ec2-task",
   "pidMode": null,
   "requiresCompatibilities": [
     "EC2"
