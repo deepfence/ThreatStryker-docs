@@ -145,6 +145,10 @@ Then create the new policy.
           "value": "all"
         },
         {
+          "name": "DEFENDERD_DISABLE_XFF_PROTECTION",
+          "value": false
+        },
+        {
           "name": "DF_TRAFFIC_ANALYSIS_ON",
           "value": "Y"
         },
@@ -176,6 +180,11 @@ Then create the new policy.
         },
         {
           "readOnly": false,
+          "containerPath": "/sys/fs/bpf",
+          "sourceVolume": "SysFsBpf"
+        },
+        {
+          "readOnly": false,
           "containerPath": "/var/run/docker.sock",
           "sourceVolume": "DockerSock"
         },
@@ -192,7 +201,7 @@ Then create the new policy.
       "memoryReservation": null,
       "volumesFrom": [],
       "stopTimeout": null,
-      "image": "quay.io/deepfenceio/deepfence_agent:3.7.2",
+      "image": "quay.io/deepfenceio/deepfence_agent:3.7.3",
       "startTimeout": null,
       "firelensConfiguration": null,
       "dependsOn": null,
@@ -235,6 +244,15 @@ Then create the new policy.
       "name": "SysKernelDebug",
       "host": {
         "sourcePath": "/sys/kernel/debug"
+      },
+      "dockerVolumeConfiguration": null
+    },
+    {
+      "fsxWindowsFileServerVolumeConfiguration": null,
+      "efsVolumeConfiguration": null,
+      "name": "SysFsBpf",
+      "host": {
+        "sourcePath": "/sys/fs/bpf"
       },
       "dockerVolumeConfiguration": null
     },
