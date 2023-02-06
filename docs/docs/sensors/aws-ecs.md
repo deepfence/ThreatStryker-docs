@@ -154,7 +154,11 @@ Then create the new policy.
         },
         {
           "name": "DEFENDERD_DISABLE_XFF_PROTECTION",
-          "value": false
+          "value": "false"
+        },
+        {
+          "name": "DEFENDERD_TCP_BUFFER_LIMIT",
+          "value": "500MB"
         },
         {
           "name": "DF_TRAFFIC_ANALYSIS_ON",
