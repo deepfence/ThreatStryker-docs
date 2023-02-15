@@ -12,6 +12,19 @@ In a Kubernetes environment, sensors are deployed as a **DaemonSet** on the Kube
 
 Identify the IP address or DNS name used to access the ThreatStryker management console.  For example, if the address is 192.168.1.10, use the following command:
 
+- `clusterName` is the name / identifier of the cluster. It should be different for different kubernetes clusters. Example: prod-cluster-1, test-cluster.
+- To get container runtime in the k8s cluster, run the following command
+```shell
+kubectl get nodes -o=custom-columns=NAME:.metadata.name,Runtime:.status.nodeInfo.containerRuntimeVersion
+```
+- To get container runtime socket path in the k8s cluster, run the following commands and search for `--container-runtime-endpoint` or `containerd`
+```shell
+kubectl apply -f https://deepfence-public.s3.amazonaws.com/kubernetes/deepfence-cluster-config-job.yaml
+kubectl wait --for=condition=complete --timeout=30s job/deepfence-cluster-config
+kubectl logs $(kubectl get pod -l job-name=deepfence-cluster-config -o jsonpath="{.items[0].metadata.name}")
+kubectl delete -f https://deepfence-public.s3.amazonaws.com/kubernetes/deepfence-cluster-config-job.yaml
+```
+- Deploy deepfence-agent helm chart
 ```bash
 helm repo add deepfence https://deepfence-helm-charts.s3.amazonaws.com/enterprise
 helm repo update
@@ -33,13 +46,6 @@ helm install deepfence-agent deepfence/deepfence-agent \
     --create-namespace
 ```
 The registry username and password to access the Deepfence Quay registry will be sent by email.
-:::info
-`clusterName` is the name / identifier of the cluster. It should be different for different kubernetes clusters. Example: prod-cluster-1, test-cluster.
-:::
-:::tip
-To get container runtime in the k8s cluster, run the following command
-> kubectl get nodes -o=custom-columns=NAME:.metadata.name,Runtime:.status.nodeInfo.containerRuntimeVersion
-::: 
 
 ## Detailed setup instructions
 
