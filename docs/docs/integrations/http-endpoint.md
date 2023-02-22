@@ -1,19 +1,13 @@
 ---
-title: Http Endpoint
+title: HTTP Endpoint
 ---
 
-# Http Endpoint
+# HTTP Endpoint
 
-*Forward Notifications to Http EndPoint*
+*Forward notifications to http endpoint*
 
 ![HttpEndPoint Integration Page](../img/HttpEndpoint.png)
 
-To incorporate this integration the prerequisites are following below
+Example http endpoint: http://10.3.16.2:8080
 
-One working API Endpoint 
-I.e. These are sample URLs 
-https://deepfence.io/route
-
-If any of the API will be called they should be able to read the URL or should be able to read the payload data that has been passed with data parameter
-
-Authentication Token should be enabled so that we could pass token in the header for verification [this feature is must for security concerns]
+Optionally authentication http header value can be set, if the api server requires authentication.
