@@ -40,7 +40,7 @@ The ThreatStryker management console is installed separately outside the fargate
 
 Click Create new Task Definition and select fargate as launch type and then go to *Next step*.
 
-| ![New Fargate Task](../img/newtask_fargate.jpg) |
+| ![New Fargate Task](../img/aws_newtask_fargate.jpg) |
 | :--: |
 | *New Fargate Task *|
 
@@ -56,11 +56,11 @@ Edit the *Task Definition Name*, *Task Role* and *Task Execution Role etc*. as r
 
 ### Add the Container
 
-Click on the *Add Container* button to create a standard container for the ThreatStryker agent. Set image as *docker.io/deepfenceio/deepfence_agent:FargateScratch*. 
+Click on the *Add Container* button to create a standard container for the ThreatStryker agent. Set image as _**quay.io/deepfenceio/deepfence_agent:3.7.3-fargate**_ 
 
-**Check** the private repository authentication and add the secret name or ARN from *IAM role creation step* to access Deepfence Quay. In the environment section, do **NOT** mark it as essential.
+**Check** the private repository authentication and add the secret name or ARN from *IAM role creation step* to access Deepfence Quay. In the environment section, **DO NOT** mark it as essential.
 
-You need to note down the name of the agent container (*FargateAgentSidecarScratch* in our example), which you will have to specify in *Volumes From* section in application container task definition section later. 
+You need to note down the name of the agent container (*deepfence-agent* in our example), which you will have to specify in *Volumes From* section in application container task definition section later. 
 
 Finally, click the *Add* button to create the deepfence agent container:
 
@@ -79,54 +79,54 @@ Click on the *Add Container* button to create a new container for your applicati
 The following environment variables are required for the ThreatStryker agent:
 
  * **DEEPFENCE_KEY**: API key available in the management console UI
- * **DF_BACKEND_IP**: IP address of Management Console
+ * **MGMT_CONSOLE_URL**: IP address of Management Console
  * **DF_SERVERLESS**: Set to *true* for serverless instances
 
-| ![Configuring Environment Variables for Fargate Application Container](../img/envvariables_fargate.jpg) |
+<!-- | ![Configuring Environment Variables for Fargate Application Container](../img/envvariables_fargate.jpg) |
 | :--: |
-| *Configuring Environment Variables for Fargate Application Container* |
+| *Configuring Environment Variables for Fargate Application Container* | -->
 
  
 If you are using json to configure your task definitions, you can use the following part in the appropriate container section of task definition json after copying the appropriate IP address and API Key.
 
 ```
 "environment": [
-   {
-       "name": "DEEPFENCE_KEY",
-       "value": ""
-   },
-   {
-       "name": "DF_BACKEND_IP",
-       "value": "0.0.0.0"
-   },
-   {
-       "name": "DF_CAPTURE_INTF",
-       "value": "any"
-   },
-   {
-       "name": "DF_FIM_ON",
-       "value": "N"
-   },
-   {
-       "name": "DF_PKT_CAP",
-       "value": "Y"
-   },
-   {
-       "name": "DF_PKT_CAPTURE_PERCENTAGE",
-       "value": "100"
-   },
-   {
-       "name": "DF_PKT_SNAP_LENGTH",
-       "value": "65535"
-   },
-   {
-       "name": "DF_SERVERLESS",
-       "value": "true"
-   },
-   {
-       "name": "USER_DEFINED_TAGS",
-       "value": ""
-   }
+    {
+        "name": "DEEPFENCE_KEY",
+        "value": "<deepfence-key>"
+    }
+    {
+        "name": "MGMT_CONSOLE_URL",
+        "value": "<MGMT_CONSOLE_URL>"
+    },
+    {
+        "name": "DF_SERVERLESS",
+        "value": "true"
+    },
+    {
+        "name": "DF_FIM_ON",
+        "value": "N"
+    },
+    {
+        "name": "DF_TRAFFIC_ANALYSIS_MODE",
+        "value": "all"
+    },
+    {
+        "name": "DEFENDERD_DISABLE_XFF_PROTECTION",
+        "value": "false"
+    },
+    {
+        "name": "DEFENDERD_TCP_BUFFER_LIMIT",
+        "value": "500MB"
+    },
+    {
+        "name": "DF_TRAFFIC_ANALYSIS_ON",
+        "value": "Y"
+    },
+    {
+        "name": "USER_DEFINED_TAGS",
+        "value": ""
+    }
 ]
 ```
 
@@ -143,7 +143,7 @@ If you are using json to configure your task definitions, you can copy the follo
 ```
 "volumesFrom": [
    {
-       "sourceContainer": "FargateAgentSidecarScratch",
+       "sourceContainer": "deepfence-agent",
        "readOnly": false
    }
 ],
@@ -164,7 +164,7 @@ Note that the fargate instance will stop if any of the essential containers exit
 ```bash
 #!/bin/bash -x
 
-echo "Start Deepfence services... Console is $DF_BACKEND_IP"
+echo "Start Deepfence services... Console is $MGMT_CONSOLE_URL"
 /deepfence/usr/local/bin/deepfence-entry-point-scratch.sh
 
 ############################################################
