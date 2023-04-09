@@ -196,7 +196,7 @@ If you are using json to configure your task definitions, then you can specify t
 ```
 "entryPoint": [
    "/deepfence/usr/local/bin/deepfence-entry-point-scratch.sh",
-   "customer-entry-point.sh.sh",
+   "customer-entry-point.sh",
    "param1",
    "param2"
 ]
@@ -216,7 +216,7 @@ If you are using json to configure your task definitions, then you can specify t
    "/deepfence/usr/local/bin/deepfence-entry-point-scratch.sh"
 ],
 "command": [
-   "customer-entry-point.sh.sh",
+   "customer-entry-point.sh",
    "param1",
    "param2"
 ]
