@@ -424,7 +424,7 @@ Make sure you have the following information:
             "secrets": [
                 {
                     "name": "DEEPFENCE_KEY",
-                    "valueFrom": "<API_KEY_SECRET_ARN"
+                    "valueFrom": "<API_KEY_SECRET_ARN>:deepfence_api_key::"
                 }
             ],
             "logConfiguration": {
