@@ -10,7 +10,9 @@ In AWS Fargate, the ThreatStryker agents are deployed as a sidecar container usi
 
 The ThreatStryker management console is installed separately outside the fargate and the installation procedure is the same as before.
 
-
+:::note
+Currently supported base operating systems of containers are Amazon Linux, Ubuntu, Debian, CentOS and RHEL
+:::
 
 ## Installing on AWS Fargate
 
