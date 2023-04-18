@@ -159,7 +159,7 @@ Finally, click the Create button to create the task definition for the deploymen
 
 Now that deepfence agent is available in the fargate instance, you need to invoke agent and application entrypoints to start the application with Deepfence enabled. This can be done in two ways:
 
-#### Option 1: Edit the Entry Point for the container
+#### **Option 1:** Edit the Entry Point for the container
 
 The second option does not require any change in the application container. You can run the same image seamlessly on a VM, EC2 instance, or a fargate instance. There are two ways to achieve this:
 
@@ -167,7 +167,7 @@ The second option does not require any change in the application container. You 
 
 | ![Invoking agent by changing the Entrypoint](../img/invokingagents_fargate.jpg) |
 | :--: |
-| *Method (2a): Invoking agent by changing the Entrypoint* |
+| *Method (1a): Invoking agent by changing the Entrypoint* |
 
 
 If you are using json to configure your task definitions, then you can specify the entrypoint and/or command as follows using appropriate quoting:
@@ -185,7 +185,7 @@ If you are using json to configure your task definitions, then you can specify t
 
 | ![Invoking agent by changing the Entrypoint and Command field](../img/invokingagentscommandfield_fargate.jpg) |
 | :--: |
-| *Method (2b): Invoking agent by changing the Entrypoint and Command field* |
+| *Method (1b): Invoking agent by changing the Entrypoint and Command field* |
 
 
 If you are using json to configure your task definitions, then you can specify the entrypoint and/or command as follows using appropriate quoting:
@@ -201,7 +201,7 @@ If you are using json to configure your task definitions, then you can specify t
 ]
 ```
 
-#### Option 2: Change Application Container Image
+#### **Option 2:** Change Application Container Image
 
 The first option requires that you can change the application container image. Before building your application containers for deployment, add a call to start Deepfence *entrypoint* at the beginning of application *entrypoint*  (or at any point before starting your application) as shown in the following example script. 
 
@@ -360,14 +360,18 @@ Make sure you have the following information:
 ## Sample fargate task definition json with deepfence-agent sidecar
 ```json
 {
+    "requiresCompatibilities": [
+        "FARGATE"
+    ],
+    "inferenceAccelerators": [],
     "containerDefinitions": [
         {
             "name": "python",
-            "image": "python3:latest",
+            "image": "python:latest",
             "cpu": 0,
             "portMappings": [
                 {
-                    "name": "python-ssh-8022-tcp",
+                    "name": "python-8000-tcp",
                     "containerPort": 8000,
                     "hostPort": 8000,
                     "protocol": "tcp"
@@ -433,7 +437,7 @@ Make sure you have the following information:
                 "logDriver": "awslogs",
                 "options": {
                     "awslogs-create-group": "true",
-                    "awslogs-group": "/ecs/test-python3-1",
+                    "awslogs-group": "/ecs/test-doc-python",
                     "awslogs-region": "us-west-2",
                     "awslogs-stream-prefix": "ecs"
                 }
@@ -455,34 +459,25 @@ Make sure you have the following information:
                 "logDriver": "awslogs",
                 "options": {
                     "awslogs-create-group": "true",
-                    "awslogs-group": "/ecs/test-python3-1",
+                    "awslogs-group": "/ecs/test-doc-python",
                     "awslogs-region": "us-west-2",
                     "awslogs-stream-prefix": "ecs"
                 }
             }
         }
     ],
-    "family": "test-python3-1",
-    "taskRoleArn": "<AGENT_TASK_ROLE_ARN>",
-    "executionRoleArn": "<AGENT_TASK_ROLE_ARN>",
-    "networkMode": "awsvpc",
-    "revision": 15,
     "volumes": [],
-    "status": "ACTIVE",
-    "placementConstraints": [],
-    "compatibilities": [
-        "EC2",
-        "FARGATE"
-    ],
-    "requiresCompatibilities": [
-        "FARGATE"
-    ],
-    "cpu": "2048",
+    "networkMode": "awsvpc",
     "memory": "4096",
+    "cpu": "2048",
+    "family": "test-doc-python",
+    "executionRoleArn": "<AGENT_TASK_ROLE_ARN>",
+    "taskRoleArn": "<AGENT_TASK_ROLE_ARN>",
     "runtimePlatform": {
         "cpuArchitecture": "X86_64",
         "operatingSystemFamily": "LINUX"
     },
-    "tags": []
+    "tags": [],
+    "placementConstraints": []
 }
 ```
