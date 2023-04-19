@@ -309,6 +309,7 @@ Make sure you have the following information:
   Then continue:
 
     - Search in the "Permissions policies" for "Task" > Select the following policy: `AmazonECSTaskExecutionRolePolicy`
+    - Again search in the "Permissions policies" for "Task" > Select the following policy: `CloudWatchLogsFullAccess`
     - Click "Next", name the role `deepfence-agent-role`, then "Create role"
     - Store the Role ARN. We will refer to it as `<AGENT_TASK_ROLE_ARN>`
     - Search for your newly created role
