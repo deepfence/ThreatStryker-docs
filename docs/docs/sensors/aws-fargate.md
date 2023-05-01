@@ -60,7 +60,7 @@ Edit the *Task Definition Name*, *Task Role* and *Task Execution Role etc*. as r
 
 ### Add the Deepfence Agent Sidecar Container
 
-Click on the *Add Container* button to create a standard container for the ThreatStryker agent. Set image as _**quay.io/deepfenceio/deepfence_agent:3.7.3-fargate**_ 
+Click on the *Add Container* button to create a standard container for the ThreatStryker agent. Set image as _**quay.io/deepfenceio/deepfence_agent:3.8.0-fargate**_ 
 
 **Check** the private repository authentication and add the secret name or ARN from *IAM role creation step* to access Deepfence Quay. In the environment section, **DO NOT** mark it as essential.
 
@@ -446,7 +446,7 @@ Make sure you have the following information:
         },
         {
             "name": "deepfence-agent",
-            "image": "quay.io/deepfenceio/deepfence_agent:3.7.3-fargate",
+            "image": "quay.io/deepfenceio/deepfence_agent:3.8.0-fargate",
             "repositoryCredentials": {
                 "credentialsParameter": "<ARN_QUAY_CREDS>"
             },
