@@ -377,7 +377,7 @@ services:
   
   deepfence-yara-hunter:
     container_name: deepfence-yara-hunter
-    image: ${IMAGE_REPOSITORY:-deepfenceio}/deepfence_malware_scanner:${DF_IMG_TAG:-3.8.0}
+    image: ${IMAGE_REPOSITORY:-quay.io/deepfenceio}/deepfence_malware_scanner:${DF_IMG_TAG:-3.8.0}
     ulimits:
       core: 0
     restart: always
@@ -410,7 +410,7 @@ services:
         max-size: "1g"
   
   deepfence-kafka-broker:
-    image: ${IMAGE_REPOSITORY:-deepfenceio}/deepfence_kafka_broker:${DF_IMG_TAG:-3.8.0}
+    image: ${IMAGE_REPOSITORY:-quay.io/deepfenceio}/deepfence_kafka_broker:${DF_IMG_TAG:-3.8.0}
     hostname: deepfence-kafka-broker
     container_name: deepfence-kafka-broker
     ports:
@@ -426,7 +426,7 @@ services:
         max-size: "1g"
   
   deepfence-rest-proxy:
-    image: ${IMAGE_REPOSITORY:-deepfenceio}/deepfence_kafka_rest_proxy:${DF_IMG_TAG:-3.8.0}
+    image: ${IMAGE_REPOSITORY:-quay.io/deepfenceio}/deepfence_kafka_rest_proxy:${DF_IMG_TAG:-3.8.0}
     depends_on:
     - deepfence-kafka-broker
     environment:
