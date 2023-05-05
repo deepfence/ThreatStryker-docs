@@ -32,10 +32,12 @@ helm install deepfence-console deepfence/deepfence-console \
     --set registry.password="<deepfence_password>" \
     --set image.tag=3.7.3 \
     --set volume.storageClass=default \
-    --namespace default
+    --namespace default \
+    --version="1.3.0"
 
 helm install deepfence-router deepfence/deepfence-router \
-   --namespace default
+    --namespace default \
+    --version="1.3.0"
 
 kubectl get --namespace default svc deepfence-router -w
 ```
@@ -164,7 +166,8 @@ mountContainerRuntimeSocket:
 ```bash
 helm install -f deepfence_console_values.yaml \
   deepfence-console deepfence/deepfence-console \
-  --namespace default
+  --namespace default \
+  --version="1.3.0"
 ```
 - Wait for pods to start up
 ```bash
@@ -246,7 +249,8 @@ service:
 ```bash
 helm install -f deepfence_router_values.yaml \
   deepfence-router deepfence/deepfence-router \
-  --namespace default
+  --namespace default \
+  --version="1.3.0"
 ```
 
 ### Delete deepfence-router helm chart
@@ -273,8 +277,9 @@ helm delete deepfence-router
        --set registry.password=<registry_password> \
        --set image.tag=3.7.3 \
        --set discovery.runConsoleDiscovery=false \
-       --namespace deepfence-console
-       --create-namespace
+       --namespace deepfence-console \
+       --create-namespace \
+       --version="1.3.0"
    ```
 
    The Quay registry username and password is provided by email. Check the README inside the package for detailed setup instructions.
@@ -296,7 +301,8 @@ helm delete deepfence-router
     ```bash
     helm install deepfence-router deepfence/deepfence-router \
       --namespace deepfence-console \
-      --create-namespace
+      --create-namespace \
+      --version="1.3.0"
     ```
 
     get the loadbalancer ip using below command
@@ -313,7 +319,8 @@ helm delete deepfence-router
       helm install deepfence-router deepfence/deepfence-router \
           --set service.type=ClusterIP \
           --namespace deepfence-console \
-          --create-namespace
+          --create-namespace \
+          --version="1.3.0"
       ```
 
     - get the openshift cluster domain

@@ -43,7 +43,8 @@ helm install deepfence-agent deepfence/deepfence-agent \
     --set trafficAnalysis.mode=all \
     --set dfFim=N \
     --namespace deepfence \
-    --create-namespace
+    --create-namespace \
+    --version="1.3.1"
 ```
 The registry username and password to access the Deepfence Quay registry will be sent by email.
 
@@ -135,7 +136,8 @@ mountContainerRuntimeSocket:
 ```bash
 helm install -f deepfence_agent_values.yaml deepfence-agent deepfence/deepfence-agent \
     --namespace deepfence \
-    --create-namespace
+    --create-namespace \
+    --version="1.3.1"
 ```
 - Wait for pods to start up
 ```bash
@@ -180,7 +182,8 @@ kubectl get pods -n deepfence
 		--set mountContainerRuntimeSocket.containerdSockPath="/var/run/crio/crio.sock" \
 		--set tolerations=null \
 		--namespace deepfence \
-		--create-namespace
+		--create-namespace \
+        --version="1.3.1"
 	```
 
     The registry username and password to access the Deepfence Quay registry will be sent by email; check the README inside the package for detailed setup instructions.
