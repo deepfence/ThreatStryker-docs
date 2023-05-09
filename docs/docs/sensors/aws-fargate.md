@@ -130,6 +130,10 @@ If you are using json to configure your task definitions, you can use the follow
     {
         "name": "USER_DEFINED_TAGS",
         "value": ""
+    },
+    {
+        "name": "DF_INSTALL_DIR",
+        "value": "/path/to/custom/install/dir"
     }
 ]
 ```
@@ -419,6 +423,10 @@ Make sure you have the following information:
                 {
                     "name": "USER_DEFINED_TAGS",
                     "value": ""
+                },
+                {
+                    "name": "DF_INSTALL_DIR",
+                    "value": "/usr/local/bin"
                 }
             ],
             "mountPoints": [],
