@@ -14,7 +14,7 @@ Select the appropriate registry type, and **+ Add Registry**.  The credentials f
 
 ![DockerHub](../img/registry-2.jpg)
 
-ThreatMapper will index the artifacts in the Registry.  You can scan them manually, and you can define a periodic schedule to scan.  Results can be found on the **Vulnerabilities** report, and will be raised through any configured notifications.
+ThreatStryker will index the artifacts in the Registry.  You can scan them manually, and you can define a periodic schedule to scan.  Results can be found on the **Vulnerabilities** report, and will be raised through any configured notifications.
 
 ![Scan Results](../img/registry-3.jpg)
 

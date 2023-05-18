@@ -4,7 +4,7 @@ title: AWS ECR
 
 # AWS ECR
 
-You can add your private and public ECR repositories to ThreatMapper to scan for vulnerabilities, secrets and malwares.
+You can add your private and public ECR repositories to ThreatStryker to scan for vulnerabilities, secrets and malwares.
 
 ## Adding ECR repository
 
