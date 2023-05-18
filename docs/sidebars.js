@@ -124,7 +124,17 @@ const sidebars = {
       items: [
         'operations/visualization',
         'operations/vulnerability-management',
-        'operations/registry-scanning',
+        {
+          type: 'category',
+          label: 'Scanning Registries',
+          link: {
+            type: 'doc',
+            id: 'registries/index'
+          },
+          items: [
+            'registries/aws-ecr',
+          ],
+        },
         'operations/compliance',
         'operations/runtime-workload-firewall',
         'operations/east-west-dpi',
