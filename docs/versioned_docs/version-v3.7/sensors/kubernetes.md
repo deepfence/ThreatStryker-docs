@@ -56,7 +56,7 @@ helm repo add deepfence https://deepfence-helm-charts.s3.amazonaws.com/enterpris
 
 - Create values file
 ```bash
-helm show values deepfence/deepfence-agent > deepfence_agent_values.yaml
+helm show values deepfence/deepfence-agent --version="1.3.1" > deepfence_agent_values.yaml
 ```
 - Edit values file and set registry username and password
 ```yaml
@@ -189,8 +189,8 @@ kubectl get pods -n deepfence
     The registry username and password to access the Deepfence Quay registry will be sent by email; check the README inside the package for detailed setup instructions.
 
 	```bash
-	helm show readme deepfence/deepfence-agent
-	helm show values deepfence/deepfence-agent
+	helm show readme --version="1.3.1" deepfence/deepfence-agent
+	helm show values --version="1.3.1" deepfence/deepfence-agent
 	```
 
 3. ThreatStryker agents need privileged permissions to execute on openshift, run below commands to add privileged permisions to deepfence-agent service account

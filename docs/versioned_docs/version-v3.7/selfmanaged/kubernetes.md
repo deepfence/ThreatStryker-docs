@@ -77,7 +77,7 @@ helm repo add deepfence https://deepfence-helm-charts.s3.amazonaws.com/enterpris
 
 - Create values file
 ```bash
-helm show values deepfence/deepfence-console > deepfence_console_values.yaml
+helm show values deepfence/deepfence-console --version="1.3.0" > deepfence_console_values.yaml
 ```
 - Edit values file and set registry username and password
 ```yaml
@@ -187,7 +187,7 @@ helm delete deepfence-console
 
 - Create values file
 ```bash
-helm show values deepfence/deepfence-router > deepfence_router_values.yaml
+helm show values deepfence/deepfence-router --version="1.3.0" > deepfence_router_values.yaml
 ```
 - Set cloud provider
 ```yaml
@@ -285,8 +285,8 @@ helm delete deepfence-router
    The Quay registry username and password is provided by email. Check the README inside the package for detailed setup instructions.
 
    ```bash
-   helm show readme deepfence/deepfence-console
-   helm show values deepfence/deepfence-console
+   helm show readme --version="1.3.0" deepfence/deepfence-console
+   helm show values --version="1.3.0" deepfence/deepfence-console
    ```
 
 3. Some components of Deepfence console needs privileged permissions, run below commands to add privileged and anyuid permisions to deepfence-console service account
