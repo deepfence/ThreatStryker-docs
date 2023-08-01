@@ -14,8 +14,11 @@ The ThreatStryker CI action supports several CI pipelines, including CircleCI, G
 
 If a build is not blocked, ThreatStryker silently allows it to proceed.
 
-For configuration details, refer to the appropriate [CI/CD Integrations](https://github.com/deepfence/CI-CD-Integrations), including:
+For configuration details, refer to the appropriate [CI/CD Integrations](https://github.com/deepfence/CI-CD-Integrations) in the repo or refer any of the below guides:
 
- * [CircleCI](https://github.com/deepfence/CI-CD-Integrations/tree/master/circleci)
- * [GitLab](https://github.com/deepfence/CI-CD-Integrations/tree/master/gitlab)
- * [Jenkins](https://github.com/deepfence/CI-CD-Integrations/tree/master/jenkins)
+```mdx-code-block
+import DocCardList from '@theme/DocCardList';
+import {useCurrentSidebarCategory} from '@docusaurus/theme-common';
+
+<DocCardList items={useCurrentSidebarCategory().items}/>
+```

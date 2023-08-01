@@ -119,7 +119,19 @@
         "operations/runtime-integrity",
         "operations/attack-disruption",
         "operations/report-generation",
-        "operations/ci-cd",
+        {
+          "type": "category",
+          "label": "CI-CD Integration",
+          "link": {
+            "type": "doc",
+            "id": "ci-cd/index"
+          },
+          "items": [
+            "ci-cd/circle-ci",
+            "ci-cd/gitlab",
+            "ci-cd/jenkins"
+          ]
+        },
         "operations/notifications"
       ]
     },
