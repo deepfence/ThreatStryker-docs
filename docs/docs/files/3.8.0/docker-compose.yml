@@ -9,7 +9,7 @@ services:
       core: 0
     network_mode: "host"
     pid: "host"
-    restart: "no"
+    restart: "always"
     logging:
       driver: "json-file"
       options:
@@ -20,7 +20,7 @@ services:
     image: ${IMAGE_REPOSITORY:-quay.io/deepfenceio}/deepfence_postgres:${DF_IMG_TAG:-3.8.0}
     ulimits:
       core: 0
-    restart: on-failure
+    restart: always
     networks:
     - deepfence_net
     volumes:
@@ -37,7 +37,7 @@ services:
       INITIALIZE_REDIS: "Y"
     ulimits:
       core: 0
-    restart: on-failure
+    restart: always
     networks:
     - deepfence_net
     depends_on:
@@ -56,7 +56,7 @@ services:
     - deepfence-postgres
     networks:
     - deepfence_net
-    restart: on-failure
+    restart: always
     volumes:
     - deepfence_data:/data:rw
     logging:
@@ -73,7 +73,7 @@ services:
     - deepfence_net
     ports:
     - "127.0.0.1:8004:8004"
-    restart: on-failure
+    restart: always
     command: topology
     logging:
       driver: "json-file"
@@ -85,10 +85,16 @@ services:
     image: ${IMAGE_REPOSITORY:-quay.io/deepfenceio}/deepfence_discovery:${DF_IMG_TAG:-3.8.0}
     ulimits:
       core: 0
+    deploy:
+      resources:
+        limits:
+          cpus: ".2"
+    restart: always
+    environment:
+      DF_ENABLE_PROCESS_REPORT: "true"
     network_mode: "host"
     pid: "host"
     privileged: true
-    restart: on-failure
     command: discovery localhost 8004
     volumes:
     - /var/run/docker.sock:/var/run/docker.sock
@@ -97,11 +103,11 @@ services:
       driver: "json-file"
       options:
         max-size: "1g"
-  
+
   deepfence-es:
     container_name: deepfence-es-master
     image: ${IMAGE_REPOSITORY:-quay.io/deepfenceio}/deepfence_elastic:${DF_IMG_TAG:-3.8.0}
-    restart: on-failure
+    restart: always
     networks:
     - deepfence_net
     volumes:
@@ -138,7 +144,7 @@ services:
   deepfence-es-slave1:
     container_name: deepfence-es-slave1
     image: ${IMAGE_REPOSITORY:-quay.io/deepfenceio}/deepfence_elastic:${DF_IMG_TAG:-3.8.0}
-    restart: on-failure
+    restart: always
     networks:
     - deepfence_net
     volumes:
@@ -172,7 +178,7 @@ services:
   deepfence-es-slave2:
     container_name: deepfence-es-slave2
     image: ${IMAGE_REPOSITORY:-quay.io/deepfenceio}/deepfence_elastic:${DF_IMG_TAG:-3.8.0}
-    restart: on-failure
+    restart: always
     networks:
     - deepfence_net
     volumes:
@@ -253,8 +259,10 @@ services:
     - /tmp
     ports:
     - "127.0.0.1:9997:9997"
+    restart: always
     environment:
       ELASTICSEARCH_SCHEME: "http"
+      ENABLE_GRAPH_REPORT: "true"
     networks:
     - deepfence_net
     depends_on:
@@ -277,7 +285,7 @@ services:
     ulimits:
       core: 0
     entrypoint: /app/code/dockerify/celery/entrypoint.sh
-    restart: on-failure
+    restart: always
     networks:
     - deepfence_net
     depends_on:
@@ -296,22 +304,22 @@ services:
     ulimits:
       core: 0
     entrypoint: /app/code/dockerify/backend/entrypoint.sh
-    restart: on-failure
+    restart: always
     environment:
-    - DEBUG=false
-    - KAFKA_BROKERS=deepfence-kafka-broker:9092
+      - DEBUG=false
+      - KAFKA_BROKERS=deepfence-kafka-broker:9092
     ports:
-    - "8181:8181"
+      - "8181:8181"
     networks:
     - deepfence_net
     depends_on:
-    - deepfence-init-container
-    - deepfence-redis
-    - deepfence-postgres
-    - deepfence-kafka-broker
-    - deepfence-es
-    - deepfence-es-slave1
-    - deepfence-es-slave2
+      - deepfence-init-container
+      - deepfence-redis
+      - deepfence-postgres
+      - deepfence-kafka-broker
+      - deepfence-es
+      - deepfence-es-slave1
+      - deepfence-es-slave2
     logging:
       driver: "json-file"
       options:
@@ -324,7 +332,7 @@ services:
       core: 0
     networks:
     - deepfence_net
-    restart: on-failure
+    restart: always
     depends_on:
     - deepfence-topology
     logging:
@@ -382,14 +390,14 @@ services:
       core: 0
     restart: always
     networks:
-    - deepfence_net
+      - deepfence_net
     entrypoint: /home/deepfence/usr/YaRadare
     command: ["-config-path","/home/deepfence/usr", "-http-port", "8012"]
     logging:
       driver: "json-file"
       options:
         max-size: "1g"
-  
+        
   deepfence-package-scanner:
     container_name: deepfence-package-scanner
     image: ${IMAGE_REPOSITORY:-quay.io/deepfenceio}/deepfence_package_scanner:${DF_IMG_TAG:-3.8.0}
@@ -408,35 +416,37 @@ services:
       driver: "json-file"
       options:
         max-size: "1g"
-  
+
   deepfence-kafka-broker:
     image: ${IMAGE_REPOSITORY:-quay.io/deepfenceio}/deepfence_kafka_broker:${DF_IMG_TAG:-3.8.0}
     hostname: deepfence-kafka-broker
     container_name: deepfence-kafka-broker
+    restart: always
     ports:
-    - "127.0.0.1:9092:9092"
-    - "127.0.0.1:9101:9101"
+      - "127.0.0.1:9092:9092"
+      - "127.0.0.1:9101:9101"
     volumes:
-    - deepfence_data:/data:rw
+      - deepfence_data:/data:rw
     networks:
-    - deepfence_net
+      - deepfence_net
     logging:
       driver: "json-file"
       options:
         max-size: "1g"
-  
+
   deepfence-rest-proxy:
     image: ${IMAGE_REPOSITORY:-quay.io/deepfenceio}/deepfence_kafka_rest_proxy:${DF_IMG_TAG:-3.8.0}
     depends_on:
-    - deepfence-kafka-broker
-    environment:
-    - KAFKA_REST_BOOTSTRAP_SERVERS=deepfence-kafka-broker:9092
+      - deepfence-kafka-broker
     ports:
-    - "127.0.0.1:8082:8082"
+      - "127.0.0.1:8082:8082"
     hostname: deepfence-rest-proxy
     container_name: deepfence-rest-proxy
+    restart: always
+    environment:
+      - KAFKA_REST_BOOTSTRAP_SERVERS=deepfence-kafka-broker:9092
     networks:
-    - deepfence_net
+      - deepfence_net
     logging:
       driver: "json-file"
       options:
