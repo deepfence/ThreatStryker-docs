@@ -14,6 +14,10 @@ The ThreatStryker management console is installed separately outside the fargate
 Currently supported base operating systems of containers are Amazon Linux, Ubuntu, Debian, CentOS and RHEL
 :::
 
+:::note
+Please note the agent image "quay.io/deepfenceio/deepfence_agent:3.8.0-fargate" is different from other deployment methods.
+:::
+
 ## Installing on AWS Fargate
 
 
