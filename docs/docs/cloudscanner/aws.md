@@ -10,32 +10,45 @@ title: AWS
 
 Log in to the AWS management console account and open the following url link to deploy Cloud Scanner using CloudFormation in `us-east-1` region.
 
-[Deploy across multiple AWS accounts or AWS organization](https://us-east-1.console.aws.amazon.com/cloudformation/home?region=us-east-1#/stacks/create/review?templateURL=https://deepfence-public.s3.amazonaws.com/cloud-scanner/deepfence-cloud-scanner-org-common.template&stackName=Deepfence-Cloud-Scanner&param_CloudScannerImage=quay.io/deepfenceio/cloud-scanner:1.5.0)
+[Deploy across multiple AWS accounts or AWS organization](https://us-east-1.console.aws.amazon.com/cloudformation/home?region=us-east-1#/stacks/create/review?templateURL=https://deepfence-public.s3.amazonaws.com/cloud-scanner/deepfence-cloud-scanner-org-common.template&stackName=Deepfence-Cloud-Scanner&param_CloudScannerImage=quay.io/deepfenceio/cloud-scanner:2.0.0)
 
 (Template URL: https://deepfence-public.s3.amazonaws.com/cloud-scanner/deepfence-cloud-scanner-org-common.template)
 
 Then, fill in the below parameters as needed:
 
-![AWS Single Account Cloud Scanner Params Deepfence Config](../img/compliance-install-aws-2.png)
-![AWS Single Account Cloud Scanner Params Cluster Config](../img/compliance-install-aws-3.png)
+| ![Cloud Scanner](../img/cloud-scanner-aws-1.png) |
+|:------------------------------------------------:|
+|           Cloud Scanner Configuration            |
+
+| ![Cloud Scanner](../img/cloud-scanner-aws-2.png) |
+|:------------------------------------------------:|
+|                     Set Name                     |
 
 ### Single Account Deployment
 
 Log in to the AWS management console account and open the following url link to deploy Cloud Scanner using CloudFormation in `us-east-1` region.
 
-[Deploy on a single AWS account](https://us-east-1.console.aws.amazon.com/cloudformation/home?region=us-east-1#/stacks/create/review?templateURL=https://deepfence-public.s3.amazonaws.com/cloud-scanner/deepfence-cloud-scanner.template&stackName=Deepfence-Cloud-Scanner&param_CloudScannerImage=quay.io/deepfenceio/cloud-scanner:1.5.0)
+[Deploy on a single AWS account](https://us-east-1.console.aws.amazon.com/cloudformation/home?region=us-east-1#/stacks/create/review?templateURL=https://deepfence-public.s3.amazonaws.com/cloud-scanner/deepfence-cloud-scanner.template&stackName=Deepfence-Cloud-Scanner&param_CloudScannerImage=quay.io/deepfenceio/cloud-scanner:2.0.0)
 
 (Template URL: https://deepfence-public.s3.amazonaws.com/cloud-scanner/deepfence-cloud-scanner.template)
 
 Then, fill in the below parameters as needed:
 
-![AWS Single Account Cloud Scanner Params Deepfence Config](../img/compliance-install-aws-2.png)
-![AWS Single Account Cloud Scanner Params Cluster Config](../img/compliance-install-aws-3.png)
+| ![Cloud Scanner](../img/cloud-scanner-aws-1.png) |
+|:------------------------------------------------:|
+|           Cloud Scanner Configuration            |
+
+| ![Cloud Scanner](../img/cloud-scanner-aws-2.png) |
+|:------------------------------------------------:|
+|                     Set Name                     |
 
 #### For Deployment in Existing VPC(Optional)
 
 If you want to deploy Cloud Scanner in an existing VPC, you need to fill in the following params:
-![AWS Single Account Cloud Scanner Params Existing VPC Config](../img/compliance-install-aws-4.png)
+
+| ![Cloud Scanner](../img/cloud-scanner-aws-3.png) |
+|:------------------------------------------------:|
+|                    Choose VPC                    |
 
 ## Terraform
 
@@ -56,11 +69,13 @@ module "deepfence-cloud-scanner_example_single-account" {
   mgmt-console-port             = "443"
   deepfence-key                 = "<Deepfence-key> eg. XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX"
   name                          = "deepfence-cloud-scanner"
-  image                         = "quay.io/deepfenceio/cloud-scanner:1.5.0"
+  image                         = "quay.io/deepfenceio/cloud-scanner:2.0.0"
   region                        = "<AWS-REGION>; eg. us-east-1"
   ecs_vpc_region_azs            = ["us-east-1a"]
 }
+
 ```
+Ensure that the `name` parameter is set to some unique string to avoid collision with existing resource names in the account of deployment
 
 Then run
 ```shell

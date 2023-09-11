@@ -4,18 +4,22 @@ title: Slack
 
 # Slack
 
-*Forward Notifications to Slack Channels*
+ThreatStryker raises notifications to Slack Workspaces using Slack webhooks.
 
-Navigate to `https://[Your Workspace].slack.com/apps` and search for the "Incoming Webhooks" app from Slack.
+## To Configure Slack Integration
 
-![Incoming Webhooks](../img/deepfence_webhooks.jpg)
+1. Navigate to https://[YourWorkspace].slack.com/apps and search for “Incoming Webhooks“ app from Slack:
 
-Click on "Add to Slack", where you will be asked to choose a channel
+   ![Slack](../img/integrations-slack-1.jpeg)
 
-![Post to Channel](../img/deepfence_integrationspost.jpg)
+2. Click on “Add to Slack” where you will be asked to choose a channel:
 
-Follow the "Setup Instructions":
+   ![Slack](../img/integrations-slack-2.jpeg)
 
-![Setup Instructions](../img/deepfence_integrationssetup.jpg)
+3. Locate the webhook URL:
 
-Paste the webhook URL and the corresponding channel name into Deepfence Slack integration page.
+   ![Slack](../img/integrations-slack-3.jpeg)
+
+4. Paste the webhook URL and the corresponding channel name into Deepfence Slack integration page.
+
+   ![Slack](../img/integrations-slack.png)

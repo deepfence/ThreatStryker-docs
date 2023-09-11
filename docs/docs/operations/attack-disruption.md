@@ -13,7 +13,7 @@ ThreatStryker helps you detect multiple stages of an attack and provides protect
 
 Quarantine policies enable reset, pause and decommissioning of infected containers, pods or virtual machines:
 
-![Add New Quarantine Policy](../img/deepfence_quarantine.jpg)
+![Add New Quarantine Policy](../img/quarantime-policy-1.png)
 
 
 ## Network Policies
@@ -21,36 +21,14 @@ Quarantine policies enable reset, pause and decommissioning of infected containe
 
 Network policies enable blocking external as well as internal attackers on their tracks. Protection Policy can be enforced using deepfence agent or [Cloud WAF](#network-protection-policy-using-cloud-waf). By default, it is enforced by deepfence agent.
 
-![Define New Network Policy](../img/deepfence_networkpolicy.jpg)
+![Define New Network Policy](../img/network-policy-1.png)
 
-![View Network Policies](../img/deepfence_networkpolicypage.jpg)
-
-## Alert Correlation with Clustering Rules
-
-User can define rules to cluster similar alerts based on their classtypes, frequency and spatial attributes. This helps to reduce potential noise, and view the alerts in a grouped manner.
-
-![Define Alert Clustering Rule](../img/deepfence_clusteringrules.jpg)
-
-![View Alert Clustering Rules](../img/deepfence_clusteringrulespage.jpg)
-
-
-## Intent Detection Rules
-
-Intent detection rules empower users to perform advanced correlation on alerts based on various alert attributes like classtypes, intents, presence of known vulnerabilities and other spatial attributes as follows:
-
-![Define Intent Detection Rule](../img/deepfence_intentdetection.jpg)
-
-![View Intent Detection Rules](../img/deepfence_intentdetectionrules.jpg)
-
+![View Network Policies](../img/network-policy-2.png)
 
 ## Network Protection Policy using Cloud WAF
 
 Protection policy can be enforced using Cloud WAF if configured by the user. Only AWS WAF is supported at this moment.
 Deepfence will create [IP Set](https://docs.aws.amazon.com/waf/latest/developerguide/waf-ip-set-creating.html) and add a [rule](https://docs.aws.amazon.com/waf/latest/developerguide/waf-rule-statement-type-ipset-match.html) in the Web ACL's provided by the user.
-
-:::note
-This feature is available from v3.7.1
-:::
 
 ### IAM role
 
@@ -68,9 +46,3 @@ This feature is available from v3.7.1
 3. Deepfence will automatically create IP Set for each Web ACL provided and update those Web ACL's with new rule.
    ![AWS WAF](../img/aws-waf-2.png)
    ![AWS WAF](../img/aws-waf-3.png)
-
-### Set policy
-1. Set network protection policies based on intents/classtypes. Alerts matching the policies will result in source ip getting added to the IP Set managed by Deepfence and blocked.
-   ![View Network Policies](../img/deepfence_network_policy_2.png)
-2. Setting a blacklist node network policy will add the ip address to the WAF IP sets for blocking.
-   ![Define New Network Policy](../img/deepfence_networkpolicy.jpg)

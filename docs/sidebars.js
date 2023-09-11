@@ -13,13 +13,12 @@
 
 /** @type {import('@docusaurus/plugin-content-docs').SidebarsConfig} */
 const sidebars = {
-  // By default, Docusaurus generates a sidebar from the docs folder structure
   threatstryker: [
     {
       type: 'html',
       value: 'Deepfence ThreatStryker',
       className: 'sidebar-title',
-    }, 
+    },
 
     'index',
 
@@ -27,20 +26,22 @@ const sidebars = {
       type: 'category',
       label: 'Architecture',
       link: {
-          type: 'doc',
-          id: 'architecture/index'
+        type: 'doc',
+        id: 'architecture/index'
       },
       items: [
-          'architecture/index',
-          'architecture/cloudscanner',
-          'architecture/threatgraph',
+        'architecture/console',
+        'architecture/cloudscanner',
+        'architecture/sensors',
+        'architecture/threatgraph',
       ],
     },
+    'demo',
 
     {
       type: 'category',
-      label: 'Management Console',
-       link: {
+      label: 'Installation',
+      link: {
         type: 'doc',
         id: 'deploy'
       },
@@ -59,58 +60,62 @@ const sidebars = {
         {
           type: 'category',
           label: 'Self-Managed',
+          link: {
+            type: 'doc',
+            id: 'console/index'
+          },
           items: [
-            'selfmanaged/index',
-            'selfmanaged/docker',
-            'selfmanaged/kubernetes',
-            'selfmanaged/managed-database',
-            'selfmanaged/initial-configuration',
-            'selfmanaged/manage-users',
-            'selfmanaged/troubleshooting',
-            'selfmanaged/database-export-import',
+            'console/requirements',
+            'console/docker',
+            'console/kubernetes',
+            'console/managed-database',
+            'console/initial-configuration',
+            'console/manage-users',
+            'console/database-export-import',
+            'console/troubleshooting',
           ],
         },
-      ],
-    },
 
-    {
-      type: 'category',
-      label: 'Cloud Scanner',
-      link: {
-          type: 'doc',
-          id: 'cloudscanner/index'
-      },
-      items: [
-          'cloudscanner/aws',
-          'cloudscanner/azure',
-          'cloudscanner/gcp',
-          'cloudscanner/other',
-      ],
-    },
+        {
+          type: 'category',
+          label: 'Cloud Scanner',
+          link: {
+            type: 'doc',
+            id: 'cloudscanner/index'
+          },
+          items: [
+            'cloudscanner/aws',
+            'cloudscanner/azure',
+            'cloudscanner/gcp',
+            'cloudscanner/other',
+           ],
+        },
 
-    {
-      type: 'category',
-      label: 'Kubernetes Scanner',
-      link: {
-        type: 'doc',
-        id: 'kubernetes-scanner/index'
-      },
-      items: [],
-    },
+        {
+          type: 'category',
+          label: 'Kubernetes Scanner',
+          link: {
+            type: 'doc',
+            id: 'kubernetes-scanner/index'
+          },
+          items: [],
+        },
 
-    {
-      type: 'category',
-      label: 'Sensor Agents',
-      link: {
-        type: 'doc',
-        id: 'sensors/index'
-      },
-      items: [
-        'sensors/kubernetes',
-        'sensors/docker',
-        'sensors/aws-ecs',
-        'sensors/aws-fargate',
-        'sensors/bare-metal',
+        {
+          type: 'category',
+          label: 'Sensor Agent',
+          link: {
+            type: 'doc',
+            id: 'sensors/index'
+          },
+          items: [
+            'sensors/kubernetes',
+            'sensors/docker',
+            'sensors/aws-ecs',
+            'sensors/aws-fargate',
+            'sensors/linux-host',
+          ],
+        },
       ],
     },
 
@@ -122,8 +127,9 @@ const sidebars = {
         id: 'operations/index'
       },
       items: [
-        'operations/visualization',
-        'operations/vulnerability-management',
+        'operations/scanning',
+        'operations/sboms',
+        'operations/compliance',
         {
           type: 'category',
           label: 'Scanning Registries',
@@ -135,12 +141,8 @@ const sidebars = {
             'registries/aws-ecr',
           ],
         },
-        'operations/compliance',
-        'operations/runtime-workload-firewall',
         'operations/east-west-dpi',
-        'operations/runtime-integrity',
         'operations/attack-disruption',
-        'operations/report-generation',
         {
           type: 'category',
           label: 'CI-CD Integration',
@@ -154,7 +156,7 @@ const sidebars = {
             'ci-cd/jenkins',
           ],
         },
-        'operations/notifications',
+        'operations/support',
       ],
     },
 
@@ -166,6 +168,7 @@ const sidebars = {
         id: 'integrations/index'
       },
       items: [
+        'integrations/pagerduty',
         'integrations/slack',
         'integrations/microsoft-teams',
         'integrations/sumo-logic',
@@ -174,12 +177,26 @@ const sidebars = {
         'integrations/email',
         'integrations/http-endpoint',
         'integrations/jira',
-        'integrations/pager-duty',
         'integrations/s3',
-        'integrations/xlsx-pdf',
-       ],
+        'integrations/reports',
+      ],
     },
-    "api-reference",
+
+    {
+      type: 'category',
+      label: 'Tips',
+      link: {
+        type: 'generated-index',
+        description:
+          "Tips and Techniques to get the most from ThreatMapper"
+      },
+      items: [
+        {
+          type: 'autogenerated',
+          dirName: 'tips',
+        },
+      ],
+    },
   ],
 };
 

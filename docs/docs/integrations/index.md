@@ -1,16 +1,26 @@
 ---
-title: Integrations 
+title: Integrations
 ---
 
-# ThreatStryker Integrations
+# Integrations
 
-Deepfence alerts, policy execution logs and scanning reports can be routed to various SIEMs and notifications channels.
+You can integrate ThreatStryker with a variety of notification services.  Any time a new vulnerability is detected (for example, during [CI](/docs/operations/scanning-ci) or an [automated scan](/docs/operations/scanning)), ThreatStryker will submit the details to the configured notification services.
 
-Begin on the Integrations screen:
+|    ![Integrations](../img/integrations.png)     |
+|:-----------------------------------------------:|
+| Example Integrations supported by ThreatStryker |
 
-![Report Summary](../img/DF_Notification.png)
+## Configuring Notification Services
 
-## Detailed Instructions
+Configure the notification services you require in the ThreatStryker console:
+
+
+| ![Integrations - Slack](../img/integrations-slack.png) |
+|:------------------------------------------------------:|
+|             Integrations - Slack (example)             |
+
+
+The following notification services are among those supported by ThreatStryker:   
 
 ```mdx-code-block
 import DocCardList from '@theme/DocCardList';
@@ -19,10 +29,6 @@ import {useCurrentSidebarCategory} from '@docusaurus/theme-common';
 <DocCardList items={useCurrentSidebarCategory().items}/>
 ```
 
-::: 
-info
-ThreatStryker and ThreatMapper behave identically with respect to integrations, although ThreatStryker can raise a much broader set of notifications and alerts.
-:::
-
+Check out the **Integrations** pages in the Management Console for a full list.
 
 

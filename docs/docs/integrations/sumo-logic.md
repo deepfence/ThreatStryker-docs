@@ -2,46 +2,32 @@
 title: Sumo Logic
 ---
 
-# Sumo-Logic
+# Sumo Logic
 
-*Collect Events and Activity Logs*
+ThreatStryker raises notifications to Sumo Logic using Sumo Logic collectors.
 
-You can forward ThreatStryker Events and ThreatStryker Activity Logs to Sumo Logic.
+## To Configure Sumo Logic Integration
 
-## ThreatStryker Events
+1. Under “Manage data”, navigate to “Collection”
 
-Under "Manage data", navigate to "Collection"
+   ![Sumo Logic](../img/integrations-sumo-logic-1.jpeg)
 
-![Sumo Logic Collections](../img/deepfence_sumologic.jpg)
+2. Click on “Add Collector” and select “Hosted Collector”
 
-Click on "Add Collector" and select "Hosted Collector"
+   ![Sumo Logic](../img/integrations-sumo-logic-2.jpeg)
 
-![Choose a Hosted Collector](../img/deepfence_collector.jpg)
+3. Fill in the details and save the new collector
 
-Fill in the details and save the new collector
+   ![Sumo Logic](../img/integrations-sumo-logic-3.jpeg)
 
-![Configure the Collector](../img/deepfence_collectorhosted.jpg)
+4. Choose to add “Source” to the newly created collector and choose “HTTP Logs & Metrics”
 
-Choose to add "Source" to the newly created collector and choose "HTTP Logs & Metrics"
+   ![Sumo Logic](../img/integrations-sumo-logic-4.jpeg)
 
-![Select the Source](../img/deepfence_cloudapi.jpg)
+5. Fill in the Source details and click save
 
-Fill in the Source details and click save
+   ![Sumo Logic](../img/integrations-sumo-logic-5.jpeg)
 
-![Define the Source Details](../img/deepfence_cloudapidetails.jpg)
+6. Paste the URL displayed on to Deepfence Sumo Logic integration page
 
-Copy the resulting URL from the Deepfence Sumo Logic integration page
-
-![Copy the API URL](../img/deepfence_cloudapiintegration.jpg)
-
-Enter this into the "HTTP Endpoint" parameter in the ThreatStryker configuration for the Sumo Logic SIEM Integration.
-
-![HTTP Endpoint](../img/deepfence_sumologicIntegration.jpg)
-
-
-## ThreatStryker User Activity Logs
-
-User activity logs or user audit logs can be exported to Sumo Logic integration.
-
-Follow the steps to add the Sumo Logic Integration in Deepfence and select the option "User Activities" in alert type. Choose the duration from the drop-down and click on "Subscribe".
-
+   ![Sumo Logic](../img/integrations-sumo-logic-6.jpeg)

@@ -1,38 +1,28 @@
 ---
-title: ThreatStryker Components
+title: ThreatStryker Architecture
 ---
 
-# ThreatStryker Components
+# ThreatStryker Architecture
 
-![Deepfence ThreatStryker Components](../img/deepfence_architecture.jpg)
+The ThreatStryker product consists of a Management Console, and multiple Sensor Agent containers and Cloud Scanner tasks that are deployed within your production platform(s).
 
-## ThreatStryker Management Console
+![ThreatStryker Components](../img/threatmapper-components.jpg)
+
+The Management Console is deployed first. The Management console generates an API key and a URL which you will need when you install the Sensor containers and Cloud Scanner tasks.
+
+The Management Console is managed over TLS (port 443), used for administrative traffic (web browser and API) and for sensor traffic.  You should firewall or secure access to this port so that only authorised admin users and remote production platforms are able to connect.
+
+# Agent-Less and Agent-Based operation
+
+ThreatStryker uses both agent-less and agent-based operations to discover the widest-possible range of threats and render them in 'Threat Graphs' and 'Threat Maps'. You can use either or both operations, and can configure their access to your production and non-production systems in line with your own security posture.
+
+|                | Agent-Less (Cloud Connector)                                                                                         | Agent-Based (Sensor Agent)                                                                                                 |
+|----------------|----------------------------------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------|
+| Implementation | Direct access to infrastructure APIs, using a secured **Cloud Connector** task, deployed local to the cloud instance | Lightweight, privileged **sensor agent** container with access to local resources on the host                              |
+| Visibility     | Cloud configuration and assets, as exposed through cloud or infrastructure API                                       | Local assets, including filesystem, process list, local containers and pods, and kernel interfaces                         |
+| Capability     | Identifies deviation from good practice configuration ("Compliance Scanning") for cloud platforms                    | Identifies network flows and performs vulnerability, secret and local host (Linux/Kubernetes) compliance scanning          |
+| Output         | Agent-less data is reported in the 'Threat Graph', which shows compliance-related issues                             | Agent-based data is reported in the Threat Map (for vulnerabilities, secrets etc) and Threat Graph (for compliance issues) |
 
 
-The ThreatStryker Management Console ("Console") is a standalone application and API endpoint for your ThreatStryker-secured platform. 
 
-The console allows you to:
 
-* Visualize and drill down into Kubernetes clusters, virtual machines, containers and images, running processes, and network connections in near real time.
-* Invoke vulnerability and secret scans on running containers, applications and hosts and review the results, ranked by risk-of-exploit.
-* Invoke compliance scans using a variety of benchmarks against containers, kubernetes and cloud infrastructure and hosts
-* Configure telemetry gathering to capture network 'indicators of attack' and on-workload 'indicators of compromise'
-* Classify telemetry using MITRE ATT&CK attack-based TTPs, and interrogate the telemetry for diagnostic and forensic purposes
-* Observe the evolution of attacks against workloads, alerting when they pass a pre-defined threshold of risk
-* Configure remedial action - quarantine workloads, firewall internal and external sources of attack - to be deployed automatically
-* Set up a variety of integrations against external notification, SIEM and ticketing systems, including Slack, PagerDuty, Jira, Splunk, ELK, Sumo Logic, and AWS S3.
-
-You may deploy multiple fully-managed instances on the Deepfence Cloud, or standalone (self-hosted) instances in your own infrastructure.
-
-## ThreatStryker Sensors
-
-ThreatStryker Sensors are deployed on your production platforms. They communicate securely with your ThreatStryker Management Console, taking instructions to retrieve SBOMs and run scans, capture and forward telemetry data, and deploy targeted remedial actions against attacks.
-
-The sensors support the following production platforms:
-
-* Kubernetes: The sensors are deployed as a daemonset, similar to other kubernetes services.
-* Docker: The sensor is deployed as a docker container on each docker host.
-* Bare metal and VM-based platforms: Sensors are deployed as a Docker container on each Linux operating system instance, using a Docker runtime. Linux instances are supported; Windows Server is not * supported, although an experimental implementation is available.
-* AWS Fargate The sensor is deployed as a daemon service alongside each serverless instance.
-
-When you deploy a sensor, you configure the destination (address of the ThreatStryker console) and API key to authenticate sensor traffic.

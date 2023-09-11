@@ -2,36 +2,52 @@
 title: Introduction to ThreatStryker
 ---
 
-# Introduction to ThreatStryker
+# ThreatStryker
 
-Modern applications are highly distributed and dynamic, often running as containerized microservices in public, hybrid or multi cloud deployments. 
+## Introducing Deepfence ThreatStryker
 
-[Deepfence ThreatStryker](https://deepfence.io/threatstryker/) observes, correlates, learns, and acts to protect your cloud-native applications, across clouds and on-prem locations.
+Deepfence ThreatStryker hunts for hidden threats in your production platforms, and ranks these threats based on their risk-of-exploit. You can then prioritize the issues that present the greatest risk to the security of your applications.
 
-1. Inspecting the production platforms, looking for potential vulnerabilities, exposed secrets and compliance exceptions
-1. Observing network traffic ‘indicators of attack’ and on-host/in-container ‘indicators of compromise’
-1. Identifying the presence of attack behavior and neutralizing attacks before they result in compromise of your applications
+### Extends Security into Production 
 
-
-| ![Discover and Scan Workloads and Hosts](img/intro-1.png) | ![Gather Attack Intel from Workloads and Network](img/intro-2.png) | ![Protect Applications from Exploit and Spread](img/intro-3.png) |
-| :--: | :--: | :--: |
-| *Discover and Scan Workloads and Hosts* | *Gather Attack Intel from Workloads and Network* | *Protect Applications from Exploit and Spread* |
+Your 'Shift Left' initiatives enable you to deliver secure applications to production. ThreatStryker picks up once your applications have been deployed to production.
 
 
-ThreatStryker supports applications running in cloud-native platforms (kubernetes, serverless, docker) and virtual machines/bare metal, across multiple clouds and on-prem locations.
+|     ![ThreatStryker Overview](img/threatmapper-overview.jpg)     |
+|:----------------------------------------------------------------:|
+| ThreatStryker Overview - Development, Pre-Deployment, Production |
 
- * ThreatStryker discovers all running containers, processes, and online hosts, and presents a live and interactive color-coded view of the topology. It audits containers and hosts to detect vulnerable components, and interrogates configuration to identify file system, process, and network related misconfigurations. ThreatStryker assesses compliance using industry and community standard benchmarks.
+#### Discover:
 
- * ThreatStryker performs deep inspection of network traffic, system, and application behavior, and accumulates suspicious events over time. Events are classified and correlated against known vulnerabilities and suspicious patterns of behavior, in order to detect active threats with minimal false positives.
+* **Discover Running Workloads:** ThreatStryker scans your platforms and identifies pods, containers, applications, and infrastructure.  Use ThreatStryker to discover the topology of your applications and attack surface.
+* **Discover Cloud and Infrastructure Assets:** ThreatStryker queries platform APIs to map assets and their interrelationships, and calculate a topology graph.
 
- * If suspicious patterns of behavior are detected, the intent of the behavior is deduced and ThreatStryker takes appropriate and contained remedial action. Tainted workloads are deleted, frozen, or restarted, sources of attack traffic are temporarily or permanently blocked, and alerts are raised to SIEM and monitoring systems. Attackers are stopped in their tracks, attacks are neutralized, and lateral spread is prevented.
+#### Find Threats:
 
-## ThreatStryker and ThreatMapper
+* **Discover Vulnerabilities:** ThreatStryker generates runtime SBOMs (Software Bill of Materials) of dependencies from running pods and containers, serverless apps, applications, and operating systems.  ThreatStryker matches these SBOMs against multiple vulnerability feeds to identify vulnerable components.
+* **Discover Exposed Secrets:** Unprotected keys, tokens and passwords can provide malicious actors with opportunities to spread control and exploit nearby or remote systems.
+* **Discover Configuration and Compliance Weaknesses:** ThreatStryker evaluates infrastructure configuration against multiple compliance benchmarks (CIS, PCI-DSS, HIPAA and others) to find weaknesses and mis-configurations that could pose a threat. 
 
-ThreatStryker builds on the functionality of the open-source [ThreatMapper](https://github.com/deepfence/ThreatMapper/) security platform:
+#### Actionable Information:
+
+* **Rank Threats by Risk-of-Exploit:** ThreatStryker ranks the discovered threats using CVSS and other severity scores, exploit method and their proximity to attack surface, in order to identify which issues pose the greatest risk of exploit
 
 
-* [ThreatMapper](https://github.com/deepfence/ThreatMapper/) identifies security risks - software vulnerabilities, exposed secrets - in your production platforms, and prioritizes them, so you know which to fix first
-* [ThreatStryker](https://deepfence.io/threatstryker) observes network traffic and application behavior relating to both known (discovered by ThreatStryker) and unknown (zero-day or app-specific) risks, identifies ongoing attacks and provides automated and guided protection to prevent attacks from spreading
+## What makes up the ThreatStryker product?
 
-Use ThreatStryker to find risks in your production platforms, and ThreatStryker to observe attack behavior and secure against exploit.
+Deepfence ThreatStryker consists of the ThreatStryker Management Console, and a series of ThreatStryker Sensors:
+
+The console uses **infrastructure APIs** to scan your production and non-production platforms and detect configuration errors and compliance weaknesses.
+The console also takes data from **sensor agents** to calculate the topology of your applications, generate SBOMs to find vulnerabilities.
+
+Infrastructure APIs are handled using **Cloud Scanner** tasks which reside within each platform and access the local cloud APIs.
+
+On-host data is provided by ThreatStryker sensor agents.  These are deployed against each production host, and they forward SBOMs and telemetry securely to your dedicated console.   
+
+| ![ThreatStryker Components](img/threatmapper-components.jpg) |
+|:------------------------------------------------------------:|
+|                   ThreatStryker Components                   |
+
+## Learn More
+
+Read on to discover more about the architecture, installation and operation of Deepfence ThreatStryker.
