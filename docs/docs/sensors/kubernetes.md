@@ -10,7 +10,11 @@ In Kubernetes, the ThreatStryker sensors are deployed as a daemonset in the Kube
 
 Install and start the latest release of the deepfence sensor.  Replace `x.x.x.x` with the IP address of the Management Console and `73f6f3d0-9931-4b31-8967-fd6adf475f80` with the API key.
 
-- `clusterName` is the name / identifier of the cluster. It should be different for different kubernetes clusters. Example: prod-cluster-1, test-cluster.
+:::info
+`clusterName` is the name / identifier of the cluster. It should be different for different kubernetes clusters. Example: prod-cluster-1, test-cluster.
+:::
+
+### Identify container runtime
 - To get container runtime in the k8s cluster, run the following command 
 ```shell
 kubectl get nodes -o=custom-columns=NAME:.metadata.name,Runtime:.status.nodeInfo.containerRuntimeVersion
@@ -22,7 +26,8 @@ kubectl wait --for=condition=complete --timeout=30s job/deepfence-cluster-config
 kubectl logs $(kubectl get pod -l job-name=deepfence-cluster-config -o jsonpath="{.items[0].metadata.name}")
 kubectl delete -f https://deepfence-public.s3.amazonaws.com/kubernetes/deepfence-cluster-config-job.yaml
 ```
-- Deploy deepfence-agent helm chart
+
+### Deploy deepfence-agent helm chart
 ```bash
 helm repo add deepfence https://deepfence-helm-charts.s3.amazonaws.com/enterprise
 
@@ -48,12 +53,6 @@ helm install deepfence-agent deepfence/deepfence-agent \
     --create-namespace
 ```
 
-## Delete the ThreatStryker Sensor
-
-```bash
-helm delete deepfence-agent -n deepfence
-```
-
 ## Fine-tune the Helm deployment
 
 ```bash
@@ -69,3 +68,8 @@ helm install -f deepfence_agent_values.yaml deepfence-agent deepfence/deepfence-
     --create-namespace
 ```
 
+## Delete the ThreatStryker Sensor
+
+```bash
+helm delete deepfence-agent -n deepfence
+```

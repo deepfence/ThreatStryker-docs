@@ -8,24 +8,25 @@ You can install the Management Console on a [single Docker host](docker) or in a
 
 ## Install the ThreatStryker Management Console
 
-The following instructions explain how to install the ThreatStryker console on a Kubernetes Cluster, and configure external access to the Console.  For detailed instructions for custom installs, see [Console](`helm show readme`) and [Router](https://github.com/deepfence/ThreatStryker/tree/master/deployment-scripts/helm-charts/deepfence-router) notes.
+The following instructions explain how to install the ThreatStryker console on a Kubernetes Cluster, and configure external access to the Console.
 
 1. **Configure Persistent Volume**:
 
-    ## Cloud Managed
+    ### Cloud Managed
     
     If the Kubernetes cluster is hosted in a cloud provider, it is recommended to use cloud managed storage
     ```
     kubectl get storageclass
     ```
-    - AWS: gp3
-    - GCP: standard
+    | Cloud Provider | Storage Class |
+    |----------------|---------------|
+    | AWS            | gp3           |
+    | GCP            | standard      |
 
-    ## Self-Managed: OpenEBS
+    ### Self-Managed: OpenEBS
 
     ```bash
     helm repo add openebs https://openebs.github.io/charts
-    helm repo update
     helm install openebs --namespace openebs openebs/openebs --create-namespace
     ```
     
@@ -47,8 +48,7 @@ The following instructions explain how to install the ThreatStryker console on a
 
     ```bash
     helm repo add deepfence https://deepfence-helm-charts.s3.amazonaws.com/enterprise
-    
-    # helm show readme deepfence/deepfence-console | less
+
     # helm show values deepfence/deepfence-console | less
 
     helm install deepfence-console deepfence/deepfence-console \
@@ -56,13 +56,14 @@ The following instructions explain how to install the ThreatStryker console on a
     --set registry.password="<deepfence_password>" \
     --set global.imageTag=2.0.0 \
     --set global.storageClass=gp3 \
-    --namespace default
+    --namespace deepfence-console \
+    --create-namespace
     ```
 
     ... and wait for the pods to start up:
 
     ```bash
-    kubectl get pods -o wide -w
+    kubectl get pods --namespace deepfence-console -o wide -w
     ```
 
 4. **Enable external access** with the ```deepfence-router``` helm chart:
@@ -70,39 +71,54 @@ The following instructions explain how to install the ThreatStryker console on a
     Deploy deepfence-router:
 
     ```bash
-    # helm show values deepfence/deepfence-router | less
+    # helm show values deepfence/deepfence-router
    
-    helm install deepfence-router deepfence/deepfence-router
+    helm install deepfence-router deepfence/deepfence-router \
+    --namespace deepfence-console \
+    --create-namespace
     ```
 
     ... and wait for the cloud platform to deploy an external load-balancer:
 
     ```bash
-    kubectl get --namespace default svc -w deepfence-router
+    kubectl get svc -w deepfence-router --namespace deepfence-console
     ```
 
 Now proceed to the [Initial Configuration](initial-configuration).
 
-### Delete the ThreatStryker Management Console
-
-To delete the ThreatStryker Management Console
-
-   ```bash
-   helm delete deepfence-router
-   helm delete deepfence-console
-   ```
-
-
 ## Fine-tune the Helm deployment
 
-```bash
-helm repo add deepfence https://deepfence-helm-charts.s3.amazonaws.com/enterprise
+### Console Helm Chart
 
+```bash
 helm show values deepfence/deepfence-console > deepfence_console_values.yaml
 
 # Make the changes in this file and save
-vim deepfence_console_values.yaml
+vi deepfence_console_values.yaml
 
 helm install -f deepfence_console_values.yaml deepfence-console deepfence/deepfence-console \
-    --namespace default
+    --namespace deepfence-console \
+    --create-namespace
 ```
+
+### Router Helm Chart
+
+```bash
+helm show values deepfence/deepfence-router > deepfence_router_values.yaml
+
+# Make the changes in this file and save
+vi deepfence_router_values.yaml
+
+helm install -f deepfence_router_values.yaml deepfence-router deepfence/deepfence-router \
+    --namespace deepfence-console \
+    --create-namespace
+```
+
+## Delete the ThreatMapper Management Console
+
+To delete the ThreatMapper Management Console
+
+   ```bash
+   helm delete deepfence-router -n deepfence-console
+   helm delete deepfence-console -n deepfence-console
+   ```

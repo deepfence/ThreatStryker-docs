@@ -4,7 +4,7 @@ title: ThreatStryker Architecture
 
 # ThreatStryker Architecture
 
-The ThreatStryker product consists of a Management Console, and multiple Sensor Agent containers and Cloud Scanner tasks that are deployed within your production platform(s).
+The ThreatStryker product consists of a Management Console, and multiple Sensor Agents and Cloud Scanner tasks that are deployed within your production platform(s).
 
 ![ThreatStryker Components](../img/threatmapper-components.jpg)
 

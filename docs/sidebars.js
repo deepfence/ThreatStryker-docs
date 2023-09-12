@@ -48,31 +48,53 @@ const sidebars = {
       items: [
         {
           type: 'category',
-          label: 'Deepfence Cloud',
+          label: 'Management Console',
           items: [
-            'cloud/index',
-            'cloud/users',
-            'cloud/consoles',
-            'cloud/agents',
-            'cloud/sso',
+            {
+              type: 'category',
+              label: 'Deepfence Cloud',
+              items: [
+                'cloud/index',
+                'cloud/users',
+                'cloud/consoles',
+                'cloud/agents',
+                'cloud/sso',
+              ],
+            },
+            {
+              type: 'category',
+              label: 'Self-Managed',
+              link: {
+                type: 'doc',
+                id: 'console/index'
+              },
+              items: [
+                'console/requirements',
+                'console/docker',
+                'console/kubernetes',
+                'console/managed-database',
+                'console/initial-configuration',
+                'console/manage-users',
+                'console/database-export-import',
+                'console/troubleshooting',
+              ],
+            },
           ],
         },
+
         {
           type: 'category',
-          label: 'Self-Managed',
+          label: 'Sensor Agent',
           link: {
             type: 'doc',
-            id: 'console/index'
+            id: 'sensors/index'
           },
           items: [
-            'console/requirements',
-            'console/docker',
-            'console/kubernetes',
-            'console/managed-database',
-            'console/initial-configuration',
-            'console/manage-users',
-            'console/database-export-import',
-            'console/troubleshooting',
+            'sensors/kubernetes',
+            'sensors/docker',
+            'sensors/aws-ecs',
+            'sensors/aws-fargate',
+            'sensors/linux-host',
           ],
         },
 
@@ -99,22 +121,6 @@ const sidebars = {
             id: 'kubernetes-scanner/index'
           },
           items: [],
-        },
-
-        {
-          type: 'category',
-          label: 'Sensor Agent',
-          link: {
-            type: 'doc',
-            id: 'sensors/index'
-          },
-          items: [
-            'sensors/kubernetes',
-            'sensors/docker',
-            'sensors/aws-ecs',
-            'sensors/aws-fargate',
-            'sensors/linux-host',
-          ],
         },
       ],
     },
@@ -156,6 +162,7 @@ const sidebars = {
             'ci-cd/jenkins',
           ],
         },
+        'operations/scanning-ci',
         'operations/support',
       ],
     },
@@ -173,7 +180,6 @@ const sidebars = {
         'integrations/microsoft-teams',
         'integrations/sumo-logic',
         'integrations/elasticsearch',
-        'integrations/terraform',
         'integrations/email',
         'integrations/http-endpoint',
         'integrations/jira',

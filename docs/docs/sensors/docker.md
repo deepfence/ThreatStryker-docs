@@ -33,7 +33,6 @@ The host or VM to be used for the Deepfence agents needs to have the docker runt
 Optionally the sensor container can be further tagged using ```USER_DEFINED_TAGS=""``` in the above command. Tags should be comma separated, for example, ```"dev,front-end"```.
 :::
 
-
 ## Upgrade the ThreatStryker Sensors
 
 To upgrade a sensor install, stop the existing sensor and start the new version.

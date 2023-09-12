@@ -38,7 +38,7 @@ const config = {
           // options for remark-admonitions
           admonitions: {},
           // version
-          lastVersion: 'current',
+          lastVersion: 'v3.8',
           versions: {
             "current": {
               label: 'v2.0',
@@ -46,7 +46,7 @@ const config = {
             },
             "v3.8": {
               label: 'v3.8',
-              path: 'v3.8',
+              // path: 'v3.8',
               banner: 'none',
             },
             "v3.7": {
