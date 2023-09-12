@@ -40,21 +40,25 @@ Begin on the **Posture** page in the ThreatStryker console.
 
 Select a cloud instance that you have [configured previously](/docs/cloudscanner/).  You may have several instances of a given cloud type:
 
-| ![Cloud Compliance Scan - Select](../img/compliance-scan-1.jpg) |
-| :--: |
-| Select target for Cloud Compliance Scan |
+| ![Cloud Compliance Scan - Select](../img/compliance-scan-1.png) |
+|:---------------------------------------------------------------:|
+|                         Select a Cloud                          |
+
+| ![Cloud Compliance Scan - Select](../img/compliance-scan-2.png) |
+|:---------------------------------------------------------------:|
+|             Select target for Cloud Compliance Scan             |
 
 If you want to scan a host (Linux host or Kubernetes master or slave node), ensure that the [ThreatStryker sensor](/docs/sensors) is deployed on that host.
 
 Select the compliance benchmarks you wish to run on the target cloud instance or host:
 
-| ![Cloud Compliance Scan - Chose Benchmark](../img/compliance-scan-2.jpg) |
-| :--: |
-| Select benchmarks for  Compliance Scan |
+| ![Cloud Compliance Scan - Chose Benchmark](../img/compliance-scan-3.png) |
+|:------------------------------------------------------------------------:|
+|                  Select benchmarks for  Compliance Scan                  |
 
 You can preview the controls that will be run for each benchmark, and you can select an action to mask (or unmask) specific controls.
 
-Click **Start Scan** once you have completed your selection.  The Cloud Connector or Sensor Agent will then perform the scan and in due course, will submit the results to your ThreatStryker console.
+Click **Start Scan** once you have completed your selection. The Cloud Connector or Sensor Agent will then perform the scan and in due course, will submit the results to your ThreatStryker console.
 
 ## Inspecting Scan Results
 
@@ -68,19 +72,8 @@ ThreatStryker presents the recent scan results, filtered by benchmark, with a br
 
 Select an individual scan run (result), and optionally filter the results by service (e.g. IAM, CloudWatch) and/or status.
 
-| ![Cloud Compliance Scan - View Results](../img/compliance-scan-3.jpg) |
-| :--: |
-| View the Results for a Compliance Scan |
+| ![Cloud Compliance Scan - View Results](../img/compliance-scan-4.png) |
+|:---------------------------------------------------------------------:|
+|                View the Results for a Compliance Scan                 |
 
 If you judge that a result is not applicable in your specific circumstances, you can mask that result out.  That result will not be reported in subsequent scans.
-
-### View Inventory
-
-The Inventory provides an alternative, asset-centric view which presents the number of resources of each type discovered, and the number of issues identified with each resource type:
-
-| ![Cloud Compliance Scan - View Inventory](../img/compliance-scan-4.jpg) |
-| :--: |
-| View the Inventory for a Compliance Scan |
-
-You can explore individual types, view a list of the discovered resources of that type and the most recent scan results for each resource.
-

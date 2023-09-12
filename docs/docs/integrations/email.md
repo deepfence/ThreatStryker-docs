@@ -6,7 +6,7 @@ title: Email
 
 *Forward Notifications to Email*
 
-![Email Integration Page](../img/email.png)
+![Email Integration Page](../img/integrations-email.png)
 
 ### In this integration you will be getting all information to your email for the selected resources accordingly to your interval selected
 

@@ -7,7 +7,7 @@ title: Single Sign-On
 Deepfence Cloud supports single sign-on using Google, GitHub and Microsoft by default.
 Additionally, you can configure any OpenID Connect ID provider like Okta.
 
-![Login Page](../img/sso-1.png)
+![Login Page](../img/saas-login.png)
 
 # Okta - OpenID Connect
 
@@ -36,7 +36,7 @@ To configure Okta as ID provider for Deepfence Cloud, please follow these steps
 1. Register to Deepfence Cloud using username and password or social login.
 2. Click user profile menu on the top right and then click `Organization Settings` and then `SSO Configuration` tab.
 
-    ![SSO](../img/sso-2.png)
+    ![SSO](../img/sso-1.png)
 
 3. Enter the `Client ID` and `Cliet Secret` from the OpenID Connect provider, in this example, from Okta.
 4. `Issuer URL` is the ID provider's URL. Example: `https://organization.okta.com`
@@ -46,4 +46,4 @@ When password login is disabled, users invited to the platform will continue to 
 :::
 6. On the login page, click `Login with OpenID` and enter your email id to log in with the configured SSO. 
 
-   ![SSO](../img/sso-3.png)
+   ![SSO](../img/sso-2.png)

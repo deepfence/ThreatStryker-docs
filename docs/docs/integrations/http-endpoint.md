@@ -6,7 +6,7 @@ title: HTTP Endpoint
 
 *Forward notifications to http endpoint*
 
-![HttpEndPoint Integration Page](../img/HttpEndpoint.png)
+![HttpEndPoint Integration Page](../img/integrations-http-endpoint.png)
 
 Example http endpoint: http://10.3.16.2:8080
 

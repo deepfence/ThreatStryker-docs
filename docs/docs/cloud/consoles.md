@@ -29,7 +29,7 @@ The request to deploy the console is quickly registered. Deployment can take a f
 2. From the home page, click on one of the tiles representing existing ThreatStryker consoles.  This action will load the console in your browser.
 
 You can quickly switch between different console instances from your browser, or return **Home** to the list of console tiles using the top bar.
-    ![cloud ui top-bar](../img/console-top-bar.png)
+    ![cloud ui top-bar](../img/saas-top-bar.png)
 
 ### Task 3 - Delete a ThreatStryker Console
 

@@ -11,10 +11,10 @@ In AWS ECS, the ThreatStryker sensors are deployed as a daemon service using tas
 ## Prerequisites
 
 Make sure you have the following information:
-  - Quay login, later referred as `<QUAY_LOGIN>`
-  - Quay password, later referred as `<QUAY_PASSWORD>`
-  - Management console URL/IP, later referred as `<MGMT_CONSOLE_URL>`
-  - Deepfence API key, later referred as `<DEEPFENCE_KEY>` (This key can be found from the management console, in the settings > User > API Key)
+- Quay login, later referred as `<QUAY_LOGIN>`
+- Quay password, later referred as `<QUAY_PASSWORD>`
+- Management console URL/IP, later referred as `<MGMT_CONSOLE_URL>`
+- Deepfence API key, later referred as `<DEEPFENCE_KEY>` (This key can be found from the management console, in the settings > User > API Key)
 
 ## Installing on AWS ECS (EC2 Provider)
 
@@ -30,7 +30,7 @@ Make sure you have the following information:
       }
       ```
 
-  Create the secret and store the ARN. We will refer to it as `<ARN_QUAY_CREDS>`
+Create the secret and store the ARN. We will refer to it as `<ARN_QUAY_CREDS>`
 
 2. Add secret for Deepfence API key
     - Go to the secret manager dashboard from the AWS Console
@@ -43,10 +43,10 @@ Make sure you have the following information:
       }
       ```
 
-  Create the secret and store the ARN. We will refer to it as `<API_KEY_SECRET_ARN>`
-  :::caution
-  Be careful with the double quotes, sometimes the AWS UI transforms them into a special character that is not  recognized as valid JSON.
-  :::
+Create the secret and store the ARN. We will refer to it as `<API_KEY_SECRET_ARN>`
+:::caution
+Be careful with the double quotes, sometimes the AWS UI transforms them into a special character that is not  recognized as valid JSON.
+:::
 
 3. Create a new role (e.g.: `deepfence-agent-role`)
     - Go to the IAM dashboard from AWS Console
@@ -69,7 +69,7 @@ Make sure you have the following information:
       }
       ```
 
-  Then continue:
+Then continue:
 
     - Search in the "Permissions policies" for "Task" > Select the following policy: `AmazonECSTaskExecutionRolePolicy`
     - Click "Next", name the role `deepfence-agent-role`, then "Create role"
@@ -117,7 +117,7 @@ Make sure you have the following information:
       }
       ```
 
-  Then create the new policy.
+Then create the new policy.
 
 4. Create new task definition for deepfence agent
     - Use Old ECS Experience (old UI)
@@ -217,7 +217,7 @@ Make sure you have the following information:
             "memoryReservation": null,
             "volumesFrom": [],
             "stopTimeout": null,
-            "image": "quay.io/deepfenceio/deepfence_agent:3.8.0",
+            "image": "quay.io/deepfenceio/deepfence_agent:2.0.0",
             "startTimeout": null,
             "firelensConfiguration": null,
             "dependsOn": null,
