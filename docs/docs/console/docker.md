@@ -14,17 +14,29 @@ The following instructions explain how to get started with a docker-based instal
 
 1. To authenticate to the Quay registry, run the following command:
 
-   ```bash
-   docker login quay.io
-   ```
+    ```bash
+    docker login quay.io
+    ```
 
-   When prompted, please provide the credentials sent by email.
+    When prompted, please provide the credentials sent by email.
 
-2. Download docker compose file from here: [docker-compose.yml 🔗](../files/docker-compose.yml). Run docker-compose file in that directory as follows:
+2. Download the file [docker-compose.yml](https://docs.deepfence.io/threatstryker/files/v2.0/docker-compose.yml) to the system that will host the Console
 
-   ```bash
-   docker compose up -d
-   ```
+    ```bash
+    wget https://docs.deepfence.io/threatstryker/files/v2.0/docker-compose.yml
+    ```
+
+   For more verbose network alerts, please download this file instead: [docker-compose.yml 🔗](https://docs.deepfence.io/threatstryker/files/v2.0/docker-compose-poc.yml).
+
+    ```bash
+    wget https://docs.deepfence.io/threatstryker/files/v2.0/docker-compose-poc.yml -O docker-compose.yml
+    ```
+
+3. Execute the following command to install and start the latest build of the Console
+
+    ```bash
+    docker compose up -d
+    ```
 
 Now proceed to the [Initial Configuration](initial-configuration).
 

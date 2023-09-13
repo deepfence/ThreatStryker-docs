@@ -43,16 +43,24 @@ const sidebars = {
       label: 'Installation',
       link: {
         type: 'doc',
-        id: 'deploy'
+        id: 'installation'
       },
       items: [
         {
           type: 'category',
           label: 'Management Console',
+          link: {
+            type: 'doc',
+            id: 'deploy'
+          },
           items: [
             {
               type: 'category',
               label: 'Deepfence Cloud',
+              link: {
+                type: 'doc',
+                id: 'cloud/index'
+              },
               items: [
                 'cloud/index',
                 'cloud/users',
@@ -149,19 +157,19 @@ const sidebars = {
         },
         'operations/east-west-dpi',
         'operations/attack-disruption',
-        {
-          type: 'category',
-          label: 'CI-CD Integration',
-          link: {
-            type: 'doc',
-            id: 'ci-cd/index'
-          },
-          items: [
-            'ci-cd/circle-ci',
-            'ci-cd/gitlab',
-            'ci-cd/jenkins',
-          ],
-        },
+        // {
+        //   type: 'category',
+        //   label: 'CI-CD Integration',
+        //   link: {
+        //     type: 'doc',
+        //     id: 'ci-cd/index'
+        //   },
+        //   items: [
+        //     'ci-cd/circle-ci',
+        //     'ci-cd/gitlab',
+        //     'ci-cd/jenkins',
+        //   ],
+        // },
         'operations/scanning-ci',
         'operations/support',
       ],

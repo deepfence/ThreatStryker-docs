@@ -14,7 +14,11 @@ For Windows Server hosts, experimental support exists, but it is not suitable fo
 
 The host or VM to be used for the Deepfence agents needs to have the docker runtime installed on it.
 
-1. Download the following script: [start-agent.sh 🔗](../files/start-agent.sh)
+1. Download the following script: [start-agent.sh 🔗](https://docs.deepfence.io/threatstryker/files/v2.0/start-agent.sh)
+    ```shell
+    wget https://docs.deepfence.io/threatstryker/files/v2.0/start-agent.sh
+    ```
+
 2. To authenticate to the docker image repository, run the following command:
 
     ```bash
@@ -23,7 +27,7 @@ The host or VM to be used for the Deepfence agents needs to have the docker runt
 
    When prompted, please provide the credentials sent by email.
 
-3. Run the script in that directory as follows:
+3. Run the script as follows:
 
     ```bash
     bash start-agent.sh -r <IP_ADDRESS_OF_UI_MACHINE> -k xxxxxxxx
