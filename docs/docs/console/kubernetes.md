@@ -52,8 +52,8 @@ The following instructions explain how to install the ThreatStryker console on a
     # helm show values deepfence/deepfence-console | less
 
     helm install deepfence-console deepfence/deepfence-console \
-    --set registry.username="<deepfence_username>" \
-    --set registry.password="<deepfence_password>" \
+    --set imagePullSecret.username="<deepfence_username>" \
+    --set imagePullSecret.password="<deepfence_password>" \
     --set global.imageTag=2.0.0 \
     --set global.storageClass=gp3 \
     --namespace deepfence-console \
