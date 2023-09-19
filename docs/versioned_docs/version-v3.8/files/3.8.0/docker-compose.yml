@@ -3,7 +3,7 @@ services:
   
   deepfence-init-container:
     container_name: df-init-container
-    image: ${IMAGE_REPOSITORY:-quay.io/deepfenceio}/deepfence_init:${DF_IMG_TAG:-3.8.0}
+    image: ${IMAGE_REPOSITORY:-quay.io/deepfenceio}/deepfence_init:${DF_IMG_TAG:-3.8.1}
     privileged: true
     ulimits:
       core: 0
@@ -17,7 +17,7 @@ services:
   
   deepfence-postgres:
     container_name: deepfence-postgres
-    image: ${IMAGE_REPOSITORY:-quay.io/deepfenceio}/deepfence_postgres:${DF_IMG_TAG:-3.8.0}
+    image: ${IMAGE_REPOSITORY:-quay.io/deepfenceio}/deepfence_postgres:${DF_IMG_TAG:-3.8.1}
     ulimits:
       core: 0
     restart: always
@@ -32,7 +32,7 @@ services:
   
   deepfence-redis:
     container_name: deepfence-redis
-    image: ${IMAGE_REPOSITORY:-quay.io/deepfenceio}/deepfence_redis:${DF_IMG_TAG:-3.8.0}
+    image: ${IMAGE_REPOSITORY:-quay.io/deepfenceio}/deepfence_redis:${DF_IMG_TAG:-3.8.1}
     environment:
       INITIALIZE_REDIS: "Y"
     ulimits:
@@ -49,7 +49,7 @@ services:
   
   deepfence-fetcher:
     container_name: deepfence-fetcher
-    image: ${IMAGE_REPOSITORY:-quay.io/deepfenceio}/deepfence_fetcher:${DF_IMG_TAG:-3.8.0}
+    image: ${IMAGE_REPOSITORY:-quay.io/deepfenceio}/deepfence_fetcher:${DF_IMG_TAG:-3.8.1}
     ulimits:
       core: 0
     depends_on:
@@ -66,7 +66,7 @@ services:
   
   deepfence-topology:
     container_name: deepfence-topology
-    image: ${IMAGE_REPOSITORY:-quay.io/deepfenceio}/deepfence_discovery:${DF_IMG_TAG:-3.8.0}
+    image: ${IMAGE_REPOSITORY:-quay.io/deepfenceio}/deepfence_discovery:${DF_IMG_TAG:-3.8.1}
     ulimits:
       core: 0
     networks:
@@ -82,7 +82,7 @@ services:
   
   deepfence-discovery:
     container_name: deepfence-discovery
-    image: ${IMAGE_REPOSITORY:-quay.io/deepfenceio}/deepfence_discovery:${DF_IMG_TAG:-3.8.0}
+    image: ${IMAGE_REPOSITORY:-quay.io/deepfenceio}/deepfence_discovery:${DF_IMG_TAG:-3.8.1}
     ulimits:
       core: 0
     deploy:
@@ -106,7 +106,7 @@ services:
 
   deepfence-es:
     container_name: deepfence-es-master
-    image: ${IMAGE_REPOSITORY:-quay.io/deepfenceio}/deepfence_elastic:${DF_IMG_TAG:-3.8.0}
+    image: ${IMAGE_REPOSITORY:-quay.io/deepfenceio}/deepfence_elastic:${DF_IMG_TAG:-3.8.1}
     restart: always
     networks:
     - deepfence_net
@@ -143,7 +143,7 @@ services:
   
   deepfence-es-slave1:
     container_name: deepfence-es-slave1
-    image: ${IMAGE_REPOSITORY:-quay.io/deepfenceio}/deepfence_elastic:${DF_IMG_TAG:-3.8.0}
+    image: ${IMAGE_REPOSITORY:-quay.io/deepfenceio}/deepfence_elastic:${DF_IMG_TAG:-3.8.1}
     restart: always
     networks:
     - deepfence_net
@@ -177,7 +177,7 @@ services:
   
   deepfence-es-slave2:
     container_name: deepfence-es-slave2
-    image: ${IMAGE_REPOSITORY:-quay.io/deepfenceio}/deepfence_elastic:${DF_IMG_TAG:-3.8.0}
+    image: ${IMAGE_REPOSITORY:-quay.io/deepfenceio}/deepfence_elastic:${DF_IMG_TAG:-3.8.1}
     restart: always
     networks:
     - deepfence_net
@@ -211,7 +211,7 @@ services:
   
   deepfence-router:
     container_name: deepfence-router
-    image: ${IMAGE_REPOSITORY:-quay.io/deepfenceio}/deepfence_router:${DF_IMG_TAG:-3.8.0}
+    image: ${IMAGE_REPOSITORY:-quay.io/deepfenceio}/deepfence_router:${DF_IMG_TAG:-3.8.1}
     ulimits:
       core: 0
     networks:
@@ -233,7 +233,7 @@ services:
   
   deepfence-internal-router:
     container_name: deepfence-internal-router
-    image: ${IMAGE_REPOSITORY:-quay.io/deepfenceio}/deepfence_router:${DF_IMG_TAG:-3.8.0}
+    image: ${IMAGE_REPOSITORY:-quay.io/deepfenceio}/deepfence_router:${DF_IMG_TAG:-3.8.1}
     ulimits:
       core: 0
     networks:
@@ -252,7 +252,7 @@ services:
   
   deepfence-api:
     container_name: deepfence-api
-    image: ${IMAGE_REPOSITORY:-quay.io/deepfenceio}/deepfence_api:${DF_IMG_TAG:-3.8.0}
+    image: ${IMAGE_REPOSITORY:-quay.io/deepfenceio}/deepfence_api:${DF_IMG_TAG:-3.8.1}
     ulimits:
       core: 0
     tmpfs:
@@ -281,7 +281,7 @@ services:
   
   deepfence-celery:
     container_name: deepfence-celery
-    image: ${IMAGE_REPOSITORY:-quay.io/deepfenceio}/deepfence_api:${DF_IMG_TAG:-3.8.0}
+    image: ${IMAGE_REPOSITORY:-quay.io/deepfenceio}/deepfence_api:${DF_IMG_TAG:-3.8.1}
     ulimits:
       core: 0
     entrypoint: /app/code/dockerify/celery/entrypoint.sh
@@ -300,7 +300,7 @@ services:
   
   deepfence-backend:
     container_name: deepfence-backend
-    image: ${IMAGE_REPOSITORY:-quay.io/deepfenceio}/deepfence_api:${DF_IMG_TAG:-3.8.0}
+    image: ${IMAGE_REPOSITORY:-quay.io/deepfenceio}/deepfence_api:${DF_IMG_TAG:-3.8.1}
     ulimits:
       core: 0
     entrypoint: /app/code/dockerify/backend/entrypoint.sh
@@ -327,7 +327,7 @@ services:
   
   deepfence-ui:
     container_name: deepfence-ui
-    image: ${IMAGE_REPOSITORY:-quay.io/deepfenceio}/deepfence_ui:${DF_IMG_TAG:-3.8.0}
+    image: ${IMAGE_REPOSITORY:-quay.io/deepfenceio}/deepfence_ui:${DF_IMG_TAG:-3.8.1}
     ulimits:
       core: 0
     networks:
@@ -342,7 +342,7 @@ services:
   
   deepfence-diagnosis:
     container_name: deepfence-diagnosis
-    image: ${IMAGE_REPOSITORY:-quay.io/deepfenceio}/deepfence_diagnosis:${DF_IMG_TAG:-3.8.0}
+    image: ${IMAGE_REPOSITORY:-quay.io/deepfenceio}/deepfence_diagnosis:${DF_IMG_TAG:-3.8.1}
     ulimits:
       core: 0
     networks:
@@ -357,7 +357,7 @@ services:
   
   deepfence-vulnerability-mapper:
     container_name: deepfence-vulnerability-mapper
-    image: ${IMAGE_REPOSITORY:-quay.io/deepfenceio}/deepfence_vulnerability_mapper:${DF_IMG_TAG:-3.8.0}
+    image: ${IMAGE_REPOSITORY:-quay.io/deepfenceio}/deepfence_vulnerability_mapper:${DF_IMG_TAG:-3.8.1}
     ulimits:
       core: 0
     restart: always
@@ -370,7 +370,7 @@ services:
   
   deepfence-secret-scanner:
     container_name: deepfence-secret-scanner
-    image: ${IMAGE_REPOSITORY:-quay.io/deepfenceio}/deepfence_secret_scanner:${DF_IMG_TAG:-3.8.0}
+    image: ${IMAGE_REPOSITORY:-quay.io/deepfenceio}/deepfence_secret_scanner:${DF_IMG_TAG:-3.8.1}
     ulimits:
       core: 0
     restart: always
@@ -385,7 +385,7 @@ services:
   
   deepfence-yara-hunter:
     container_name: deepfence-yara-hunter
-    image: ${IMAGE_REPOSITORY:-quay.io/deepfenceio}/deepfence_malware_scanner:${DF_IMG_TAG:-3.8.0}
+    image: ${IMAGE_REPOSITORY:-quay.io/deepfenceio}/deepfence_malware_scanner:${DF_IMG_TAG:-3.8.1}
     ulimits:
       core: 0
     restart: always
@@ -400,7 +400,7 @@ services:
         
   deepfence-package-scanner:
     container_name: deepfence-package-scanner
-    image: ${IMAGE_REPOSITORY:-quay.io/deepfenceio}/deepfence_package_scanner:${DF_IMG_TAG:-3.8.0}
+    image: ${IMAGE_REPOSITORY:-quay.io/deepfenceio}/deepfence_package_scanner:${DF_IMG_TAG:-3.8.1}
     ulimits:
       core: 0
     restart: always
@@ -418,7 +418,7 @@ services:
         max-size: "1g"
 
   deepfence-kafka-broker:
-    image: ${IMAGE_REPOSITORY:-quay.io/deepfenceio}/deepfence_kafka_broker:${DF_IMG_TAG:-3.8.0}
+    image: ${IMAGE_REPOSITORY:-quay.io/deepfenceio}/deepfence_kafka_broker:${DF_IMG_TAG:-3.8.1}
     hostname: deepfence-kafka-broker
     container_name: deepfence-kafka-broker
     restart: always
@@ -435,7 +435,7 @@ services:
         max-size: "1g"
 
   deepfence-rest-proxy:
-    image: ${IMAGE_REPOSITORY:-quay.io/deepfenceio}/deepfence_kafka_rest_proxy:${DF_IMG_TAG:-3.8.0}
+    image: ${IMAGE_REPOSITORY:-quay.io/deepfenceio}/deepfence_kafka_rest_proxy:${DF_IMG_TAG:-3.8.1}
     depends_on:
       - deepfence-kafka-broker
     ports:

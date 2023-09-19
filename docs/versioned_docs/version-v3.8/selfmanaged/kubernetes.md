@@ -30,7 +30,7 @@ helm repo add deepfence https://deepfence-helm-charts.s3.amazonaws.com/enterpris
 helm install deepfence-console deepfence/deepfence-console \
     --set registry.username="<deepfence_username>" \
     --set registry.password="<deepfence_password>" \
-    --set image.tag=3.8.0 \
+    --set image.tag=3.8.1 \
     --set volume.storageClass=default \
     --namespace default \
     --version=1.5.1
@@ -90,7 +90,7 @@ registry:
 - Set image tag
 ```yaml
 image:
-  tag: 3.8.0
+  tag: 3.8.1
 ```
 - (Optional) Set custom ssl certificate.
 
@@ -275,7 +275,7 @@ helm delete deepfence-router
    helm install deepfence-console deepfence/deepfence-console \
        --set registry.username=<registry_username> \
        --set registry.password=<registry_password> \
-       --set image.tag=3.8.0 \
+       --set image.tag=3.8.1 \
        --set discovery.runConsoleDiscovery=false \
        --namespace deepfence-console \
        --create-namespace \

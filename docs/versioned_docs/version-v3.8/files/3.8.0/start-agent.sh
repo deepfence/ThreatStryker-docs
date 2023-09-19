@@ -152,7 +152,7 @@ start_agent() {
     -e DF_TRAFFIC_ANALYSIS_MODE="$TRAFFIC_ANALYSIS_MODE" \
     -e DEFENDERD_DISABLE_XFF_PROTECTION=false \
     -e DEFENDERD_TCP_BUFFER_LIMIT="500MB" \
-    ${IMAGE_REPOSITORY}/deepfence_agent:"${DF_IMG_TAG:-3.8.0}"
+    ${IMAGE_REPOSITORY}/deepfence_agent:"${DF_IMG_TAG:-3.8.1}"
 }
 
 main() {
