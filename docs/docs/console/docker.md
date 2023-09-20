@@ -26,7 +26,7 @@ The following instructions explain how to get started with a docker-based instal
     wget https://docs.deepfence.io/threatstryker/files/v2.0/docker-compose.yml
     ```
 
-   For more verbose network alerts, please download this file instead: [docker-compose.yml 🔗](https://docs.deepfence.io/threatstryker/files/v2.0/docker-compose-poc.yml).
+   For more verbose network alerts, please download this file instead: [docker-compose-poc.yml 🔗](https://docs.deepfence.io/threatstryker/files/v2.0/docker-compose-poc.yml).
 
     ```bash
     wget https://docs.deepfence.io/threatstryker/files/v2.0/docker-compose-poc.yml -O docker-compose.yml

@@ -124,11 +124,16 @@ start_agent() {
     --ulimit core=0 \
     --name=deepfence-agent \
     --restart on-failure \
-    --pid=host --net=host --uts=host \
+    --pid=host \
+    --net=host \
+    --uts=host \
+    --log-driver json-file \
+    --log-opt max-size=50m \
     --privileged=true \
     -v /sys/kernel/debug:/sys/kernel/debug:rw \
     -v /sys/fs/bpf:/sys/fs/bpf:rw \
-    -v /var/log/fenced -v /var/run/docker.sock:/var/run/docker.sock \
+    -v /var/log/fenced \
+    -v /var/run/docker.sock:/var/run/docker.sock \
     -v /var/lib/docker/:/fenced/mnt/host/var/lib/docker/:rw \
     -v /:/fenced/mnt/host/:ro \
     -e DF_FIM_ON="$FIM_ON" \
