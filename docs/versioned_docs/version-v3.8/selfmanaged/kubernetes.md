@@ -37,7 +37,7 @@ helm install deepfence-console deepfence/deepfence-console \
 
 helm install deepfence-router deepfence/deepfence-router \
    --namespace default \
-   --version=1.4.0
+   --version=1.4.1
 
 kubectl get --namespace default svc deepfence-router -w
 ```
@@ -187,7 +187,7 @@ helm delete deepfence-console
 
 - Create values file
 ```bash
-helm show values deepfence/deepfence-router --version=1.4.0 > deepfence_router_values.yaml
+helm show values deepfence/deepfence-router --version=1.4.1 > deepfence_router_values.yaml
 ```
 - Set cloud provider
 ```yaml
@@ -250,7 +250,7 @@ service:
 helm install -f deepfence_router_values.yaml \
   deepfence-router deepfence/deepfence-router \
   --namespace default \
-  --version=1.4.0
+  --version=1.4.1
 ```
 
 ### Delete deepfence-router helm chart
@@ -302,7 +302,7 @@ helm delete deepfence-router
     helm install deepfence-router deepfence/deepfence-router \
       --namespace deepfence-console \
       --create-namespace \
-      --version=1.4.0
+      --version=1.4.1
     ```
 
     get the loadbalancer ip using below command
@@ -320,7 +320,7 @@ helm delete deepfence-router
           --set service.type=ClusterIP \
           --namespace deepfence-console \
           --create-namespace \
-          --version=1.4.0
+          --version=1.4.1
       ```
 
     - get the openshift cluster domain
