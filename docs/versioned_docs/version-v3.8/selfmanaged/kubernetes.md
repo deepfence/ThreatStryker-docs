@@ -30,14 +30,14 @@ helm repo add deepfence https://deepfence-helm-charts.s3.amazonaws.com/enterpris
 helm install deepfence-console deepfence/deepfence-console \
     --set registry.username="<deepfence_username>" \
     --set registry.password="<deepfence_password>" \
-    --set image.tag=3.8.1 \
+    --set image.tag=3.8.2 \
     --set volume.storageClass=default \
     --namespace default \
-    --version=1.5.1
+    --version=1.5.2
 
 helm install deepfence-router deepfence/deepfence-router \
    --namespace default \
-   --version=1.4.0
+   --version=1.5.2
 
 kubectl get --namespace default svc deepfence-router -w
 ```
@@ -77,7 +77,7 @@ helm repo add deepfence https://deepfence-helm-charts.s3.amazonaws.com/enterpris
 
 - Create values file
 ```bash
-helm show values deepfence/deepfence-console --version=1.5.1 > deepfence_console_values.yaml
+helm show values deepfence/deepfence-console --version=1.5.2 > deepfence_console_values.yaml
 ```
 - Edit values file and set registry username and password
 ```yaml
@@ -167,7 +167,7 @@ mountContainerRuntimeSocket:
 helm install -f deepfence_console_values.yaml \
   deepfence-console deepfence/deepfence-console \
   --namespace default \
-  --version=1.5.1
+  --version=1.5.2
 ```
 - Wait for pods to start up
 ```bash
@@ -187,7 +187,7 @@ helm delete deepfence-console
 
 - Create values file
 ```bash
-helm show values deepfence/deepfence-router --version=1.4.0 > deepfence_router_values.yaml
+helm show values deepfence/deepfence-router --version=1.5.2 > deepfence_router_values.yaml
 ```
 - Set cloud provider
 ```yaml
@@ -250,7 +250,7 @@ service:
 helm install -f deepfence_router_values.yaml \
   deepfence-router deepfence/deepfence-router \
   --namespace default \
-  --version=1.4.0
+  --version=1.5.2
 ```
 
 ### Delete deepfence-router helm chart
@@ -279,14 +279,14 @@ helm delete deepfence-router
        --set discovery.runConsoleDiscovery=false \
        --namespace deepfence-console \
        --create-namespace \
-       --version=1.5.1
+       --version=1.5.2
    ```
 
    The Quay registry username and password is provided by email. Check the README inside the package for detailed setup instructions.
 
    ```bash
-   helm show readme --version=1.5.1 deepfence/deepfence-console
-   helm show values --version=1.5.1 deepfence/deepfence-console
+   helm show readme --version=1.5.2 deepfence/deepfence-console
+   helm show values --version=1.5.2 deepfence/deepfence-console
    ```
 
 3. Some components of Deepfence console needs privileged permissions, run below commands to add privileged and anyuid permisions to deepfence-console service account
@@ -302,7 +302,7 @@ helm delete deepfence-router
     helm install deepfence-router deepfence/deepfence-router \
       --namespace deepfence-console \
       --create-namespace \
-      --version=1.4.0
+      --version=1.5.2
     ```
 
     get the loadbalancer ip using below command
@@ -320,7 +320,7 @@ helm delete deepfence-router
           --set service.type=ClusterIP \
           --namespace deepfence-console \
           --create-namespace \
-          --version=1.4.0
+          --version=1.5.2
       ```
 
     - get the openshift cluster domain
