@@ -217,7 +217,7 @@ Make sure you have the following information:
             "memoryReservation": null,
             "volumesFrom": [],
             "stopTimeout": null,
-            "image": "quay.io/deepfenceio/deepfence_agent:3.8.1",
+            "image": "quay.io/deepfenceio/deepfence_agent:3.8.2",
             "startTimeout": null,
             "firelensConfiguration": null,
             "dependsOn": null,
