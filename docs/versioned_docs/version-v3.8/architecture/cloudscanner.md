@@ -25,7 +25,7 @@ Each Cloud Scanner task runs in your cloud environment, gathering inventory and 
 Cloud Scanner tasks are deployed using the appropriate Terraform module for each cloud, and are configured with the address and API key of your management console.  They 'phone home' to your management console and take instructions on demand; they do not listen for remote connections or control.
 
 :::info
-Refer to the Installation Documentation to [Learn how to install Cloud Scanner tasks](/docs/cloudscanner)
+Refer to the Installation Documentation to [Learn how to install Cloud Scanner tasks](/docs/v3.8/cloudscanner)
 :::
 
 
@@ -33,4 +33,4 @@ Refer to the Installation Documentation to [Learn how to install Cloud Scanner t
 
 ThreatStryker can perform compliance posture scanning on linux hosts and Kubernetes master and worker nodes.
 
-Scanning is done directly, using a local [Sensor Agent](/docs/sensors) rather than by using the Cloud Scanner task employed by the cloud platform integrations.
+Scanning is done directly, using a local [Sensor Agent](/docs/v3.8/sensors) rather than by using the Cloud Scanner task employed by the cloud platform integrations.
