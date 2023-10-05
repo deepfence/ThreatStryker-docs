@@ -35,12 +35,11 @@ helm repo add deepfence https://deepfence-helm-charts.s3.amazonaws.com/enterpris
 # helm show values deepfence/deepfence-agent | less
 
 helm install deepfence-agent deepfence/deepfence-agent \
-    --set registry.username=<deepfence_username> \
-    --set registry.password=<deepfence_password> \
+    --set imagePullSecret.username=<deepfence_username> \
+    --set imagePullSecret.password=<deepfence_password> \
     --set managementConsoleUrl=x.x.x.x \
     --set deepfenceKey=73f6f3d0-9931-4b31-8967-fd6adf475f80 \
-    --set image.tag=2.0.0 \
-    --set image.clusterAgentImageTag=2.0.0 \
+    --set global.imageTag=2.0.0 \
     --set clusterName="prod-cluster" \
     --set mountContainerRuntimeSocket.containerdSock=true \
     --set mountContainerRuntimeSocket.dockerSock=false \
