@@ -18,10 +18,10 @@ The following instructions explain how to install the ThreatStryker console on a
     ```
     kubectl get storageclass
     ```
-    | Cloud Provider | Storage Class |
-    |----------------|---------------|
-    | AWS            | gp3           |
-    | GCP            | standard      |
+    | Cloud Provider | Storage Class                                                       |
+    |----------------|---------------------------------------------------------------------|
+    | AWS            | gp3 (https://docs.aws.amazon.com/eks/latest/userguide/ebs-csi.html) |
+    | GCP            | standard                                                            |
 
     ### Self-Managed: OpenEBS
 
@@ -49,7 +49,7 @@ The following instructions explain how to install the ThreatStryker console on a
     ```bash
     helm repo add deepfence https://deepfence-helm-charts.s3.amazonaws.com/enterprise
 
-    # helm show values deepfence/deepfence-console --version 2.0.0 | less
+    # helm show values deepfence/deepfence-console --version 2.0.1 | less
 
     helm install deepfence-console deepfence/deepfence-console \
     --set imagePullSecret.username="<deepfence_username>" \
@@ -58,7 +58,7 @@ The following instructions explain how to install the ThreatStryker console on a
     --set global.storageClass=gp3 \
     --namespace deepfence-console \
     --create-namespace \
-    --version 2.0.0
+    --version 2.0.1
     ```
 
     ... and wait for the pods to start up:
@@ -72,12 +72,12 @@ The following instructions explain how to install the ThreatStryker console on a
     Deploy deepfence-router:
 
     ```bash
-    # helm show values deepfence/deepfence-router --version 2.0.0
+    # helm show values deepfence/deepfence-router --version 2.0.1
    
     helm install deepfence-router deepfence/deepfence-router \
     --namespace deepfence-console \
     --create-namespace \
-    --version 2.0.0
+    --version 2.0.1
     ```
 
     ... and wait for the cloud platform to deploy an external load-balancer:
@@ -93,7 +93,7 @@ Now proceed to the [Initial Configuration](initial-configuration).
 ### Console Helm Chart
 
 ```bash
-helm show values deepfence/deepfence-console --version 2.0.0 > deepfence_console_values.yaml
+helm show values deepfence/deepfence-console --version 2.0.1 > deepfence_console_values.yaml
 
 # Make the changes in this file and save
 vi deepfence_console_values.yaml
@@ -101,13 +101,13 @@ vi deepfence_console_values.yaml
 helm install -f deepfence_console_values.yaml deepfence-console deepfence/deepfence-console \
     --namespace deepfence-console \
     --create-namespace \
-    --version 2.0.0
+    --version 2.0.1
 ```
 
 ### Router Helm Chart
 
 ```bash
-helm show values deepfence/deepfence-router --version 2.0.0 > deepfence_router_values.yaml
+helm show values deepfence/deepfence-router --version 2.0.1 > deepfence_router_values.yaml
 
 # Make the changes in this file and save
 vi deepfence_router_values.yaml
@@ -115,7 +115,7 @@ vi deepfence_router_values.yaml
 helm install -f deepfence_router_values.yaml deepfence-router deepfence/deepfence-router \
     --namespace deepfence-console \
     --create-namespace \
-    --version 2.0.0
+    --version 2.0.1
 ```
 
 ## Delete the ThreatMapper Management Console
