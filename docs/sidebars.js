@@ -195,6 +195,17 @@ const sidebars = {
         'integrations/reports',
       ],
     },
+    {
+      type: 'category',
+      label: 'API Documentation',
+      link: {
+        type: 'doc',
+        id: 'api-documentation/index'
+      },
+      items: [
+        'api-documentation/python-sdk'
+      ],
+    },
 
     {
       type: 'category',
