@@ -195,6 +195,17 @@ const sidebars = {
         'integrations/reports',
       ],
     },
+    {
+      type: 'category',
+      label: 'Developers',
+      link: {
+        type: 'doc',
+        id: 'developers/index'
+      },
+      items: [
+        'developers/python-sdk'
+      ],
+    },
 
     {
       type: 'category',
