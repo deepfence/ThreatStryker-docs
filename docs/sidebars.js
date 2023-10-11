@@ -197,13 +197,13 @@ const sidebars = {
     },
     {
       type: 'category',
-      label: 'Developers',
+      label: 'API Documentation',
       link: {
         type: 'doc',
-        id: 'developers/index'
+        id: 'api-documentation/index'
       },
       items: [
-        'developers/python-sdk'
+        'api-documentation/python-sdk'
       ],
     },
 
