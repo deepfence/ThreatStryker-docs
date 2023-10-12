@@ -83,7 +83,7 @@ The following instructions explain how to install the ThreatStryker console on a
     ... and wait for the cloud platform to deploy an external load-balancer:
 
     ```bash
-    kubectl get svc -w deepfence-router --namespace deepfence-console
+    kubectl get svc -w deepfence-console-router --namespace deepfence-console
     ```
 
 Now proceed to the [Initial Configuration](initial-configuration).
