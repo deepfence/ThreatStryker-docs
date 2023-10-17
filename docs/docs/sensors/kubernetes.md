@@ -44,6 +44,7 @@ helm install deepfence-agent deepfence/deepfence-agent \
     --set mountContainerRuntimeSocket.containerdSock=true \
     --set mountContainerRuntimeSocket.dockerSock=false \
     --set mountContainerRuntimeSocket.crioSock=false \
+    --set mountContainerRuntimeSocket.podmanSock=false \
     --set mountContainerRuntimeSocket.containerdSockPath="/run/containerd/containerd.sock" \
     --set trafficAnalysis.start=Y \
     --set trafficAnalysis.mode=all \
