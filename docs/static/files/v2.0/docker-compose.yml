@@ -26,6 +26,7 @@ x-service-variables: &common-creds
     DEEPFENCE_DEBUG: "false"
     DF_ENABLE_DEBUG: ""
     DEEPFENCE_ENABLE_PPROF: ""
+    DEEPFENCE_TELEMETRY_ENABLED: "true"
 
 services:
 
@@ -106,6 +107,7 @@ services:
       - MGMT_CONSOLE_URL=127.0.0.1
       - MGMT_CONSOLE_PORT=443
       - DEEPFENCE_KEY=""
+      - DEEPFENCE_CONSOLE_AGENT=true
       - DF_DISABLE_TRAFFIC_ANALYSIS="1"
     network_mode: "host"
     volumes:
@@ -331,7 +333,7 @@ services:
     restart: unless-stopped
 
   deepfence-telemetry:
-    image: jaegertracing/all-in-one:1.42
+    image: ${IMAGE_REPOSITORY:-deepfenceio}/jaegertracing-all-in-one:1.50
     hostname: deepfence-telemetry
     container_name: deepfence-telemetry
     ports:
