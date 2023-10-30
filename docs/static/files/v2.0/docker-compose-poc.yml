@@ -13,12 +13,22 @@ x-service-variables: &common-creds
     DEEPFENCE_POSTGRES_USER_DB_PORT: 5432
     DEEPFENCE_POSTGRES_USER_DB_SSLMODE: disable
     DEEPFENCE_KAFKA_BROKERS: deepfence-kafka-broker:9092
-    DEEPFENCE_MINIO_BUCKET: deepfence
+    # public bucket with read permisons on objects for hosting vulnerability database
+    # S3 bucket permissions {"Version":"2012-10-17","Statement":[{"Sid":"database","Effect":"Allow","Principal":"*","Action":"s3:GetObject","Resource":["arn:aws:s3:::<bucket-name>/database/*","arn:aws:s3:::<bucket-name>/database"]}]}
+    DEEPFENCE_MINIO_DB_BUCKET: database
+    # prvate bucket to host reports, sbom, etc.
+    DEEPFENCE_MINIO_BUCKET: default
+    # set s3.amazonaws.com if using s3 buckets
     DEEPFENCE_MINIO_HOST: deepfence-file-server
-    DEEPFENCE_MINIO_PASSWORD: deepfence
     DEEPFENCE_MINIO_PORT: 9000
-    DEEPFENCE_MINIO_SECURE: "false"
+    # set access key if using s3 buckets
     DEEPFENCE_MINIO_USER: deepfence
+    # set secret key if using s3 buckets
+    DEEPFENCE_MINIO_PASSWORD: deepfence
+    # set true if using s3 buckets
+    DEEPFENCE_MINIO_SECURE: "false"
+    # set aws s3 buckets region if using s3 buckets
+    DEEPFENCE_MINIO_REGION: ""
     DEEPFENCE_REDIS_DB_NUMBER: 0
     DEEPFENCE_REDIS_HOST: deepfence-redis
     DEEPFENCE_REDIS_PORT: 6379
@@ -32,7 +42,7 @@ services:
 
   deepfence-postgres:
     container_name: deepfence-postgres
-    image: ${IMAGE_REPOSITORY:-quay.io/deepfenceio}/deepfence_postgres:${DF_IMG_TAG:-2.0.0}
+    image: ${IMAGE_REPOSITORY:-quay.io/deepfenceio}/deepfence_postgres:${DF_IMG_TAG:-2.0.1}
     ulimits:
       core: 0
     restart: unless-stopped
@@ -47,7 +57,7 @@ services:
 
   deepfence-redis:
     container_name: deepfence-redis
-    image: ${IMAGE_REPOSITORY:-quay.io/deepfenceio}/deepfence_redis:${DF_IMG_TAG:-2.0.0}
+    image: ${IMAGE_REPOSITORY:-quay.io/deepfenceio}/deepfence_redis:${DF_IMG_TAG:-2.0.1}
     ulimits:
       core: 0
     restart: unless-stopped
@@ -62,7 +72,7 @@ services:
 
   deepfence-neo4j:
     container_name: deepfence-neo4j
-    image: ${IMAGE_REPOSITORY:-quay.io/deepfenceio}/deepfence_neo4j:${DF_IMG_TAG:-2.0.0}
+    image: ${IMAGE_REPOSITORY:-quay.io/deepfenceio}/deepfence_neo4j:${DF_IMG_TAG:-2.0.1}
 
     ulimits:
       core: 0
@@ -93,7 +103,7 @@ services:
 
   deepfence-console-agent:
     container_name: deepfence-console-agent
-    image: ${IMAGE_REPOSITORY:-quay.io/deepfenceio}/deepfence_agent:${DF_IMG_TAG:-2.0.0}
+    image: ${IMAGE_REPOSITORY:-quay.io/deepfenceio}/deepfence_agent:${DF_IMG_TAG:-2.0.1}
     ulimits:
       core: 0
     deploy:
@@ -126,7 +136,7 @@ services:
 
   deepfence-router:
     container_name: deepfence-router
-    image: ${IMAGE_REPOSITORY:-quay.io/deepfenceio}/deepfence_router:${DF_IMG_TAG:-2.0.0}
+    image: ${IMAGE_REPOSITORY:-quay.io/deepfenceio}/deepfence_router:${DF_IMG_TAG:-2.0.1}
     ulimits:
       core: 0
     networks:
@@ -145,14 +155,18 @@ services:
       options:
         max-size: "100m"
 
+  # this service can be commented in case S3 is used
   deepfence-file-server:
     container_name: deepfence-file-server
-    image: ${IMAGE_REPOSITORY:-quay.io/deepfenceio}/deepfence_file_server:${DF_IMG_TAG:-2.0.0}
+    image: ${IMAGE_REPOSITORY:-quay.io/deepfenceio}/deepfence_file_server:${DF_IMG_TAG:-2.0.1}
     ulimits:
       core: 0
     networks:
       - deepfence_net
     restart: unless-stopped
+    # environment:
+    #   - MINIO_ROOT_USER=deepfence
+    #   - MINIO_ROOT_PASSWORD=deepfence
     ports:
       - "127.0.0.1:9000:9000"
       - "127.0.0.1:9333:9333"
@@ -165,7 +179,7 @@ services:
 
   deepfence-server:
     container_name: deepfence-server
-    image: ${IMAGE_REPOSITORY:-quay.io/deepfenceio}/deepfence_server:${DF_IMG_TAG:-2.0.0}
+    image: ${IMAGE_REPOSITORY:-quay.io/deepfenceio}/deepfence_server:${DF_IMG_TAG:-2.0.1}
     ulimits:
       core: 0
     tmpfs:
@@ -195,7 +209,7 @@ services:
 
   deepfence-worker:
     container_name: deepfence-worker
-    image: ${IMAGE_REPOSITORY:-quay.io/deepfenceio}/deepfence_worker:${DF_IMG_TAG:-2.0.0}
+    image: ${IMAGE_REPOSITORY:-quay.io/deepfenceio}/deepfence_worker:${DF_IMG_TAG:-2.0.1}
     ulimits:
       core: 0
     restart: unless-stopped
@@ -218,7 +232,7 @@ services:
 
   # deepfence-worker-2:
   #   container_name: deepfence-worker-2
-  #   image: ${IMAGE_REPOSITORY:-quay.io/deepfenceio}/deepfence_worker:${DF_IMG_TAG:-2.0.0}
+  #   image: ${IMAGE_REPOSITORY:-quay.io/deepfenceio}/deepfence_worker:${DF_IMG_TAG:-2.0.1}
   #   ulimits:
   #     core: 0
   #   restart: unless-stopped
@@ -239,7 +253,7 @@ services:
 
   # deepfence-worker-3:
   #   container_name: deepfence-worker-3
-  #   image: ${IMAGE_REPOSITORY:-quay.io/deepfenceio}/deepfence_worker:${DF_IMG_TAG:-2.0.0}
+  #   image: ${IMAGE_REPOSITORY:-quay.io/deepfenceio}/deepfence_worker:${DF_IMG_TAG:-2.0.1}
   #   ulimits:
   #     core: 0
   #   restart: unless-stopped
@@ -260,7 +274,7 @@ services:
 
   deepfence-scheduler:
     container_name: deepfence-scheduler
-    image: ${IMAGE_REPOSITORY:-quay.io/deepfenceio}/deepfence_worker:${DF_IMG_TAG:-2.0.0}
+    image: ${IMAGE_REPOSITORY:-quay.io/deepfenceio}/deepfence_worker:${DF_IMG_TAG:-2.0.1}
     ulimits:
       core: 0
     restart: unless-stopped
@@ -282,7 +296,7 @@ services:
 
   deepfence-ui:
     container_name: deepfence-ui
-    image: ${IMAGE_REPOSITORY:-quay.io/deepfenceio}/deepfence_ui:${DF_IMG_TAG:-2.0.0}
+    image: ${IMAGE_REPOSITORY:-quay.io/deepfenceio}/deepfence_ui:${DF_IMG_TAG:-2.0.1}
     ulimits:
       core: 0
     networks:
@@ -296,7 +310,7 @@ services:
         max-size: "100m"
 
   deepfence-kafka-broker:
-    image: ${IMAGE_REPOSITORY:-quay.io/deepfenceio}/deepfence_kafka_broker:${DF_IMG_TAG:-2.0.0}
+    image: ${IMAGE_REPOSITORY:-quay.io/deepfenceio}/deepfence_kafka_broker:${DF_IMG_TAG:-2.0.1}
     hostname: deepfence-kafka-broker
     container_name: deepfence-kafka-broker
     # environment:
@@ -315,7 +329,7 @@ services:
     restart: unless-stopped
 
   deepfence-ingester:
-    image: ${IMAGE_REPOSITORY:-quay.io/deepfenceio}/deepfence_worker:${DF_IMG_TAG:-2.0.0}
+    image: ${IMAGE_REPOSITORY:-quay.io/deepfenceio}/deepfence_worker:${DF_IMG_TAG:-2.0.1}
     hostname: deepfence-ingester
     container_name: deepfence-ingester
     ports:

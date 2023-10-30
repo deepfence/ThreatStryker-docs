@@ -133,8 +133,8 @@ start_agent() {
     -v /sys/kernel/debug:/sys/kernel/debug:rw \
     -v /sys/fs/bpf:/sys/fs/bpf:rw \
     -v /var/log/fenced \
-    -v /run/podman/podman.sock:/run/podman/podman.sock \
-    -v /run/systemd/:/run/systemd/ \
+    -v /var/run/docker.sock:/var/run/docker.sock \
+    -v /var/lib/docker/:/fenced/mnt/host/var/lib/docker/:rw \
     -v /:/fenced/mnt/host/:ro \
     -e DF_FIM_ON="$FIM_ON" \
     -e DF_TRAFFIC_ANALYSIS_ON="$TRAFFIC_ANALYSIS_ON" \
@@ -155,7 +155,7 @@ start_agent() {
     -e DEFENDERD_TCP_BUFFER_LIMIT="500MB" \
     -e DF_USE_DUMMY_SCOPE="$DF_USE_DUMMY_SCOPE" \
     -e DF_USE_FAT_DUMMY_SCOPE="$DF_USE_FAT_DUMMY_SCOPE" \
-    ${IMAGE_REPOSITORY}/deepfence_agent:"${DF_IMG_TAG:-2.0.0}"
+    ${IMAGE_REPOSITORY}/deepfence_agent:"${DF_IMG_TAG:-2.0.1}"
 }
 
 main() {

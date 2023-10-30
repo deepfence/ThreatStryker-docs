@@ -15,7 +15,7 @@ Currently supported base operating systems of containers are Amazon Linux, Ubunt
 :::
 
 :::note
-Please note the agent image "quay.io/deepfenceio/deepfence_agent:2.0.0-fargate" is different from other deployment methods.
+Please note the agent image "quay.io/deepfenceio/deepfence_agent:2.0.1-fargate" is different from other deployment methods.
 :::
 
 ## Installing on AWS Fargate
@@ -64,7 +64,7 @@ Edit the *Task Definition Name*, *Task Role* and *Task Execution Role etc*. as r
 
 ### Add the Deepfence Agent Sidecar Container
 
-Click on the *Add Container* button to create a standard container for the ThreatStryker agent. Set image as _**quay.io/deepfenceio/deepfence_agent:2.0.0-fargate**_
+Click on the *Add Container* button to create a standard container for the ThreatStryker agent. Set image as _**quay.io/deepfenceio/deepfence_agent:2.0.1-fargate**_
 
 **Check** the private repository authentication and add the secret name or ARN from *IAM role creation step* to access Deepfence Quay. In the environment section, **DO NOT** mark it as essential.
 
@@ -458,7 +458,7 @@ Then create the new policy.
         },
         {
             "name": "deepfence-agent",
-            "image": "quay.io/deepfenceio/deepfence_agent:2.0.0-fargate",
+            "image": "quay.io/deepfenceio/deepfence_agent:2.0.1-fargate",
             "repositoryCredentials": {
                 "credentialsParameter": "<ARN_QUAY_CREDS>"
             },

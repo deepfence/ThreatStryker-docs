@@ -155,7 +155,7 @@ start_agent() {
     -e DEFENDERD_TCP_BUFFER_LIMIT="500MB" \
     -e DF_USE_DUMMY_SCOPE="$DF_USE_DUMMY_SCOPE" \
     -e DF_USE_FAT_DUMMY_SCOPE="$DF_USE_FAT_DUMMY_SCOPE" \
-    ${IMAGE_REPOSITORY}/deepfence_agent:"${DF_IMG_TAG:-2.0.0}"
+    ${IMAGE_REPOSITORY}/deepfence_agent:"${DF_IMG_TAG:-2.0.1}"
 }
 
 main() {
