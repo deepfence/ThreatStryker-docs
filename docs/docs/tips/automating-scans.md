@@ -15,7 +15,7 @@ ThreatStryker can scan your production platforms periodically, using the most up
 
 ## Automating ThreatStryker
 
-The results of automated scans are added to the **Vulnerability Scans** report, and can be raised through any configured [Notification](/docs/v2.0/integrations) method.
+The results of automated scans are added to the **Vulnerability Scans** report, and can be raised through any configured [Notification](/docs/integrations) method.
 
 ThreatStryker presents a series of APIs that you can use to enumerate nodes and run scans:
 
