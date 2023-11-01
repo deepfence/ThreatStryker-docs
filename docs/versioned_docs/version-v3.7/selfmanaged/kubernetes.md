@@ -354,7 +354,7 @@ helm delete deepfence-router
       kubectl apply -f route.yaml
       ```
 
-   - Management console will be accessible at the url **https://deepfence-console.<< cluster domain>>**
+   - Management console will be accessible at the url **https://deepfence-console.domain.com**
 
 
 6. To delete deepfence console helm chart, run following command:
