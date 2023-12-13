@@ -31,15 +31,15 @@ kubectl delete -f https://deepfence-public.s3.amazonaws.com/kubernetes/deepfence
 ```bash
 helm repo add deepfence https://deepfence-helm-charts.s3.amazonaws.com/enterprise
 
-# helm show readme deepfence/deepfence-agent --version 2.0.3 | less
-# helm show values deepfence/deepfence-agent --version 2.0.3 | less
+# helm show readme deepfence/deepfence-agent --version 2.1.0 | less
+# helm show values deepfence/deepfence-agent --version 2.1.0 | less
 
 helm install deepfence-agent deepfence/deepfence-agent \
     --set imagePullSecret.username=<deepfence_username> \
     --set imagePullSecret.password=<deepfence_password> \
     --set managementConsoleUrl=x.x.x.x \
     --set deepfenceKey=73f6f3d0-9931-4b31-8967-fd6adf475f80 \
-    --set global.imageTag=2.0.1 \
+    --set global.imageTag=2.1.0 \
     --set clusterName="prod-cluster" \
     --set mountContainerRuntimeSocket.containerdSock=true \
     --set mountContainerRuntimeSocket.dockerSock=false \
@@ -51,7 +51,7 @@ helm install deepfence-agent deepfence/deepfence-agent \
     --set dfFim=N \
     --namespace deepfence \
     --create-namespace \
-    --version 2.0.3
+    --version 2.1.0
 ```
 
 ## Fine-tune the Helm deployment
@@ -59,7 +59,7 @@ helm install deepfence-agent deepfence/deepfence-agent \
 ```bash
 helm repo add deepfence https://deepfence-helm-charts.s3.amazonaws.com/enterprise
 
-helm show values deepfence/deepfence-agent --version 2.0.3 > deepfence_agent_values.yaml
+helm show values deepfence/deepfence-agent --version 2.1.0 > deepfence_agent_values.yaml
 
 # Make the changes in this file and save
 vim deepfence_agent_values.yaml
@@ -67,7 +67,7 @@ vim deepfence_agent_values.yaml
 helm install -f deepfence_agent_values.yaml deepfence-agent deepfence/deepfence-agent \
     --namespace deepfence \
     --create-namespace \
-    --version 2.0.3
+    --version 2.1.0
 ```
 
 ## Delete the ThreatStryker Sensor

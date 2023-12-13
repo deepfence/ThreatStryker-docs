@@ -41,7 +41,12 @@ const config = {
           lastVersion: 'current',
           versions: {
             "current": {
-              label: 'v2.0',
+              label: 'v2.1',
+              banner: 'none',
+            },
+            "v2.0": {
+              label: 'v2.0 (deprecated)',
+              path: 'v2.0',
               banner: 'none',
             },
             "v3.8": {

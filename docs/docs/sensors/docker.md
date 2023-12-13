@@ -16,9 +16,9 @@ The host or VM to be used for the Deepfence agents needs to have the docker runt
 
 ### Docker
 
-1. Download the following script: [start-agent.sh 🔗](https://docs.deepfence.io/threatstryker/files/v2.0/start-agent.sh)
+1. Download the following script: [start-agent.sh 🔗](https://docs.deepfence.io/threatstryker/files/v2.1/start-agent.sh)
     ```shell
-    wget https://docs.deepfence.io/threatstryker/files/v2.0/start-agent.sh
+    wget https://docs.deepfence.io/threatstryker/files/v2.1/start-agent.sh
     ```
 
 2. To authenticate to the docker image repository, run the following command:
@@ -37,9 +37,9 @@ The host or VM to be used for the Deepfence agents needs to have the docker runt
 
 ### Podman
 
-1. Download the following script: [start-podman-agent.sh 🔗](https://docs.deepfence.io/threatstryker/files/v2.0/start-podman-agent.sh)
+1. Download the following script: [start-podman-agent.sh 🔗](https://docs.deepfence.io/threatstryker/files/v2.1/start-podman-agent.sh)
     ```shell
-    wget https://docs.deepfence.io/threatstryker/files/v2.0/start-podman-agent.sh
+    wget https://docs.deepfence.io/threatstryker/files/v2.1/start-podman-agent.sh
     ```
 
 2. To authenticate to the docker image repository, run the following command:
