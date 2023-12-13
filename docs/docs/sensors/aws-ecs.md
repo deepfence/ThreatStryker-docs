@@ -129,6 +129,10 @@ Then create the new policy.
     - At the bottom, select "Configure via JSON"
     - Copy and paste the following JSON configuration: (Replace `<DEEPFENCE_KEY>`, `<MGMT_CONSOLE_URL>`, `<ARN_QUAY_CREDS>`, `<API_KEY_SECRET_ARN>` and `<AGENT_TASK_ROLE_ARN>` with actual values)
 
+    :::info
+    Image tag `quay.io/deepfenceio/deepfence_agent:2.1.0-multiarch` is supported in amd64 and arm64/v8 architectures.
+    :::
+
       ```json
       {
         "ipcMode": null,

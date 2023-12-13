@@ -14,6 +14,10 @@ For Windows Server hosts, experimental support exists, but it is not suitable fo
 
 The host or VM to be used for the Deepfence agents needs to have the docker runtime installed on it.
 
+:::info
+Image tag `quay.io/deepfenceio/deepfence_agent:2.1.0-multiarch` is supported in amd64 and arm64/v8 architectures.
+:::
+
 ### Docker
 
 1. Download the following script: [start-agent.sh 🔗](https://docs.deepfence.io/threatstryker/files/v2.1/start-agent.sh)
