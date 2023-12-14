@@ -41,8 +41,9 @@ helm install deepfence-agent deepfence/deepfence-agent \
     --set mountContainerRuntimeSocket.podmanSock=false \
     --set mountContainerRuntimeSocket.containerdSockPath="/run/containerd/containerd.sock" \
     --set trafficAnalysis.start=Y \
-    --set trafficAnalysis.mode=all \
-    --set dfFim=N \
+    --set procAnalysis.disabled=false \
+    --set fileAnalysis.disabled=false \
+    --set logLevel="info" \
     --namespace deepfence \
     --create-namespace \
     --version 2.1.0

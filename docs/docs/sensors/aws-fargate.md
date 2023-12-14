@@ -112,24 +112,20 @@ If you are using json to configure your task definitions, you can use the follow
         "value": "true"
     },
     {
-        "name": "DF_FIM_ON",
-        "value": "N"
+        "name": "DF_DISABLE_FILE_MON",
+        "value": "Y"
     },
     {
-        "name": "DF_TRAFFIC_ANALYSIS_MODE",
-        "value": "all"
-    },
-    {
-        "name": "DEFENDERD_DISABLE_XFF_PROTECTION",
-        "value": "false"
-    },
-    {
-        "name": "DEFENDERD_TCP_BUFFER_LIMIT",
-        "value": "500MB"
+        "name": "DF_DISABLE_PROC_MON",
+        "value": "Y"
     },
     {
         "name": "DF_TRAFFIC_ANALYSIS_ON",
         "value": "Y"
+    },
+    {
+        "name": "DF_LOG_LEVEL",
+        "value": "info"
     },
     {
         "name": "USER_DEFINED_TAGS",
@@ -405,24 +401,20 @@ Then create the new policy.
                     "value": "true"
                 },
                 {
-                    "name": "DF_FIM_ON",
-                    "value": "N"
+                    "name": "DF_DISABLE_FILE_MON",
+                    "value": "Y"
                 },
                 {
-                    "name": "DF_TRAFFIC_ANALYSIS_MODE",
-                    "value": "all"
-                },
-                {
-                    "name": "DEFENDERD_DISABLE_XFF_PROTECTION",
-                    "value": "false"
-                },
-                {
-                    "name": "DEFENDERD_TCP_BUFFER_LIMIT",
-                    "value": "500MB"
+                    "name": "DF_DISABLE_PROC_MON",
+                    "value": "Y"
                 },
                 {
                     "name": "DF_TRAFFIC_ANALYSIS_ON",
                     "value": "Y"
+                },
+                {
+                    "name": "DF_LOG_LEVEL",
+                    "value": "info"
                 },
                 {
                     "name": "USER_DEFINED_TAGS",

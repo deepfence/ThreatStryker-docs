@@ -24,12 +24,18 @@ EOF
 
 MGMT_CONSOLE_URL=""
 MGMT_CONSOLE_PORT="443"
-# Start Traffic Analysis on agent start up: "Y"/ "N" / "" empty string to default to setting on console
+
+# Start Traffic Analysis on agent start up: "Y" / "N" / "" empty string to default to setting on console
 TRAFFIC_ANALYSIS_ON=""
-# TRAFFIC_ANALYSIS_PROCESSES: "sshd:943, docker-proxy:27017, /usr/local/go/bin/go:753"
-TRAFFIC_ANALYSIS_PROCESSES=""
-# TRAFFIC_ANALYSIS_MODE: "allow"/"deny"/"all"
-TRAFFIC_ANALYSIS_MODE="all"
+
+# Enable/Disable File Monitoring: Enable: "" / Disable: "Y"
+DF_DISABLE_FILE_MON=""
+
+# Enable/Disable Process Monitoring: Enable: "" / Disable: "Y"
+DF_DISABLE_PROC_MON=""
+
+# Log level: debug / info / error
+DF_LOG_LEVEL="info"
 USER_DEFINED_TAGS=""
 DEEPFENCE_KEY=""
 DF_HOSTNAME=""
@@ -41,7 +47,7 @@ check_options() {
     usage
     exit 0
   fi
-  while getopts "c:k:i:n:r:o:t:h" opt; do
+  while getopts "c:f:k:i:n:r:o:t:h" opt; do
     case $opt in
     h)
       usage
@@ -67,6 +73,15 @@ check_options() {
         TRAFFIC_ANALYSIS_ON="Y"
       elif [ "$OPTARG" == "N" ] || [ "$OPTARG" == "n" ]; then
         TRAFFIC_ANALYSIS_ON="N"
+      fi
+      ;;
+    f)
+      if [ "$OPTARG" == "Y" ] || [ "$OPTARG" == "y" ]; then
+        DF_DISABLE_FILE_MON=""
+        DF_DISABLE_PROC_MON=""
+      elif [ "$OPTARG" == "N" ] || [ "$OPTARG" == "n" ]; then
+        DF_DISABLE_FILE_MON="Y"
+        DF_DISABLE_PROC_MON="Y"
       fi
       ;;
     i)
@@ -120,6 +135,7 @@ start_agent() {
     -v /var/run/docker.sock:/var/run/docker.sock \
     -v /var/lib/docker/:/fenced/mnt/host/var/lib/docker/:rw \
     -v /:/fenced/mnt/host/:ro \
+    -e DF_LOG_LEVEL=$DF_LOG_LEVEL \
     -e DF_DISABLE_FILE_MON="$DF_DISABLE_FILE_MON" \
     -e DF_DISABLE_PROC_MON="$DF_DISABLE_PROC_MON" \
     -e DF_TRAFFIC_ANALYSIS_ON="$TRAFFIC_ANALYSIS_ON" \

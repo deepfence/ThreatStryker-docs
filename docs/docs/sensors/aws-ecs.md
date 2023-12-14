@@ -148,24 +148,20 @@ Then create the new policy.
             "cpu": 0,
             "environment": [
               {
-                "name": "DF_FIM_ON",
-                "value": "N"
+                "name": "DF_DISABLE_FILE_MON",
+                "value": "Y"
               },
               {
-                "name": "DF_TRAFFIC_ANALYSIS_MODE",
-                "value": "all"
-              },
-              {
-                "name": "DEFENDERD_DISABLE_XFF_PROTECTION",
-                "value": "false"
-              },
-              {
-                "name": "DEFENDERD_TCP_BUFFER_LIMIT",
-                "value": "500MB"
+                "name": "DF_DISABLE_PROC_MON",
+                "value": "Y"
               },
               {
                 "name": "DF_TRAFFIC_ANALYSIS_ON",
                 "value": "Y"
+              },
+              {
+                "name": "DF_LOG_LEVEL",
+                "value": "info"
               },
               {
                 "name": "MGMT_CONSOLE_URL",
