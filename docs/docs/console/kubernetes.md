@@ -36,6 +36,8 @@ The following instructions explain how to install the ThreatStryker console on a
     kubectl get pods -o wide --namespace openebs -w
     ```
 
+    The Storage Class will now be `openebs-hostpath`
+
 2. **Install the metrics server** (optional)
 
     If the metrics server is not already installed (```kubectl get deployment metrics-server -n kube-system```), install as follows:
