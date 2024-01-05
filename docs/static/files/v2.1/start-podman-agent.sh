@@ -24,15 +24,21 @@ EOF
 
 MGMT_CONSOLE_URL=""
 MGMT_CONSOLE_PORT="443"
-# Start Traffic Analysis on agent start up: "Y"/ "N" / "" empty string to default to setting on console
+
+# Start Traffic Analysis on agent start up: "Y" / "N" / "" empty string to default to setting on console
 TRAFFIC_ANALYSIS_ON=""
-# TRAFFIC_ANALYSIS_PROCESSES: "sshd:943, docker-proxy:27017, /usr/local/go/bin/go:753"
-TRAFFIC_ANALYSIS_PROCESSES=""
-# TRAFFIC_ANALYSIS_MODE: "allow"/"deny"/"all"
-TRAFFIC_ANALYSIS_MODE="all"
-FIM_ON="Y"
-CAPTURE_PERCENTAGE="100"
-SNAP_LENGTH="65535"
+
+# Enable/Disable File Monitoring: Enable: "" / Disable: "Y"
+DF_DISABLE_FILE_MON=""
+
+# Enable/Disable Process Monitoring: Enable: "" / Disable: "Y"
+DF_DISABLE_PROC_MON=""
+
+# Enable/Disable Local Network Filter : Enable: "" / Disable: "Y"
+DF_DISABLE_LOCAL_TRAFFIC_FILTER=""
+
+# Log level: debug / info / error
+DF_LOG_LEVEL="info"
 USER_DEFINED_TAGS=""
 DEEPFENCE_KEY=""
 DF_HOSTNAME=""
@@ -44,7 +50,7 @@ check_options() {
     usage
     exit 0
   fi
-  while getopts "f:c:p:s:k:i:n:r:o:t:h" opt; do
+  while getopts "c:f:k:i:n:r:o:t:h" opt; do
     case $opt in
     h)
       usage
@@ -62,14 +68,8 @@ check_options() {
     n)
       DF_HOSTNAME=$OPTARG
       ;;
-    p)
-      CAPTURE_PERCENTAGE=$OPTARG
-      ;;
     t)
       USER_DEFINED_TAGS="$OPTARG"
-      ;;
-    s)
-      SNAP_LENGTH=$OPTARG
       ;;
     c)
       if [ "$OPTARG" == "Y" ] || [ "$OPTARG" == "y" ]; then
@@ -80,9 +80,11 @@ check_options() {
       ;;
     f)
       if [ "$OPTARG" == "Y" ] || [ "$OPTARG" == "y" ]; then
-        FIM_ON="Y"
+        DF_DISABLE_FILE_MON=""
+        DF_DISABLE_PROC_MON=""
       elif [ "$OPTARG" == "N" ] || [ "$OPTARG" == "n" ]; then
-        FIM_ON="N"
+        DF_DISABLE_FILE_MON="Y"
+        DF_DISABLE_PROC_MON="Y"
       fi
       ;;
     i)
@@ -136,8 +138,10 @@ start_agent() {
     -v /var/run/docker.sock:/var/run/docker.sock \
     -v /var/lib/docker/:/fenced/mnt/host/var/lib/docker/:rw \
     -v /:/fenced/mnt/host/:ro \
-    -e DF_FIM_ON="$FIM_ON" \
+    -e DF_LOG_LEVEL=$DF_LOG_LEVEL \
+    -e DF_DISABLE_FILE_MON="$DF_DISABLE_FILE_MON" \
     -e DF_DISABLE_PROC_MON="$DF_DISABLE_PROC_MON" \
+    -e DF_DISABLE_LOCAL_TRAFFIC_FILTER="$DF_DISABLE_LOCAL_TRAFFIC_FILTER" \
     -e DF_TRAFFIC_ANALYSIS_ON="$TRAFFIC_ANALYSIS_ON" \
     -e DF_ENABLE_PROCESS_REPORT="true" \
     -e DF_ENABLE_CONNECTIONS_REPORT="true" \

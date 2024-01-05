@@ -34,6 +34,9 @@ DF_DISABLE_FILE_MON=""
 # Enable/Disable Process Monitoring: Enable: "" / Disable: "Y"
 DF_DISABLE_PROC_MON=""
 
+# Enable/Disable Local Network Filter : Enable: "" / Disable: "Y"
+DF_DISABLE_LOCAL_TRAFFIC_FILTER=""
+
 # Log level: debug / info / error
 DF_LOG_LEVEL="info"
 USER_DEFINED_TAGS=""
@@ -138,6 +141,7 @@ start_agent() {
     -e DF_LOG_LEVEL=$DF_LOG_LEVEL \
     -e DF_DISABLE_FILE_MON="$DF_DISABLE_FILE_MON" \
     -e DF_DISABLE_PROC_MON="$DF_DISABLE_PROC_MON" \
+    -e DF_DISABLE_LOCAL_TRAFFIC_FILTER="$DF_DISABLE_LOCAL_TRAFFIC_FILTER" \
     -e DF_TRAFFIC_ANALYSIS_ON="$TRAFFIC_ANALYSIS_ON" \
     -e DF_ENABLE_PROCESS_REPORT="true" \
     -e DF_ENABLE_CONNECTIONS_REPORT="true" \
