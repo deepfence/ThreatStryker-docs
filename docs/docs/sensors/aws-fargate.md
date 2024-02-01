@@ -4,7 +4,7 @@ title: AWS Fargate
 
 # AWS Fargate
 
-*Deployed as a sidecar container using a task definition*
+_Deployed as a sidecar container using a task definition_
 
 In AWS Fargate, the ThreatStryker agents are deployed as a sidecar container using a task definition.
 
@@ -20,7 +20,6 @@ Please note the agent image "quay.io/deepfenceio/deepfence_agent:2.1.0-fargate" 
 
 ## Installing on AWS Fargate
 
-
 1. Set up AWS ECS by following the steps outlined here: [Set up to use AWS ECS](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/get-set-up-for-amazon-ecs.html)
 
 2. Refer [Prerequisites](./aws-fargate.md#prerequisites) for the actions performed in this step.
@@ -28,14 +27,14 @@ Please note the agent image "quay.io/deepfenceio/deepfence_agent:2.1.0-fargate" 
 
    You'll need to perform the following steps:
 
-    1. Create an *AWS ECS task execution IAM role*.
-    1. Create a secret so that fargate can pull the Deepfence agents from Quay using the username/password provided
-       in the license email. Note the created secret name or ARN (you will need to enter them in *task definition creation* step later). You may need to create other secrets to access your own artifacts.
-    1. Create policies (either managed or inlined policy) allowing access to your stored secrets and attach the created policies to the task IAM role. You also need to attach the *AmazonECSTaskExecutionRolePolicy* to the IAM role to run AWS ECS tasks.
+   1. Create an _AWS ECS task execution IAM role_.
+   1. Create a secret so that fargate can pull the Deepfence agents from Quay using the username/password provided
+      in the license email. Note the created secret name or ARN (you will need to enter them in _task definition creation_ step later). You may need to create other secrets to access your own artifacts.
+   1. Create policies (either managed or inlined policy) allowing access to your stored secrets and attach the created policies to the task IAM role. You also need to attach the _AmazonECSTaskExecutionRolePolicy_ to the IAM role to run AWS ECS tasks.
 
-3. On the AWS ECS home page **switch old AWS UI**, click on the task definition on the side panel to create a new task definition. Select fargate as launch type and then go to Next step.
+3. Click on the task definition on the side panel to create a new task definition. Select "AWS Fargate" as launch type
 
-   Use the following steps outlined below in  **"Fargate Task definition And Deployment"** instructions to deploy the fargate agent.
+   Use the following steps outlined below in **"Fargate Task definition And Deployment"** instructions to deploy the fargate agent.
 
    You can configure the task definition either through JSON or using the AWS UI.
 
@@ -43,57 +42,53 @@ Please note the agent image "quay.io/deepfenceio/deepfence_agent:2.1.0-fargate" 
 
 ## Create New Task Definition in Fargate
 
-
 ### Create Task Definition
 
-Click Create new Task Definition and select fargate as launch type and then go to *Next step*.
+Click Create new Task Definition and select "AWS Fargate" as launch type.
 
-| ![New Fargate Task](../img/aws_newtask_fargate.jpg) |
-|:---------------------------------------------------:|
-|                 *New Fargate Task *                 |
+| ![New Fargate task](../img/fargate-task-1.png) |
+| :--------------------------------------------: |
+|               _New Fargate Task_               |
 
 ### Set Task Parameters
 
-Edit the *Task Definition Name*, *Task Role* and *Task Execution Role etc*. as required. For the *Task Role* and *Task Execution Role*, you have to use the role created in *IAM role creation step* earlier. Specify *Task memory* and *Task CPU* according to your Requirements.
+Edit the _Task Definition Name_, _Task Role_ and _Task Execution Role etc_. as required. For the _Task Role_ and _Task Execution Role_, you have to use the role created in _IAM role creation step_ earlier. Specify _Task memory_ and _Task CPU_ according to your Requirements.
 
-| ![Update task definition and create agent container](../img/fargate-task-1.jpg) |
-|:-------------------------------------------------------------------------------:|
-|               *Update task definition and create agent container*               |
-
-
+| ![Update task definition and create agent container](../img/fargate-task-2.png) |
+| :-----------------------------------------------------------------------------: |
+|               _Update task definition and create agent container_               |
 
 ### Add the Deepfence Agent Sidecar Container
 
-Click on the *Add Container* button to create a standard container for the ThreatStryker agent. Set image as _**quay.io/deepfenceio/deepfence_agent:2.1.0-fargate**_
+Click on the _Add Container_ button to create a standard container for the ThreatStryker agent. Set image as _**quay.io/deepfenceio/deepfence_agent:2.1.0-fargate**_
 
-**Check** the private repository authentication and add the secret name or ARN from *IAM role creation step* to access Deepfence Quay. In the environment section, **DO NOT** mark it as essential.
+**Check** the private repository authentication and add the secret name or ARN from _IAM role creation step_ to access Deepfence Quay. In the environment section, **DO NOT** mark it as essential.
 
-You need to note down the name of the agent container (*deepfence-agent* in our example), which you will have to specify in *Volumes From* section in application container task definition section later.
+You need to note down the name of the agent container (_deepfence-agent_ in our example), which you will have to specify in _Volumes From_ section in application container task definition section later.
 
-Finally, click the *Add* button to create the deepfence agent container:
+Finally, click the _Add_ button to create the deepfence agent container:
 
-| ![Create the Agent Container inside the Task Definition](../img/fargate-task-2.jpg) |
-|:-----------------------------------------------------------------------------------:|
-|           *Create the Sidecar Agent Container inside the Task Definition*           |
-
+| ![Create the Agent Container inside the Task Definition](../img/fargate-task-3.png) |
+| :---------------------------------------------------------------------------------: |
+|           _Create the Sidecar Agent Container inside the Task Definition_           |
 
 ### Add the Main Container to your Application
 
-Click on the *Add Container* button to create a new container for your application by following the additional steps outlined below. If you have more than one application container, you will have to repeat these steps for each container.
-
+Click on the _Add Container_ button to create a new container for your application by following the additional steps outlined below. If you have more than one application container, you will have to repeat these steps for each container.
 
 #### Configure Environment Variables for Fargate Application Container
 
 The following environment variables are required for the ThreatStryker agent:
 
-* **DEEPFENCE_KEY**: API key available in the management console UI(can be stored as a secret and later referred in environment using valuesFrom)
-* **MGMT_CONSOLE_URL**: IP address of Management Console
-* **DF_SERVERLESS**: Set to *true* for serverless instances
+- **DEEPFENCE_KEY**: API key available in the management console UI(can be stored as a secret and later referred in environment using valuesFrom)
+- **MGMT_CONSOLE_URL**: IP address of Management Console
+- **DF_SERVERLESS**: Set to _true_ for serverless instances
+- **MGMT_CONSOLE_URL_SCHEMA**: Set to _http_ or _https_ depending on the schema used for management console
+- **MGMT_CONSOLE_PORT**: Set to _80_ or _443_ depending on the port used for management console
 
-<!-- | ![Configuring Environment Variables for Fargate Application Container](../img/envvariables_fargate.jpg) |
-| :--: |
-| *Configuring Environment Variables for Fargate Application Container* | -->
-
+| ![Configuring Environment Variables for Fargate Application Container](../img/fargate-task-7.png) |
+| :-----------------------------------------------------------------------------------------------: |
+|               _Configuring Environment Variables for Fargate Application Container_               |
 
 If you are using json to configure your task definitions, you can use the following part in the appropriate container section of task definition json after copying the appropriate IP address and API Key.
 
@@ -134,17 +129,25 @@ If you are using json to configure your task definitions, you can use the follow
     {
         "name": "DF_INSTALL_DIR",
         "value": "/path/to/custom/install/dir"
+    },
+    {
+        "name": "MGMT_CONSOLE_URL_SCHEMA",
+        "value": "https"
+    },
+    {
+        "name": "MGMT_CONSOLE_PORT",
+        "value": "443"
     }
 ]
 ```
 
 #### Configure Storage
 
-In the application container, update storage to allow read/write from deepfence agent volume by specifying the agent container name in *volumes from*. Leave the *Read only* button **unchecked** as shown below.
+Scroll down to **Storage** Section and click **Add Volume from**. In the **Container** dropdown select your application container and in **Source container** dropdown select the agent container to allow read/write from deepfence agent volume. Leave the _Read only_ button **unchecked** as shown below.
 
-| ![Configure VolumesFrom Setting](../img/fargate-task-3.jpg) |
-|:-----------------------------------------------------------:|
-|               *Configure VolumesFrom Setting*               |
+| ![Configure VolumesFrom Setting text](../img/fargate-task-4.png) |
+| :--------------------------------------------------------------: |
+|                 _Configure VolumesFrom Setting_                  |
 
 If you are using json to configure your task definitions, you can copy the following settings to the appropriate container section of the json after changing the Container name:
 
@@ -163,16 +166,15 @@ Finally, click the Create button to create the task definition for the deploymen
 
 Now that deepfence agent is available in the fargate instance, you need to invoke agent and application entrypoints to start the application with Deepfence enabled. This can be done in two ways:
 
-#### **Option 1:** Edit the Entry Point for the container
+#### Edit the Entry Point for the container
 
-The second option does not require any change in the application container. You can run the same image seamlessly on a VM, EC2 instance, or a fargate instance. There are two ways to achieve this:
+There are two ways to achieve this:
 
 **Change the Entrypoint**: For this, you need to provide the ThreatStryker entrypoint and the Application entrypoint and arguments, as a comma delimited list in the **Entry point** field:
 
-| ![Invoking agent by changing the Entrypoint](../img/fargate-task-4.jpg) |
-|:-----------------------------------------------------------------------:|
-|        *Method (1a): Invoking agent by changing the Entrypoint*         |
-
+| ![Invoking agent by changing the Entrypoint](../img/fargate-task-5.png) |
+| :---------------------------------------------------------------------: |
+|        _Method (1a): Invoking agent by changing the Entrypoint_         |
 
 If you are using json to configure your task definitions, then you can specify the entrypoint and/or command as follows using appropriate quoting:
 
@@ -187,10 +189,9 @@ If you are using json to configure your task definitions, then you can specify t
 
 **Change the Entrypoint and Command**: Alternatively, you can provide the ThreatStryker entrypoint in the **Entry point** field and the Application entrypoint and arguments in the **Command** field as shown below:
 
-|  ![Invoking agent by changing the Entrypoint and Command field](../img/fargate-task-5.jpg)  |
-|:--------------------------------------------------------------------------:|
-| *Method (1b): Invoking agent by changing the Entrypoint and Command field* |
-
+| ![Invoking agent by changing the Entrypoint and Command field](../img/fargate-task-6.png) |
+| :---------------------------------------------------------------------------------------: |
+|        _Method (1b): Invoking agent by changing the Entrypoint and Command field_         |
 
 If you are using json to configure your task definitions, then you can specify the entrypoint and/or command as follows using appropriate quoting:
 
@@ -205,110 +206,66 @@ If you are using json to configure your task definitions, then you can specify t
 ]
 ```
 
-#### **Option 2:** Change Application Container Image
-
-The first option requires that you can change the application container image. Before building your application containers for deployment, add a call to start Deepfence *entrypoint* at the beginning of application *entrypoint*  (or at any point before starting your application) as shown in the following example script.
-
-Note that the fargate instance will stop if any of the essential containers exit, so the user application container has to be written accordingly.
-
-```bash
-#!/bin/bash -x
-
-echo "Start Deepfence services... Console is $MGMT_CONSOLE_URL"
-/deepfence/usr/local/bin/deepfence-entry-point-scratch.sh
-
-############################################################
-# Start the customer application entry point below...
-############################################################
-
-echo "Starting the customer application entry point below..."
-#cust-entry-point.sh "$@"
-
-echo "Block to avoid customer application container from exiting fargate."
-/deepfence/usr/local/bin/block-scratch.sh
-echo "customer entry-point is exiting...."
-```
-## Deploy ThreatStryker Agent Service on Fargate
-
-After creating your updated application containers and the task definitions, you can launch your fargate instance in your cluster.
-
-You can launch your fargate instance by clicking *Run task* in the actions dropdown of the task definition. Otherwise, you can click “Run New Task” button in “Tasks” tab of your cluster:
-
-| ![Deploying fargate instance on your cluster](../img/fargate-task-6.jpg) |
-|:------------------------------------------------------------------------:|
-|               *Deploying fargate instance on your cluster*               |
-
-
-
-Select *Fargate* as the launch type and choose appropriate task definition, cluster, number of tasks, VPC and security groups before launching the task. Fargate agents should be able to access ports 8000–8010 on console, so users need to make sure that security groups allow these outbound connections and other connections as needed.
-
-| ![Run the fargate task on your cluster](../img/fargate-task-7.jpg) |
-|:------------------------------------------------------------------:|
-|               *Run the fargate task on your cluster*               |
-
-
-Finally, click the “Run Task” button.
-
-
 ## Prerequisites
 
 Make sure you have the following information:
+
 - Quay login, later referred as `<QUAY_LOGIN>`
 - Quay password, later referred as `<QUAY_PASSWORD>`
 - Management console URL/IP, later referred as `<MGMT_CONSOLE_URL>`
 - Deepfence API key, later referred as `<DEEPFENCE_KEY>` (This key can be found from the management console, in the settings > User > API Key)
 
 1. Add secret for quay.io registry login
-    - Go to the secret manager dashboard from the AWS Console
-    - Select "Store a new secret"
-    - Select "Other type of secret"
-    - Select "Plaintext" and paste the following:
-      ```json
-      {
-          "username" : "<QUAY_LOGIN>",
-          "password" : "<QUAY_PASSWORD>"
-      }
-      ```
+   - Go to the secret manager dashboard from the AWS Console
+   - Select "Store a new secret"
+   - Select "Other type of secret"
+   - Select "Plaintext" and paste the following:
+     ```json
+     {
+       "username": "<QUAY_LOGIN>",
+       "password": "<QUAY_PASSWORD>"
+     }
+     ```
 
 Create the secret and store the ARN. We will refer to it as `<ARN_QUAY_CREDS>`
 
 2. Add secret for Deepfence API key
-    - Go to the secret manager dashboard from the AWS Console
-    - Select "Store a new secret"
-    - Select "Other type of secret"
-    - Select "Plaintext" and paste the following:
-      ```json
-      {
-          "deepfence_api_key" : "<DEEPFENCE_KEY>"
-      }
-      ```
+   - Go to the secret manager dashboard from the AWS Console
+   - Select "Store a new secret"
+   - Select "Other type of secret"
+   - Select "Plaintext" and paste the following:
+     ```json
+     {
+       "deepfence_api_key": "<DEEPFENCE_KEY>"
+     }
+     ```
 
 Create the secret and store the ARN. We will refer to it as `<API_KEY_SECRET_ARN>`
 
 :::caution
-Be careful with the double quotes, sometimes the AWS UI transforms them into a special character that is not  recognized as valid JSON.
+Be careful with the double quotes, sometimes the AWS UI transforms them into a special character that is not recognized as valid JSON.
 :::
 
 3. Create a new role (e.g.: `deepfence-agent-role`)
-    - Go to the IAM dashboard from AWS Console
-    - Go to Access management > roles
-    - Select "Create Role",
-    - Select "Custom trust policy"
-    - Paste the following:
-      ```json
-      {
-          "Version": "2012-10-17",
-          "Statement": [
-              {
-                  "Effect": "Allow",
-                  "Principal": {
-                      "Service": "ecs-tasks.amazonaws.com"
-                  },
-                  "Action": "sts:AssumeRole"
-              }
-          ]
-      }
-      ```
+   - Go to the IAM dashboard from AWS Console
+   - Go to Access management > roles
+   - Select "Create Role",
+   - Select "Custom trust policy"
+   - Paste the following:
+     ```json
+     {
+       "Version": "2012-10-17",
+       "Statement": [
+         {
+           "Effect": "Allow",
+           "Principal": {
+             "Service": "ecs-tasks.amazonaws.com"
+           },
+           "Action": "sts:AssumeRole"
+         }
+       ]
+     }
+     ```
 
 Then continue:
 
@@ -361,128 +318,130 @@ Then continue:
 
 Then create the new policy.
 
-
 ## Sample fargate task definition json with deepfence-agent sidecar
+
 ```json
 {
-    "requiresCompatibilities": [
-        "FARGATE"
-    ],
-    "inferenceAccelerators": [],
-    "containerDefinitions": [
+  "requiresCompatibilities": ["FARGATE"],
+  "inferenceAccelerators": [],
+  "containerDefinitions": [
+    {
+      "name": "python",
+      "image": "python:latest",
+      "cpu": 0,
+      "portMappings": [
         {
-            "name": "python",
-            "image": "python:latest",
-            "cpu": 0,
-            "portMappings": [
-                {
-                    "name": "python-8000-tcp",
-                    "containerPort": 8000,
-                    "hostPort": 8000,
-                    "protocol": "tcp"
-                }
-            ],
-            "essential": true,
-            "entryPoint": [
-                "/deepfence/usr/local/bin/deepfence-entry-point-scratch.sh"
-            ],
-            "command": [
-                "python3",
-                "-m",
-                "http.server"
-            ],
-            "environment": [
-                {
-                    "name": "MGMT_CONSOLE_URL",
-                    "value": "<MGMT_CONSOLE_URL>"
-                },
-                {
-                    "name": "DF_SERVERLESS",
-                    "value": "true"
-                },
-                {
-                    "name": "DF_DISABLE_FILE_MON",
-                    "value": "Y"
-                },
-                {
-                    "name": "DF_DISABLE_PROC_MON",
-                    "value": "Y"
-                },
-                {
-                    "name": "DF_TRAFFIC_ANALYSIS_ON",
-                    "value": "Y"
-                },
-                {
-                    "name": "DF_LOG_LEVEL",
-                    "value": "info"
-                },
-                {
-                    "name": "USER_DEFINED_TAGS",
-                    "value": ""
-                },
-                {
-                    "name": "DF_INSTALL_DIR",
-                    "value": "/usr/local/bin"
-                }
-            ],
-            "mountPoints": [],
-            "volumesFrom": [
-                {
-                    "sourceContainer": "deepfence-agent",
-                    "readOnly": false
-                }
-            ],
-            "secrets": [
-                {
-                    "name": "DEEPFENCE_KEY",
-                    "valueFrom": "<API_KEY_SECRET_ARN>:deepfence_api_key::"
-                }
-            ],
-            "logConfiguration": {
-                "logDriver": "awslogs",
-                "options": {
-                    "awslogs-create-group": "true",
-                    "awslogs-group": "/ecs/test-doc-python",
-                    "awslogs-region": "us-west-2",
-                    "awslogs-stream-prefix": "ecs"
-                }
-            }
+          "name": "python-8000-tcp",
+          "containerPort": 8000,
+          "hostPort": 8000,
+          "protocol": "tcp"
+        }
+      ],
+      "essential": true,
+      "entryPoint": [
+        "/deepfence/usr/local/bin/deepfence-entry-point-scratch.sh"
+      ],
+      "command": ["python3", "-m", "http.server"],
+      "environment": [
+        {
+          "name": "MGMT_CONSOLE_URL",
+          "value": "<MGMT_CONSOLE_URL>"
         },
         {
-            "name": "deepfence-agent",
-            "image": "quay.io/deepfenceio/deepfence_agent:2.1.0-fargate",
-            "repositoryCredentials": {
-                "credentialsParameter": "<ARN_QUAY_CREDS>"
-            },
-            "cpu": 0,
-            "portMappings": [],
-            "essential": false,
-            "environment": [],
-            "mountPoints": [],
-            "volumesFrom": [],
-            "logConfiguration": {
-                "logDriver": "awslogs",
-                "options": {
-                    "awslogs-create-group": "true",
-                    "awslogs-group": "/ecs/test-doc-python",
-                    "awslogs-region": "us-west-2",
-                    "awslogs-stream-prefix": "ecs"
-                }
-            }
+          "name": "DF_SERVERLESS",
+          "value": "true"
+        },
+        {
+          "name": "DF_DISABLE_FILE_MON",
+          "value": "Y"
+        },
+        {
+          "name": "DF_DISABLE_PROC_MON",
+          "value": "Y"
+        },
+        {
+          "name": "DF_TRAFFIC_ANALYSIS_ON",
+          "value": "Y"
+        },
+        {
+          "name": "DF_LOG_LEVEL",
+          "value": "info"
+        },
+        {
+          "name": "USER_DEFINED_TAGS",
+          "value": ""
+        },
+        {
+          "name": "DF_INSTALL_DIR",
+          "value": "/usr/local/bin"
+        },
+        {
+          "name": "MGMT_CONSOLE_URL_SCHEMA",
+          "value": "https"
+        },
+        {
+          "name": "MGMT_CONSOLE_PORT",
+          "value": "443"
         }
-    ],
-    "volumes": [],
-    "networkMode": "awsvpc",
-    "memory": "4096",
-    "cpu": "2048",
-    "family": "test-doc-python",
-    "executionRoleArn": "<AGENT_TASK_ROLE_ARN>",
-    "taskRoleArn": "<AGENT_TASK_ROLE_ARN>",
-    "runtimePlatform": {
-        "cpuArchitecture": "X86_64",
-        "operatingSystemFamily": "LINUX"
+      ],
+      "mountPoints": [],
+      "volumesFrom": [
+        {
+          "sourceContainer": "deepfence-agent",
+          "readOnly": false
+        }
+      ],
+      "secrets": [
+        {
+          "name": "DEEPFENCE_KEY",
+          "valueFrom": "<API_KEY_SECRET_ARN>:deepfence_api_key::"
+        }
+      ],
+      "logConfiguration": {
+        "logDriver": "awslogs",
+        "options": {
+          "awslogs-create-group": "true",
+          "awslogs-group": "/ecs/test-doc-python",
+          "awslogs-region": "us-west-2",
+          "awslogs-stream-prefix": "ecs"
+        }
+      }
     },
-    "tags": [],
-    "placementConstraints": []
+    {
+      "name": "deepfence-agent",
+      "image": "quay.io/deepfenceio/deepfence_agent:2.1.0-fargate",
+      "repositoryCredentials": {
+        "credentialsParameter": "<ARN_QUAY_CREDS>"
+      },
+      "cpu": 0,
+      "portMappings": [],
+      "essential": false,
+      "environment": [],
+      "mountPoints": [],
+      "volumesFrom": [],
+      "logConfiguration": {
+        "logDriver": "awslogs",
+        "options": {
+          "awslogs-create-group": "true",
+          "awslogs-group": "/ecs/test-doc-python",
+          "awslogs-region": "us-west-2",
+          "awslogs-stream-prefix": "ecs"
+        }
+      }
+    }
+  ],
+  "volumes": [],
+  "networkMode": "awsvpc",
+  "memory": "4096",
+  "cpu": "2048",
+  "family": "test-doc-python",
+  "executionRoleArn": "<AGENT_TASK_ROLE_ARN>",
+  "taskRoleArn": "<AGENT_TASK_ROLE_ARN>",
+  "runtimePlatform": {
+    "cpuArchitecture": "X86_64",
+    "operatingSystemFamily": "LINUX"
+  },
+  "tags": [],
+  "placementConstraints": []
 }
 ```
