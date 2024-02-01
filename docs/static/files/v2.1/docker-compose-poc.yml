@@ -126,8 +126,8 @@ services:
       - DEEPFENCE_KEY=""
       - DEEPFENCE_CONSOLE_AGENT=true
       - DF_DISABLE_TRAFFIC_ANALYSIS="1"
-      - DF_FIM_ON="N"
       - DF_DISABLE_PROC_MON="1"
+      - DF_DISABLE_FILE_MON="1"
     network_mode: "host"
     pid: "host"
     volumes:
