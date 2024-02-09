@@ -50,7 +50,7 @@ const config = {
               banner: 'none',
             },
             "v3.8": {
-              label: 'v3.8',
+              label: 'v3.8 (deprecated)',
               path: 'v3.8',
               banner: 'none',
             },
