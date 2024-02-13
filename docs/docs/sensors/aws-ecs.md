@@ -120,7 +120,6 @@ Then continue:
 Then create the new policy.
 
 4. Create new task definition for deepfence agent
-    - Use Old ECS Experience (old UI)
     - Go to the "Elastic Container Service" dashboard from AWS console
     - In the top left corner, disable new UI to use the legacy UI.
     - Go to "Task Definitions"
@@ -130,7 +129,7 @@ Then create the new policy.
     - Copy and paste the following JSON configuration: (Replace `<DEEPFENCE_KEY>`, `<MGMT_CONSOLE_URL>`, `<ARN_QUAY_CREDS>`, `<API_KEY_SECRET_ARN>` and `<AGENT_TASK_ROLE_ARN>` with actual values)
 
     :::info
-    Image tag `quay.io/deepfenceio/deepfence_agent:2.1.0-multiarch` is supported in amd64 and arm64/v8 architectures.
+    Image tags `quay.io/deepfenceio/deepfence_agent:2.1.0-multiarch` and `quay.io/deepfenceio/deepfence_cluster_agent:2.1.0-multiarch` are supported in amd64 and arm64/v8 architectures.
     :::
 
       ```json
@@ -307,7 +306,6 @@ Then create the new policy.
     - Then create the new task definition.
 
 5. Create a new service to execute the Task and deploy the agent
-    - Use Old ECS Experience (old UI)
     - Go to the "Elastic Container Service" dashboard from the AWS console
     - Go to "Task definitions"
     - Select previously created task definition

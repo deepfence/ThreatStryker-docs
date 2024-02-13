@@ -15,7 +15,7 @@ Install and start the latest release of the deepfence sensor.  Replace `x.x.x.x`
 :::
 
 :::info
-Image tag `quay.io/deepfenceio/deepfence_agent:2.1.0-multiarch` is supported in amd64 and arm64/v8 architectures.
+Image tags `quay.io/deepfenceio/deepfence_agent:2.1.0-multiarch` and `quay.io/deepfenceio/deepfence_cluster_agent:2.1.0-multiarch` are supported in amd64 and arm64/v8 architectures.
 :::
 
 ### Identify container runtime
@@ -26,8 +26,8 @@ If container runtime is unknown, please follow [these](#identify-container-runti
 helm repo add deepfence https://deepfence-helm-charts.s3.amazonaws.com/enterprise
 helm repo update
 
-# helm show readme deepfence/deepfence-agent --version 2.1.0 | less
-# helm show values deepfence/deepfence-agent --version 2.1.0 | less
+# helm show readme deepfence/deepfence-agent --version 2.1.1 | less
+# helm show values deepfence/deepfence-agent --version 2.1.1 | less
 
 helm install deepfence-agent deepfence/deepfence-agent \
     --set imagePullSecret.username=<deepfence_username> \
@@ -47,7 +47,7 @@ helm install deepfence-agent deepfence/deepfence-agent \
     --set logLevel="info" \
     --namespace deepfence \
     --create-namespace \
-    --version 2.1.0
+    --version 2.1.1
 ```
 
 ## Fine-tune the Helm deployment
@@ -56,7 +56,7 @@ helm install deepfence-agent deepfence/deepfence-agent \
 helm repo add deepfence https://deepfence-helm-charts.s3.amazonaws.com/enterprise
 helm repo update
 
-helm show values deepfence/deepfence-agent --version 2.1.0 > deepfence_agent_values.yaml
+helm show values deepfence/deepfence-agent --version 2.1.1 > deepfence_agent_values.yaml
 
 # Make the changes in this file and save
 vim deepfence_agent_values.yaml
@@ -64,7 +64,7 @@ vim deepfence_agent_values.yaml
 helm install -f deepfence_agent_values.yaml deepfence-agent deepfence/deepfence-agent \
     --namespace deepfence \
     --create-namespace \
-    --version 2.1.0
+    --version 2.1.1
 ```
 
 ## Delete the ThreatStryker Sensor
