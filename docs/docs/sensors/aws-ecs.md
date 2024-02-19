@@ -129,7 +129,7 @@ Then create the new policy.
     - Copy and paste the following JSON configuration: (Replace `<DEEPFENCE_KEY>`, `<MGMT_CONSOLE_URL>`, `<ARN_QUAY_CREDS>`, `<API_KEY_SECRET_ARN>` and `<AGENT_TASK_ROLE_ARN>` with actual values)
 
     :::info
-    Image tags `quay.io/deepfenceio/deepfence_agent:2.1.0-multiarch` and `quay.io/deepfenceio/deepfence_cluster_agent:2.1.0-multiarch` are supported in amd64 and arm64/v8 architectures.
+    Image tags `quay.io/deepfenceio/deepfence_agent:2.1.1-multiarch` and `quay.io/deepfenceio/deepfence_cluster_agent:2.1.1-multiarch` are supported in amd64 and arm64/v8 architectures.
     :::
 
       ```json
@@ -216,7 +216,7 @@ Then create the new policy.
             "memoryReservation": null,
             "volumesFrom": [],
             "stopTimeout": null,
-            "image": "quay.io/deepfenceio/deepfence_agent:2.1.0",
+            "image": "quay.io/deepfenceio/deepfence_agent:2.1.1",
             "startTimeout": null,
             "firelensConfiguration": null,
             "dependsOn": null,

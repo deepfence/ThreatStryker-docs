@@ -76,9 +76,9 @@ check_options() {
       ;;
     c)
       if [ "$OPTARG" == "Y" ] || [ "$OPTARG" == "y" ]; then
-        TRAFFIC_ANALYSIS_ON="Y"
+        TRAFFIC_ANALYSIS_ON=""
       elif [ "$OPTARG" == "N" ] || [ "$OPTARG" == "n" ]; then
-        TRAFFIC_ANALYSIS_ON="N"
+        TRAFFIC_ANALYSIS_ON="1"
       fi
       ;;
     f)
@@ -146,7 +146,7 @@ start_agent() {
     -e DF_DISABLE_PROC_MON="$DF_DISABLE_PROC_MON" \
     -e DF_DISABLE_LOCAL_TRAFFIC_FILTER="$DF_DISABLE_LOCAL_TRAFFIC_FILTER" \
     -e DF_DISABLE_REVERSE_DNS="$DF_DISABLE_REVERSE_DNS" \
-    -e DF_TRAFFIC_ANALYSIS_ON="$TRAFFIC_ANALYSIS_ON" \
+    -e DF_DISABLE_TRAFFIC_ANALYSIS="$TRAFFIC_ANALYSIS_ON" \
     -e DF_ENABLE_PROCESS_REPORT="true" \
     -e DF_ENABLE_CONNECTIONS_REPORT="true" \
     -e INSTANCE_ID_SUFFIX="$INSTANCE_ID_SUFFIX" \
@@ -157,7 +157,7 @@ start_agent() {
     -e DEEPFENCE_KEY="$DEEPFENCE_KEY" \
     -e DF_USE_DUMMY_SCOPE="$DF_USE_DUMMY_SCOPE" \
     -e DF_USE_FAT_DUMMY_SCOPE="$DF_USE_FAT_DUMMY_SCOPE" \
-    ${IMAGE_REPOSITORY}/deepfence_agent:"${DF_IMG_TAG:-2.1.0}"
+    ${IMAGE_REPOSITORY}/deepfence_agent:"${DF_IMG_TAG:-2.1.1}"
 }
 
 main() {
