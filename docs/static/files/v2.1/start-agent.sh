@@ -25,8 +25,8 @@ EOF
 MGMT_CONSOLE_URL=""
 MGMT_CONSOLE_PORT="443"
 
-# Start Traffic Analysis on agent start up: "Y" / "N" / "" empty string to default to setting on console
-TRAFFIC_ANALYSIS_ON=""
+# Enable/Disable Traffic Analysis: Enable: "" / Disable: "Y"
+DF_DISABLE_TRAFFIC_ANALYSIS=""
 
 # Enable/Disable File Monitoring: Enable: "" / Disable: "Y"
 DF_DISABLE_FILE_MON=""
@@ -76,9 +76,9 @@ check_options() {
       ;;
     c)
       if [ "$OPTARG" == "Y" ] || [ "$OPTARG" == "y" ]; then
-        TRAFFIC_ANALYSIS_ON=""
+        DF_DISABLE_TRAFFIC_ANALYSIS=""
       elif [ "$OPTARG" == "N" ] || [ "$OPTARG" == "n" ]; then
-        TRAFFIC_ANALYSIS_ON="1"
+        DF_DISABLE_TRAFFIC_ANALYSIS="1"
       fi
       ;;
     f)
@@ -146,7 +146,7 @@ start_agent() {
     -e DF_DISABLE_PROC_MON="$DF_DISABLE_PROC_MON" \
     -e DF_DISABLE_LOCAL_TRAFFIC_FILTER="$DF_DISABLE_LOCAL_TRAFFIC_FILTER" \
     -e DF_DISABLE_REVERSE_DNS="$DF_DISABLE_REVERSE_DNS" \
-    -e DF_DISABLE_TRAFFIC_ANALYSIS="$TRAFFIC_ANALYSIS_ON" \
+    -e DF_DISABLE_TRAFFIC_ANALYSIS="$DF_DISABLE_TRAFFIC_ANALYSIS" \
     -e DF_ENABLE_PROCESS_REPORT="true" \
     -e DF_ENABLE_CONNECTIONS_REPORT="true" \
     -e INSTANCE_ID_SUFFIX="$INSTANCE_ID_SUFFIX" \
