@@ -157,6 +157,9 @@ const sidebars = {
         },
         'operations/east-west-dpi',
         'operations/attack-disruption',
+        'operations/network-monitoring',
+        'operations/file-monitoring',
+        'operations/proc-monitoring',
         // {
         //   type: 'category',
         //   label: 'CI-CD Integration',
