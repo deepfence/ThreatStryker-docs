@@ -52,7 +52,7 @@ The following instructions explain how to install the ThreatStryker console on a
     helm repo add deepfence https://deepfence-helm-charts.s3.amazonaws.com/enterprise
     helm repo update
 
-    # helm show values deepfence/deepfence-console --version 2.1.2 | less
+    # helm show values deepfence/deepfence-console --version 2.1.3 | less
 
     helm install deepfence-console deepfence/deepfence-console \
     --set imagePullSecret.username="<deepfence_username>" \
@@ -61,7 +61,7 @@ The following instructions explain how to install the ThreatStryker console on a
     --set global.storageClass=gp3 \
     --namespace deepfence-console \
     --create-namespace \
-    --version 2.1.2
+    --version 2.1.3
     ```
 
     ... and wait for the pods to start up:
@@ -96,7 +96,7 @@ Now proceed to the [Initial Configuration](initial-configuration).
 ### Console Helm Chart
 
 ```bash
-helm show values deepfence/deepfence-console --version 2.1.2 > deepfence_console_values.yaml
+helm show values deepfence/deepfence-console --version 2.1.3 > deepfence_console_values.yaml
 
 # Make the changes in this file and save
 vi deepfence_console_values.yaml
@@ -104,7 +104,7 @@ vi deepfence_console_values.yaml
 helm install -f deepfence_console_values.yaml deepfence-console deepfence/deepfence-console \
     --namespace deepfence-console \
     --create-namespace \
-    --version 2.1.2
+    --version 2.1.3
 ```
 
 ### Router Helm Chart
