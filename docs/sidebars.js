@@ -196,6 +196,7 @@ const sidebars = {
         'integrations/jira',
         'integrations/s3',
         'integrations/reports',
+        'integrations/splunk',
       ],
     },
     {
