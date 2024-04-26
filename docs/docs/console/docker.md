@@ -46,7 +46,7 @@ The following instructions explain how to get started with a docker-based instal
 
 Now proceed to the [Initial Configuration](initial-configuration).
 
-### Remove the ThreatStryker Management Console
+## Uninstall the ThreatStryker Management Console
 
 Remove the ThreatStryker Management Console as follows:
 
