@@ -78,6 +78,7 @@ const sidebars = {
               },
               items: [
                 'console/requirements',
+                'console/upgrade-from-v2.1',
                 'console/docker',
                 'console/kubernetes',
                 'console/managed-database',

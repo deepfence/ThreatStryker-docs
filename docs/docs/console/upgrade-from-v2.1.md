@@ -1,5 +1,5 @@
 ---
-title: Neo4j Upgrade
+title: Upgrade from v2.1
 ---
 
 ## Upgrade Neo4j from 4.4 to 5.x
@@ -7,7 +7,7 @@ title: Neo4j Upgrade
 Please choose upgrade steps by console deployment type (docker or kubernetes)
 
 ### Prerequisite
-1. Download [pre-upgrade-to-v5.sh](https://docs.deepfence.io/threatstryker/files/v2.2/pre-upgrade-to-v5.sh) script to current directory
+1. Download [pre-upgrade-to-v5.sh](https://github.com/deepfence/ThreatMapper/blob/release-2.2/deepfence_neo4j/pre-upgrade-to-v5.sh) script to current directory
 2. Make `pre-upgrade-to-v5.sh` executable
     ```
     chmod +x pre-upgrade-to-v5.sh
