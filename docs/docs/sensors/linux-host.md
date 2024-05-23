@@ -96,7 +96,9 @@ curl -k -o uninstall_deepfence.sh "$uninstall_agent_script_download_url"
 chmod +x uninstall_deepfence.sh
 
 echo "Uninstalling existing Deepfence agent installation, if any"
-echo "bash $(pwd)/uninstall_deepfence.sh"
+systemctl stop deepfence-agent.service
+systemctl disable deepfence-agent.service
+rm -f /etc/systemd/system/deepfence-agent.service
 bash uninstall_deepfence.sh
 
 if [[ ! -d "/opt/deepfence" ]]; then
@@ -135,14 +137,63 @@ echo "MGMT_CONSOLE_URL: $MGMT_CONSOLE_URL"
 echo "MGMT_CONSOLE_PORT: $MGMT_CONSOLE_PORT"
 echo "DF_HOSTNAME: $DF_HOSTNAME"
 
-echo "Installing Deepfence agent"
-echo "/opt/deepfence/start_deepfence_agent.sh"
-/opt/deepfence/start_deepfence_agent.sh
+echo "Installing Deepfence agent as daemon service"
+
+cat << EOF > /etc/systemd/system/deepfence-agent.service
+[Unit]
+Description=Deepfence Agent Service
+After=network.target
+
+[Service]
+Environment=MGMT_CONSOLE_URL="$MGMT_CONSOLE_URL"
+Environment=DEEPFENCE_KEY="$DEEPFENCE_KEY"
+Environment=MGMT_CONSOLE_PORT="$MGMT_CONSOLE_PORT"
+Environment=MGMT_CONSOLE_URL_SCHEMA="$MGMT_CONSOLE_URL_SCHEMA"
+Environment=DF_HOSTNAME="$(hostname)"
+Environment=DF_LOG_LEVEL="$DF_LOG_LEVEL"
+# "1" to disable, "" to enable
+Environment=DF_DISABLE_TRAFFIC_ANALYSIS="$DF_DISABLE_TRAFFIC_ANALYSIS"
+Environment=DF_DISABLE_FILE_MON="$DF_DISABLE_FILE_MON"
+Environment=DF_DISABLE_PROC_MON="$DF_DISABLE_PROC_MON"
+Environment=DF_DISABLE_LOCAL_TRAFFIC_FILTER="$DF_DISABLE_LOCAL_TRAFFIC_FILTER"
+
+User=root
+Group=root
+Restart=on-failure
+Type=forking
+ExecStart=/opt/deepfence/start_deepfence_agent.sh
+WorkingDirectory=/opt/deepfence
+
+[Install]
+WantedBy=multi-user.target
+EOF
+
+systemctl daemon-reload
+systemctl enable deepfence-agent.service
+systemctl start deepfence-agent.service
+systemctl status deepfence-agent.service
 ```
 
 * Set management console URL and Deepfence key. You can find the Deepfence API key under
   `Setting>User Management>API Key`
 * You can run this script as following
 ```bash
-sudo ./install_deepfence.sh
+sudo bash install_deepfence.sh
+```
+
+## Logs
+
+To get the service logs, run the following command
+```shell
+sudo journalctl -u deepfence-agent.service
+```
+
+## Uninstall
+
+To uninstall deepfence agent, run the following commands
+```shell
+sudo systemctl stop deepfence-agent.service
+sudo systemctl disable deepfence-agent.service
+sudo rm -f /etc/systemd/system/deepfence-agent.service
+sudo bash uninstall_deepfence.sh
 ```
