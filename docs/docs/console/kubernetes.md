@@ -12,52 +12,51 @@ Please follow [these](upgrade-from-v2.1.md) steps before upgrading the managemen
 
 You can install the Management Console on a [single Docker host](docker) or in a dedicated Kubernetes cluster.
 
-## Install the ThreatStryker Management Console
 
-The following instructions explain how to install the ThreatStryker console on a Kubernetes Cluster, and configure external access to the Console.
+## Prerequisites
 
-1. **Configure Persistent Volume**:
+1. Install and configure **kubectl** and **helm** cli to access the kubernetes cluster where ThreatStryker console is installed
 
-    ### Cloud Managed
-    
-    If the Kubernetes cluster is hosted in a cloud provider, it is recommended to use cloud managed storage
+2. **Configure Persistent Volume**:
+
+   ### Cloud Managed
+
+   If the Kubernetes cluster is hosted in a cloud provider, it is recommended to use cloud managed storage
     ```
     kubectl get storageclass
     ```
-    | Cloud Provider | Storage Class                                                       |
-    |----------------|---------------------------------------------------------------------|
-    | AWS            | gp3 (https://docs.aws.amazon.com/eks/latest/userguide/ebs-csi.html) |
-    | GCP            | standard                                                            |
+   | Cloud Provider | Storage Class                                                       |
+   |----------------|---------------------------------------------------------------------|
+   | AWS            | gp3 (https://docs.aws.amazon.com/eks/latest/userguide/ebs-csi.html) |
+   | GCP            | standard                                                            |
 
-    ### Self-Managed: OpenEBS
+   ### Self-Managed
 
-    ```bash
-    helm repo add openebs https://openebs.github.io/charts
-    helm install openebs --namespace openebs openebs/openebs --create-namespace
-    ```
-    
-    ... and wait (```-w```) for the openebs pods to start up:
-    
-    ```bash
-    kubectl get pods -o wide --namespace openebs -w
-    ```
+   If using on-prem kubernetes cluster install and configure a self hostage storage provider like [openebs](https://openebs.io/docs/quickstart-guide/installation), [longhorn](https://longhorn.io/docs/1.6.2/deploy/install/), etc.
 
-    The Storage Class will now be `openebs-hostpath`
+3. **Install the metrics server** (optional)
 
-2. **Install the metrics server** (optional)
-
-    If the metrics server is not already installed (```kubectl get deployment metrics-server -n kube-system```), install as follows:
+   If the metrics server is not already installed (```kubectl get deployment metrics-server -n kube-system```), install as follows:
 
     ```bash
     kubectl apply -f https://github.com/kubernetes-sigs/metrics-server/releases/latest/download/components.yaml
     ```
 
-3. **Install the ThreatStryker Console**
+## Install the ThreatStryker Management Console
 
-    ```bash
+The following instructions explain how to install the ThreatStryker console on a Kubernetes Cluster, and configure external access to the Console.
+
+
+1. **Add Deepfence ThreatStryker helm charts repo**
+ 
+    ```bash 
     helm repo add deepfence https://deepfence-helm-charts.s3.amazonaws.com/enterprise
     helm repo update
+    ```
 
+2. **Install the ThreatStryker Console**
+
+    ```bash
     # helm show values deepfence/deepfence-console --version TS_CONSOLE_HELM_CHART_VERSION | less
 
     helm install deepfence-console deepfence/deepfence-console \
@@ -76,9 +75,9 @@ The following instructions explain how to install the ThreatStryker console on a
     kubectl get pods --namespace deepfence-console -o wide -w
     ```
 
-4. **Enable external access** with the ```deepfence-router``` helm chart:
+3. To access ThreatStryker console install ```deepfence-router``` helm chart, this creates a `Loadbalancer` type service, the consle can be accessed over the loadbalancer created.
 
-    Deploy deepfence-router:
+    To create a ingress service refer section [Deploy Router Helm Chart With Ingress Enabled](#deploy-router-helm-chart-with-ingress-enabled)
 
     ```bash
     # helm show values deepfence/deepfence-router --version TS_ROUTER_HELM_CHART_VERSION
@@ -97,39 +96,105 @@ The following instructions explain how to install the ThreatStryker console on a
 
 Now proceed to the [Initial Configuration](initial-configuration).
 
-## Fine-tune the Helm deployment
+## Customise the Helm deployment
 
 ### Console Helm Chart
 
-```bash
-helm show values deepfence/deepfence-console --version TS_CONSOLE_HELM_CHART_VERSION > deepfence_console_values.yaml
+1. Save the helm chart values to file 
 
-# Make the changes in this file and save
-vi deepfence_console_values.yaml
+    ```bash
+    helm show values deepfence/deepfence-console --version TS_CONSOLE_HELM_CHART_VERSION > deepfence_console_values.yaml
+    ```
 
-helm install -f deepfence_console_values.yaml deepfence-console deepfence/deepfence-console \
-    --namespace deepfence-console \
-    --create-namespace \
-    --version TS_CONSOLE_HELM_CHART_VERSION
-```
+    :::info
+    All the supported helm chart values are documentd in the `deepfence_console_values.yaml` file generated when above command is run 
+    :::
+
+2. Update the `deepfence_console_values.yaml` file as required to change the database password, resource requests, pod/service annotations etc,.
+    
+    Check instructions on [Managed Database](managed-database) section for using external database with console
+
+3. Use the updated values file to deploy the ThreatStryker Console
+
+    ```bash
+    helm install -f deepfence_console_values.yaml deepfence-console deepfence/deepfence-console \
+        --namespace deepfence-console \
+        --create-namespace \
+        --version TS_CONSOLE_HELM_CHART_VERSION
+    ```
 
 ### Router Helm Chart
 
-```bash
-helm show values deepfence/deepfence-router --version TS_ROUTER_HELM_CHART_VERSION > deepfence_router_values.yaml
 
-# Make the changes in this file and save
-vi deepfence_router_values.yaml
+1. Save the helm chart values to file
 
-helm install -f deepfence_router_values.yaml deepfence-router deepfence/deepfence-router \
-    --namespace deepfence-console \
-    --create-namespace \
-    --version TS_ROUTER_HELM_CHART_VERSION
-```
+    ```bash
+    helm show values deepfence/deepfence-router --version TS_ROUTER_HELM_CHART_VERSION > deepfence_router_values.yaml
+    ```
 
-## Delete the ThreatMapper Management Console
+    :::info
+    All the supported helm chart values are documentd in the `deepfence_router_values.yaml` file generated when above command is run 
+    :::
 
-To delete the ThreatMapper Management Console
+2. Update the `deepfence_router_values.yaml` file as required to enable seperate serivce for agents access or to enable ingress
+
+3. Use the updated values file to deploy the ThreatStryker Console Router
+
+    ```bash
+    helm install -f deepfence_router_values.yaml deepfence-router deepfence/deepfence-router \
+        --namespace deepfence-console \
+        --create-namespace \
+        --version TS_ROUTER_HELM_CHART_VERSION
+    ```
+
+### Deploy Router Helm Chart With Ingress Enabled
+
+1. Install the supported ingress controller service on the cluster 
+
+2. Save the helm chart values to file
+
+    ```bash
+    helm show values deepfence/deepfence-router --version TS_ROUTER_HELM_CHART_VERSION > deepfence_router_values.yaml
+    ```
+
+    :::info
+    All the supported helm chart values are documentd in the `deepfence_router_values.yaml` file generated when above command is run 
+    :::
+
+3. Update the `deepfence_router_values.yaml` file to enable ingress set `service.type=Ingress` and updated the ingress section according to the ingress cotroller installed on the cluster, below example assumes nginx ingress controller
+
+    ```yaml
+    service:
+        name: deepfence-console-router
+        type: Ingress # LoadBalancer/NodePort/Ingress/ClusterIP
+
+    # ingress configuration for console
+    ingress:
+        ## name of the ingress class for ingress provider installed on the cluster, cannot be empty
+        ## Example: nginx
+        class: nginx
+        ## host example: threat.example.com
+        host: "threatstryker.example.com"
+        ## annotations to customize ingress
+        annotations:
+            ## nginx ingress annotations
+            nginx.ingress.kubernetes.io/backend-protocol: HTTPS
+            nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
+            nginx.ingress.kubernetes.io/proxy-body-size: 200m
+    ```
+
+3. Use the updated values file to deploy the ThreatStryker Console Router
+
+    ```bash
+    helm install -f deepfence_router_values.yaml deepfence-router deepfence/deepfence-router \
+        --namespace deepfence-console \
+        --create-namespace \
+        --version TS_ROUTER_HELM_CHART_VERSION
+    ```
+
+## Delete the ThreatStryker Management Console
+
+To delete the ThreatStryker Management Console
 
    ```bash
    helm delete deepfence-router -n deepfence-console
