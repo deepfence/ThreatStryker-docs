@@ -28,7 +28,7 @@ module "cloud-scanner_example_single-subscription" {
   mgmt-console-port   = "443"
   deepfence-key       = "<Deepfence-key> eg. XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX"
   name                = "deepfence-cloud-scanner"
-  image               = "quay.io/deepfenceio/cloud_scanner:THREATSTRYKER_VERSION"
+  image               = "quay.io/deepfenceio/cloud-scanner:THREATSTRYKER_VERSION"
   # Location name https://gist.github.com/ausfestivus/04e55c7d80229069bf3bc75870630ec8#results
   location            = "eastus"
   # Number of CPU cores (Default: 2 vCPU)
@@ -59,7 +59,7 @@ module "cloud-scanner_example_tenant-subscriptions" {
   mgmt-console-port       = "<Console port> eg. 443"
   deepfence-key           = "<Deepfence-key> eg. XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX"
   name                    = "deepfence-cloud-scanner"
-  image                   = "quay.io/deepfenceio/cloud_scanner:THREATSTRYKER_VERSION"
+  image                   = "quay.io/deepfenceio/cloud-scanner:THREATSTRYKER_VERSION"
   # List of subscription ids to monitor
   subscription_ids_access = ["XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX", "XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX"]
   # Location name https://gist.github.com/ausfestivus/04e55c7d80229069bf3bc75870630ec8#results
