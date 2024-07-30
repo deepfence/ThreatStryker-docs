@@ -20,9 +20,9 @@ Image tags `quay.io/deepfenceio/deepfence_agent:THREATSTRYKER_VERSION-multiarch`
 
 ### Docker
 
-1. Download the following script: [start-agent.sh 🔗](https://docs.deepfence.io/threatstryker/files/v2.2/start-agent.sh)
+1. Download the following script: [start-agent.sh 🔗](https://docs.deepfence.io/threatstryker/files/v2.3/start-agent.sh)
     ```shell
-    wget https://docs.deepfence.io/threatstryker/files/v2.2/start-agent.sh
+    wget https://docs.deepfence.io/threatstryker/files/v2.3/start-agent.sh
     ```
 
 2. To authenticate to the docker image repository, run the following command:
@@ -41,9 +41,9 @@ Image tags `quay.io/deepfenceio/deepfence_agent:THREATSTRYKER_VERSION-multiarch`
 
 ### Podman
 
-1. Download the following script: [start-podman-agent.sh 🔗](https://docs.deepfence.io/threatstryker/files/v2.2/start-podman-agent.sh)
+1. Download the following script: [start-podman-agent.sh 🔗](https://docs.deepfence.io/threatstryker/files/v2.3/start-podman-agent.sh)
     ```shell
-    wget https://docs.deepfence.io/threatstryker/files/v2.2/start-podman-agent.sh
+    wget https://docs.deepfence.io/threatstryker/files/v2.3/start-podman-agent.sh
     ```
 
 2. To authenticate to the docker image repository, run the following command:
