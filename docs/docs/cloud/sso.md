@@ -19,8 +19,8 @@ To configure Okta as ID provider for Deepfence Cloud, please follow these steps
 
 2. Choose `OIDC - OpenID Connect` and `Web Application`
 3. Select `Refresh Token` and `Implicit (hybrid)`
-4. Set `Sign-in redirect URIs` to `https://deepfence.cloud/deepfence/auth/callback/oidc`
-5. Set `Sign-out redirect URIs` to `https://deepfence.cloud`
+4. Set `Sign-in redirect URIs` to `https://portal.deepfence.cloud/deepfence/auth/callback/oidc`
+5. Set `Sign-out redirect URIs` to `https://portal.deepfence.cloud`
 
    ![Okta](../img/okta-2.png)
 
