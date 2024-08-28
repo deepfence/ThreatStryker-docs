@@ -4,7 +4,7 @@ title: Management Console
 
 # Management Console
 
-The ThreatStryker Management Console can be deployed in [Deepfence Cloud](https://deepfence.cloud) or in a self-managed fashion.
+The ThreatStryker Management Console can be deployed in [Deepfence Cloud](https://portal.deepfence.cloud) or in a self-managed fashion.
 
 Deepfence Cloud is a hosted SaaS platform from which you can deploy multiple ThreatStryker consoles and assign users to these consoles, all from a single point of control.  Deepfence Cloud manages console upgrades, scaling and security for you, so you and your teams can focus on the safe and secure operation of your enterprise cloud-native applications.
 

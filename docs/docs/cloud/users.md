@@ -17,7 +17,7 @@ Deepfence Cloud is currently in 'Invite Only' mode.  If you are a Deepfence cust
 ### Task 1 - Sign up and create a new Organization
 
 
-1. Visit Deepfence Cloud: [deepfence.cloud](https://deepfence.cloud/).  Sign up for a new account using your corporate email address.
+1. Visit Deepfence Cloud: [deepfence.cloud](https://portal.deepfence.cloud/).  Sign up for a new account using your corporate email address.
 2. Activate that account in the email that will follow.
 3. Log in to the Deepfence Cloud portal.
 
