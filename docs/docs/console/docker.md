@@ -26,16 +26,16 @@ The following instructions explain how to get started with a docker-based instal
 
     When prompted, please provide the credentials sent by email.
 
-2. Download the file [docker-compose.yml](https://docs.deepfence.io/threatstryker/files/v2.3/docker-compose.yml) to the system that will host the Console
+2. Download the file [docker-compose.yml](https://docs.deepfence.io/threatstryker/files/v2.4/docker-compose.yml) to the system that will host the Console
 
     ```bash
-    wget https://docs.deepfence.io/threatstryker/files/v2.3/docker-compose.yml
+    wget https://docs.deepfence.io/threatstryker/files/v2.4/docker-compose.yml
     ```
 
-   For more verbose network alerts, please download this file instead: [docker-compose-poc.yml 🔗](https://docs.deepfence.io/threatstryker/files/v2.3/docker-compose-poc.yml).
+   For more verbose network alerts, please download this file instead: [docker-compose-poc.yml 🔗](https://docs.deepfence.io/threatstryker/files/v2.4/docker-compose-poc.yml).
 
     ```bash
-    wget https://docs.deepfence.io/threatstryker/files/v2.3/docker-compose-poc.yml -O docker-compose.yml
+    wget https://docs.deepfence.io/threatstryker/files/v2.4/docker-compose-poc.yml -O docker-compose.yml
     ```
 
 3. Execute the following command to install and start the latest build of the Console
