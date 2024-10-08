@@ -303,11 +303,11 @@ For full details, refer to the GitHub repository: https://github.com/deepfence/t
 3. Modify the EC2 instance, add the instance profile created by cloudformation script
 4. Create a directory **deepfence-cloud-scanner** and download docker-compose.yaml from the url
     ```
-    https://raw.githubusercontent.com/deepfence/cloud-scanner/main/docker-compose.yaml 
+    https://raw.githubusercontent.com/deepfence/cloud-scanner/refs/heads/release-2.3/docker-compose.yaml 
     ```
     ```bash
     mkdir deepfence-cloud-scanner && cd deepfence-cloud-scanner
-    wget https://raw.githubusercontent.com/deepfence/cloud-scanner/main/docker-compose.yaml 
+    wget https://raw.githubusercontent.com/deepfence/cloud-scanner/refs/heads/release-2.3/docker-compose.yaml
     ```
 5. Update the account details and console details in the docker-compose.yaml
     ```
