@@ -34,9 +34,12 @@ Image tags `quay.io/deepfenceio/deepfence_agent:THREATSTRYKER_VERSION-multiarch`
    When prompted, please provide the credentials sent by email.
 
 3. Run the script as follows:
+   :::info
+   Console URL format: deepfence.customer.com or 123.123.123.123
+   :::
 
     ```bash
-    bash start-agent.sh -r <IP_ADDRESS_OF_UI_MACHINE> -k xxxxxxxx
+    bash start-agent.sh -r <MANAGEMENT_CONSOLE_URL> -k <DEEPFENCE_KEY>
     ```
 
 ### Podman
@@ -55,6 +58,9 @@ Image tags `quay.io/deepfenceio/deepfence_agent:THREATSTRYKER_VERSION-multiarch`
    When prompted, please provide the credentials sent by email.
 
 3. Run the script as follows:
+   :::info
+   Console URL format: deepfence.customer.com or 123.123.123.123
+   :::
 
     ```bash
     bash start-podman-agent.sh -r <IP_ADDRESS_OF_UI_MACHINE> -k xxxxxxxx
