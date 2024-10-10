@@ -20,9 +20,9 @@ Image tags `quay.io/deepfenceio/deepfence_agent:THREATSTRYKER_VERSION-multiarch`
 
 ### Docker
 
-1. Download the following script: [start-agent.sh 🔗](https://docs.deepfence.io/threatstryker/files/v2.3/start-agent.sh)
+1. Download the following script: [start-agent.sh 🔗](https://docs.deepfence.io/threatstryker/files/v2.4/start-agent.sh)
     ```shell
-    wget https://docs.deepfence.io/threatstryker/files/v2.3/start-agent.sh
+    wget https://docs.deepfence.io/threatstryker/files/v2.4/start-agent.sh
     ```
 
 2. To authenticate to the docker image repository, run the following command:
@@ -41,9 +41,9 @@ Image tags `quay.io/deepfenceio/deepfence_agent:THREATSTRYKER_VERSION-multiarch`
 
 ### Podman
 
-1. Download the following script: [start-podman-agent.sh 🔗](https://docs.deepfence.io/threatstryker/files/v2.3/start-podman-agent.sh)
+1. Download the following script: [start-podman-agent.sh 🔗](https://docs.deepfence.io/threatstryker/files/v2.4/start-podman-agent.sh)
     ```shell
-    wget https://docs.deepfence.io/threatstryker/files/v2.3/start-podman-agent.sh
+    wget https://docs.deepfence.io/threatstryker/files/v2.4/start-podman-agent.sh
     ```
 
 2. To authenticate to the docker image repository, run the following command:
@@ -70,7 +70,11 @@ To upgrade a sensor install, stop the existing sensor and start the new version.
 
 ## Using a Proxy Server with Docker
 
-If ThreatStryker management console is accessed through a proxy server, add the proxy server details to the docker configuration.
+If ThreatStryker management console is accessed through a proxy server, there are two ways of configuring it.
+- You can start the container by providing the environment variable `http_proxy` and `https_proxy` in the [script](#docker-1).
+  The environment variable will be used by our agent to communicate with the proxy.
+
+- Alternatively, you can also configure docker to use a proxy server for all transactions.
 
 Edit the file: `~/.docker/config.json`, and add the following content.  Remember to change the proxy server ip address from 111.111.111.111 to your proxy server ip:
 
@@ -100,4 +104,4 @@ Restart the docker daemon:
 sudo systemctl restart docker
 ```
 
-ThreatMapper agent VMs do not require any changes for proxy server.
+ThreatStryker agent VMs do not require any changes for proxy server.
