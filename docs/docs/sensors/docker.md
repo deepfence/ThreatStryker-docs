@@ -70,7 +70,11 @@ To upgrade a sensor install, stop the existing sensor and start the new version.
 
 ## Using a Proxy Server with Docker
 
-If ThreatStryker management console is accessed through a proxy server, add the proxy server details to the docker configuration.
+If ThreatStryker management console is accessed through a proxy server, there are two ways of configuring it.
+- You can start the container by providing the environment variable `http_proxy` and `https_proxy` in the [script](#docker-1).
+  The environment variable will be used by our agent to communicate with the proxy.
+
+- Alternatively, you can also configure docker to use a proxy server for all transactions.
 
 Edit the file: `~/.docker/config.json`, and add the following content.  Remember to change the proxy server ip address from 111.111.111.111 to your proxy server ip:
 
@@ -100,4 +104,4 @@ Restart the docker daemon:
 sudo systemctl restart docker
 ```
 
-ThreatMapper agent VMs do not require any changes for proxy server.
+ThreatStryker agent VMs do not require any changes for proxy server.
