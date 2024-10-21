@@ -108,14 +108,22 @@ If you are using json to configure your task definitions, you can use the follow
     },
     {
         "name": "DF_DISABLE_FILE_MON",
-        "value": "Y"
+        "value": ""
     },
     {
         "name": "DF_DISABLE_PROC_MON",
-        "value": "Y"
+        "value": ""
     },
     {
-        "name": "DF_TRAFFIC_ANALYSIS_ON",
+        "name": "DF_DISABLE_TRAFFIC_ANALYSIS",
+        "value": ""
+    },
+    {
+        "name": "DF_DISABLE_LOCAL_TRAFFIC_FILTER",
+        "value": ""
+    },
+    {
+        "name": "DF_DISABLE_REVERSE_DNS",
         "value": "Y"
     },
     {
@@ -128,7 +136,7 @@ If you are using json to configure your task definitions, you can use the follow
     },
     {
         "name": "DF_INSTALL_DIR",
-        "value": "/path/to/custom/install/dir"
+        "value": "/deepfence"
     },
     {
         "name": "MGMT_CONSOLE_URL_SCHEMA",
@@ -334,7 +342,8 @@ Then create the new policy.
           "name": "python-8000-tcp",
           "containerPort": 8000,
           "hostPort": 8000,
-          "protocol": "tcp"
+          "protocol": "tcp",
+          "appProtocol": "http"
         }
       ],
       "essential": true,
@@ -353,14 +362,22 @@ Then create the new policy.
         },
         {
           "name": "DF_DISABLE_FILE_MON",
-          "value": "Y"
+          "value": ""
         },
         {
           "name": "DF_DISABLE_PROC_MON",
-          "value": "Y"
+          "value": ""
         },
         {
-          "name": "DF_TRAFFIC_ANALYSIS_ON",
+          "name": "DF_DISABLE_TRAFFIC_ANALYSIS",
+          "value": ""
+        },
+        {
+          "name": "DF_DISABLE_LOCAL_TRAFFIC_FILTER",
+          "value": ""
+        },
+        {
+          "name": "DF_DISABLE_REVERSE_DNS",
           "value": "Y"
         },
         {
@@ -373,7 +390,7 @@ Then create the new policy.
         },
         {
           "name": "DF_INSTALL_DIR",
-          "value": "/usr/local/bin"
+          "value": "/deepfence"
         },
         {
           "name": "MGMT_CONSOLE_URL_SCHEMA",
@@ -397,13 +414,21 @@ Then create the new policy.
           "valueFrom": "<API_KEY_SECRET_ARN>:deepfence_api_key::"
         }
       ],
+      "dependsOn": [
+        {
+          "containerName": "deepfence-agent",
+          "condition": "COMPLETE"
+        }
+      ],
       "logConfiguration": {
         "logDriver": "awslogs",
         "options": {
           "awslogs-create-group": "true",
           "awslogs-group": "/ecs/test-doc-python",
           "awslogs-region": "us-west-2",
-          "awslogs-stream-prefix": "ecs"
+          "awslogs-stream-prefix": "ecs",
+          "mode": "non-blocking",
+          "max-buffer-size": "25m"
         }
       }
     },
@@ -425,7 +450,9 @@ Then create the new policy.
           "awslogs-create-group": "true",
           "awslogs-group": "/ecs/test-doc-python",
           "awslogs-region": "us-west-2",
-          "awslogs-stream-prefix": "ecs"
+          "awslogs-stream-prefix": "ecs",
+          "mode": "non-blocking",
+          "max-buffer-size": "25m"
         }
       }
     }
