@@ -1,0 +1,424 @@
+version: "3.7"
+
+x-service-variables: &common-creds
+    # uncomment to set the credentials otherwise default credentials will be used
+    # DEEPFENCE_NEO4J_USER: neo4juser
+    # DEEPFENCE_NEO4J_PASSWORD: changeme
+    # NEO4J_AUTH: neo4juser/changeme
+    # DEEPFENCE_POSTGRES_USER_DB_USER: postgresuser
+    # DEEPFENCE_POSTGRES_USER_DB_PASSWORD: changeme
+    DEEPFENCE_NEO4J_BOLT_PORT: 7687
+    DEEPFENCE_NEO4J_HOST: deepfence-neo4j
+    DEEPFENCE_POSTGRES_USER_DB_HOST: deepfence-postgres
+    DEEPFENCE_POSTGRES_USER_DB_NAME: users
+    DEEPFENCE_POSTGRES_USER_DB_PORT: 5432
+    DEEPFENCE_POSTGRES_USER_DB_SSLMODE: disable
+    DEEPFENCE_KAFKA_BROKERS: deepfence-kafka-broker:9092
+    # public bucket with read permissions on objects for hosting vulnerability database
+    # S3 bucket permissions {"Version":"2012-10-17","Statement":[{"Sid":"database","Effect":"Allow","Principal":"*","Action":"s3:GetObject","Resource":["arn:aws:s3:::<bucket-name>/database/*","arn:aws:s3:::<bucket-name>/database"]}]}
+    DEEPFENCE_FILE_SERVER_DB_BUCKET: database
+    # private bucket to host reports, sbom, etc.
+    DEEPFENCE_FILE_SERVER_BUCKET: default
+    # If using S3 or other external file server (MinIO/SeaweedFS), set this to true
+    DEEPFENCE_FILE_SERVER_EXTERNAL: "false"
+    # set s3.amazonaws.com if using s3 buckets
+    DEEPFENCE_FILE_SERVER_HOST: deepfence-file-server
+    DEEPFENCE_FILE_SERVER_PORT: 9000
+    # uncomment to set access key if using s3 buckets
+    # DEEPFENCE_FILE_SERVER_USER: fileserveruser
+    # uncomment to set secret key if using s3 buckets
+    # DEEPFENCE_FILE_SERVER_PASSWORD: changeme
+    # set true if https
+    DEEPFENCE_FILE_SERVER_SECURE: "false"
+    # set aws s3 bucket region if using s3 buckets
+    DEEPFENCE_FILE_SERVER_REGION: ""
+    DEEPFENCE_REDIS_DB_NUMBER: 0
+    DEEPFENCE_REDIS_TLS: "" # Disable: "", Enable: "1"
+    DEEPFENCE_REDIS_HOST: deepfence-redis
+    DEEPFENCE_REDIS_PORT: 6379
+    DEEPFENCE_SAAS_DEPLOYMENT: "false"
+    DEEPFENCE_DEBUG: "false"
+    DF_ENABLE_DEBUG: ""
+    DEEPFENCE_ENABLE_PPROF: ""
+    DEEPFENCE_TASKS_CONCURRENCY: 50
+    DEEPFENCE_TASKS_MAX_RETRIES: 3
+    DEEPFENCE_MAX_SCAN_WORKLOAD: 5
+
+x-telemetry-variables: &telemetry-variables
+    DEEPFENCE_TELEMETRY_ENABLED: "false"
+
+x-proxy-variables: &proxy-variables
+    # use below variables to set http/s proxy env
+    http_proxy: ""
+    https_proxy: ""
+    # no need to proxy internal services
+    no_proxy: "127.0.0.1,localhost,deepfence-file-server,deepfence-postgres,deepfence-redis,deepfence-neo4j,deepfence-kafka-broker,deepfence-ui,deepfence-server,deepfence-router"
+
+services:
+
+  deepfence-postgres:
+    container_name: deepfence-postgres
+    image: ${IMAGE_REPOSITORY:-quay.io/deepfenceio}/deepfence_postgres:${DF_IMG_TAG:-2.5.0}
+    ulimits:
+      core: 0
+    restart: unless-stopped
+    networks:
+      - deepfence_net
+    volumes:
+      - deepfence_data:/data:rw
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "50m"
+
+  deepfence-redis:
+    container_name: deepfence-redis
+    image: ${IMAGE_REPOSITORY:-quay.io/deepfenceio}/deepfence_redis:${DF_IMG_TAG:-2.5.0}
+    ulimits:
+      core: 0
+    restart: unless-stopped
+    networks:
+      - deepfence_net
+    volumes:
+      - deepfence_redis_data:/data:rw
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "50m"
+
+  deepfence-neo4j:
+    container_name: deepfence-neo4j
+    image: ${IMAGE_REPOSITORY:-quay.io/deepfenceio}/deepfence_neo4j:${DF_IMG_TAG:-2.5.0}
+
+    ulimits:
+      core: 0
+    restart: unless-stopped
+    tmpfs:
+      - /tmp
+    networks:
+      - deepfence_net
+    environment:
+      <<: *common-creds
+      NEO4J_server_memory_pagecache_size: 2600m
+      NEO4J_db_tx__log_rotation_retention__policy: "3 files"
+      NEO4J_PLUGINS: '["apoc"]'
+      DF_REMOTE_BACKUP_ROOT: ""
+      AWS_ACCESS_KEY: ""
+      AWS_SECRET_KEY: ""
+    ports:
+      - "127.0.0.1:7474:7474"
+      - "127.0.0.1:7687:7687"
+    volumes:
+      - deepfence_neo4j_data:/data:rw
+      - deepfence_neo4j_logs:/logs:rw
+      - deepfence_neo4j_backups:/backups:rw
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "50m"
+
+  deepfence-console-agent:
+    container_name: deepfence-console-agent
+    image: ${IMAGE_REPOSITORY:-quay.io/deepfenceio}/deepfence_agent:${DF_IMG_TAG:-2.5.0}
+    ulimits:
+      core: 0
+    deploy:
+      resources:
+        limits:
+          cpus: ".2"
+    restart: unless-stopped
+    environment:
+      - MGMT_CONSOLE_URL_INTERNAL=127.0.0.1
+      - MGMT_CONSOLE_PORT_INTERNAL=8081
+      - MGMT_CONSOLE_URL=127.0.0.1
+      - MGMT_CONSOLE_PORT=443
+      - DEEPFENCE_KEY=""
+      - DEEPFENCE_CONSOLE_AGENT=true
+      - DF_DISABLE_TRAFFIC_ANALYSIS=1
+      - DF_DISABLE_PROC_MON=1
+      - DF_DISABLE_FILE_MON=1
+    network_mode: "host"
+    pid: "host"
+    volumes:
+      - /sys/kernel/debug:/sys/kernel/debug:rw
+      - /var/log/fenced
+      - /var/run/docker.sock:/var/run/docker.sock
+      - /var/lib/docker/:/fenced/mnt/host/var/lib/docker/:rw
+      - /:/fenced/mnt/host/:ro
+    privileged: true
+    depends_on:
+      - deepfence-server
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "200m"
+
+  deepfence-router:
+    container_name: deepfence-router
+    image: ${IMAGE_REPOSITORY:-quay.io/deepfenceio}/deepfence_router:${DF_IMG_TAG:-2.5.0}
+    ulimits:
+      core: 0
+    networks:
+      - deepfence_net
+    restart: unless-stopped
+    environment:
+      FORCE_HTTPS_REDIRECT: "true"
+      KAFKA_REST_PROXY: "deepfence-rest-proxy:8082"
+    ports:
+      - "80:80"
+      - "${MGMT_CONSOLE_PORT:-443}:443"
+    volumes:
+      - /etc/deepfence/certs:/etc/deepfence/certs/:ro
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "100m"
+
+  # this service can be commented in case S3 or external file server is used
+  deepfence-file-server:
+    container_name: deepfence-file-server
+    image: ${IMAGE_REPOSITORY:-quay.io/deepfenceio}/deepfence_file_server:${DF_IMG_TAG:-2.5.0}
+    ulimits:
+      core: 0
+    networks:
+      - deepfence_net
+    restart: unless-stopped
+    environment:
+      <<: *common-creds
+    #   - FILE_SERVER_ROOT_USER=deepfence
+    #   - FILE_SERVER_ROOT_PASSWORD=deepfence
+    ports:
+      - "127.0.0.1:9000:9000"
+      - "127.0.0.1:9333:9333"
+    volumes:
+      - deepfence_file_server:/data:rw
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "50m"
+
+  deepfence-server:
+    container_name: deepfence-server
+    image: ${IMAGE_REPOSITORY:-quay.io/deepfenceio}/deepfence_server:${DF_IMG_TAG:-2.5.0}
+    ulimits:
+      core: 0
+    tmpfs:
+      - /tmp
+    environment:
+      <<: [*common-creds, *telemetry-variables, *proxy-variables]
+      ELASTICSEARCH_SCHEME: "http"
+      DEEPFENCE_ACCESS_TOKEN_EXPIRY_MINUTES: 5
+      DEEPFENCE_CONSOLE_ORCHESTRATOR: "docker"
+    networks:
+      - deepfence_net
+    depends_on:
+      - deepfence-redis
+      - deepfence-postgres
+      - deepfence-neo4j
+    ports:
+      - "0.0.0.0:8080:8080"
+      - "127.0.0.1:8081:8081"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - /etc/docker/certs.d:/etc/docker/certs.d:ro
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "200m"
+    restart: unless-stopped
+
+  deepfence-worker:
+    container_name: deepfence-worker
+    image: ${IMAGE_REPOSITORY:-quay.io/deepfenceio}/deepfence_worker:${DF_IMG_TAG:-2.5.0}
+    ulimits:
+      core: 0
+    restart: unless-stopped
+    networks:
+      - deepfence_net
+    depends_on:
+      - deepfence-redis
+      - deepfence-postgres
+      - deepfence-file-server
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "200m"
+    environment:
+      <<: [*common-creds, *telemetry-variables, *proxy-variables]
+    volumes:
+      - /etc/docker/certs.d:/etc/docker/certs.d:ro
+      - /var/run/docker.sock:/var/run/docker.sock
+
+  # deepfence-worker-2:
+  #   container_name: deepfence-worker-2
+  #   image: ${IMAGE_REPOSITORY:-quay.io/deepfenceio}/deepfence_worker:${DF_IMG_TAG:-2.5.0}
+  #   ulimits:
+  #     core: 0
+  #   restart: unless-stopped
+  #   networks:
+  #     - deepfence_net
+  #   depends_on:
+  #     - deepfence-redis
+  #     - deepfence-postgres
+  #   logging:
+  #     driver: "json-file"
+  #     options:
+  #       max-size: "1g"
+  #   environment:
+  #     <<: *common-creds
+  #   volumes:
+  #     - /etc/docker/certs.d:/etc/docker/certs.d:ro
+  #     - /var/run/docker.sock:/var/run/docker.sock
+
+  # deepfence-worker-3:
+  #   container_name: deepfence-worker-3
+  #   image: ${IMAGE_REPOSITORY:-quay.io/deepfenceio}/deepfence_worker:${DF_IMG_TAG:-2.5.0}
+  #   ulimits:
+  #     core: 0
+  #   restart: unless-stopped
+  #   networks:
+  #     - deepfence_net
+  #   depends_on:
+  #     - deepfence-redis
+  #     - deepfence-postgres
+  #   logging:
+  #     driver: "json-file"
+  #     options:
+  #       max-size: "1g"
+  #   environment:
+  #     <<: *common-creds
+  #   volumes:
+  #     - /etc/docker/certs.d:/etc/docker/certs.d:ro
+  #     - /var/run/docker.sock:/var/run/docker.sock
+
+  deepfence-scheduler:
+    container_name: deepfence-scheduler
+    image: ${IMAGE_REPOSITORY:-quay.io/deepfenceio}/deepfence_worker:${DF_IMG_TAG:-2.5.0}
+    ulimits:
+      core: 0
+    restart: unless-stopped
+    environment:
+      <<: [*common-creds, *telemetry-variables, *proxy-variables]
+      DEEPFENCE_MODE: scheduler
+    networks:
+      - deepfence_net
+    depends_on:
+      - deepfence-redis
+      - deepfence-postgres
+      - deepfence-worker
+      - deepfence-neo4j
+      - deepfence-file-server
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "100m"
+
+  deepfence-ui:
+    container_name: deepfence-ui
+    image: ${IMAGE_REPOSITORY:-quay.io/deepfenceio}/deepfence_ui:${DF_IMG_TAG:-2.5.0}
+    ulimits:
+      core: 0
+    networks:
+      - deepfence_net
+    restart: unless-stopped
+    depends_on:
+      - deepfence-server
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "100m"
+
+  deepfence-kafka-broker:
+    image: ${IMAGE_REPOSITORY:-quay.io/deepfenceio}/deepfence_kafka_broker:${DF_IMG_TAG:-2.5.0}
+    hostname: deepfence-kafka-broker
+    container_name: deepfence-kafka-broker
+    # environment:
+    #   - KAFKA_LOG_DIRS=/var/lib/kafka/data
+    ports:
+      - "127.0.0.1:9092:9092"
+      - "127.0.0.1:9101:9101"
+    volumes:
+      - deepfence_kafka_broker:/var/lib/kafka/data:rw
+    networks:
+      - deepfence_net
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "50m"
+    restart: unless-stopped
+
+  deepfence-ingester:
+    image: ${IMAGE_REPOSITORY:-quay.io/deepfenceio}/deepfence_worker:${DF_IMG_TAG:-2.5.0}
+    hostname: deepfence-ingester
+    container_name: deepfence-ingester
+    ports:
+      - "127.0.0.1:8181:8181"
+    environment:
+      <<: [*common-creds, *telemetry-variables, *proxy-variables]
+      DEEPFENCE_MODE: ingester
+    networks:
+      - deepfence_net
+    depends_on:
+      - deepfence-kafka-broker
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "200m"
+    restart: unless-stopped
+
+  deepfence-telemetry:
+    image: ${IMAGE_REPOSITORY:-quay.io/deepfenceio}/deepfence_telemetry:${DF_IMG_TAG:-2.5.0}
+    hostname: deepfence-telemetry
+    container_name: deepfence-telemetry
+    ports:
+      - "127.0.0.1:14267:14267"
+      - "127.0.0.1:14268:14268"
+      - "127.0.0.1:9411:9411"
+      - "127.0.0.1:14269:14269"
+      - "127.0.0.1:16686:16686"
+    environment:
+      <<: *telemetry-variables
+    networks:
+      - deepfence_net
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "100m"
+    restart: unless-stopped
+
+  # deepfence-asynq-mon:
+  #   image: ${IMAGE_REPOSITORY:-quay.io/deepfenceio}/asynqmon:latest
+  #   hostname: deepfence-asynq-mon
+  #   container_name: deepfence-asynq-mon
+  #   environment:
+  #     - PORT=8090
+  #     - REDIS_ADDR=deepfence-redis:6379
+  #   ports:
+  #     - "8090:8090"
+  #   networks:
+  #     - deepfence_net
+  #   logging:
+  #     driver: "json-file"
+  #     options:
+  #       max-size: "100m"
+  #   restart: unless-stopped
+
+volumes:
+  deepfence_data:
+    driver: local
+  deepfence_redis_data:
+    driver: local
+  deepfence_neo4j_data:
+    driver: local
+  deepfence_neo4j_logs:
+    driver: local
+  deepfence_neo4j_backups:
+    driver: local
+  deepfence_kafka_broker:
+    driver: local
+  deepfence_file_server:
+    driver: local
+
+networks:
+  deepfence_net:
+    driver: bridge
