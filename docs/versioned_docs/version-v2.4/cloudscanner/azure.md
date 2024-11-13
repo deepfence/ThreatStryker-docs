@@ -33,7 +33,7 @@ module "cloud-scanner_example_single-subscription" {
   mgmt-console-port   = "443"
   deepfence-key       = "<Deepfence-key> eg. XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX"
   name                = "deepfence-cloud-scanner"
-  image               = "quay.io/deepfenceio/cloud_scanner:2.4.0"
+  image               = "quay.io/deepfenceio/cloud_scanner:2.4.1"
   # Location name https://gist.github.com/ausfestivus/04e55c7d80229069bf3bc75870630ec8#results
   location            = "eastus"
   # Number of CPU cores (Default: 2 vCPU)
@@ -64,7 +64,7 @@ module "cloud-scanner_example_tenant-subscriptions" {
   mgmt-console-port       = "<Console port> eg. 443"
   deepfence-key           = "<Deepfence-key> eg. XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX"
   name                    = "deepfence-cloud-scanner"
-  image                   = "quay.io/deepfenceio/cloud_scanner:2.4.0"
+  image                   = "quay.io/deepfenceio/cloud_scanner:2.4.1"
   # List of subscription ids to monitor
   subscription_ids_access = ["XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX", "XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX"]
   # Location name https://gist.github.com/ausfestivus/04e55c7d80229069bf3bc75870630ec8#results
@@ -264,7 +264,7 @@ module "test" {
     ```
 4. Update the environment vars account details and console details in the docker-compose.yaml, if deploying for multi tenants cloud scanner set `ORGANIZATION_DEPLOYMENT: true`
     ```
-    image: quay.io/deepfenceio/cloud_scanner:2.4.0
+    image: quay.io/deepfenceio/cloud_scanner:2.4.1
     environment:
       MGMT_CONSOLE_URL: "<CONSOLE_URL>"
       MGMT_CONSOLE_PORT: <CONSOLE_PORT>

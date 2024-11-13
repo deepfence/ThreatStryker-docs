@@ -62,7 +62,7 @@ The following instructions explain how to install the ThreatStryker console on a
     helm install deepfence-console deepfence/deepfence-console \
     --set imagePullSecret.username="<deepfence_username>" \
     --set imagePullSecret.password="<deepfence_password>" \
-    --set global.imageTag=2.4.0 \
+    --set global.imageTag=2.4.1 \
     --set global.storageClass=gp3 \
     --namespace deepfence-console \
     --create-namespace \
@@ -80,12 +80,12 @@ The following instructions explain how to install the ThreatStryker console on a
     To create a ingress service refer section [Deploy Router Helm Chart With Ingress Enabled](#deploy-router-helm-chart-with-ingress-enabled)
 
     ```bash
-    # helm show values deepfence/deepfence-router --version 2.4.0
+    # helm show values deepfence/deepfence-router --version 2.4.1
    
     helm install deepfence-router deepfence/deepfence-router \
     --namespace deepfence-console \
     --create-namespace \
-    --version 2.4.0
+    --version 2.4.1
     ```
 
     ... and wait for the cloud platform to deploy an external load-balancer:
@@ -129,7 +129,7 @@ Now proceed to the [Initial Configuration](initial-configuration).
 1. Save the helm chart values to file
 
     ```bash
-    helm show values deepfence/deepfence-router --version 2.4.0 > deepfence_router_values.yaml
+    helm show values deepfence/deepfence-router --version 2.4.1 > deepfence_router_values.yaml
     ```
 
     :::info
@@ -144,7 +144,7 @@ Now proceed to the [Initial Configuration](initial-configuration).
     helm install -f deepfence_router_values.yaml deepfence-router deepfence/deepfence-router \
         --namespace deepfence-console \
         --create-namespace \
-        --version 2.4.0
+        --version 2.4.1
     ```
 
 ### Deploy Router Helm Chart With Ingress Enabled
@@ -154,7 +154,7 @@ Now proceed to the [Initial Configuration](initial-configuration).
 2. Save the helm chart values to file
 
     ```bash
-    helm show values deepfence/deepfence-router --version 2.4.0 > deepfence_router_values.yaml
+    helm show values deepfence/deepfence-router --version 2.4.1 > deepfence_router_values.yaml
     ```
 
     :::info
@@ -189,7 +189,7 @@ Now proceed to the [Initial Configuration](initial-configuration).
     helm install -f deepfence_router_values.yaml deepfence-router deepfence/deepfence-router \
         --namespace deepfence-console \
         --create-namespace \
-        --version 2.4.0
+        --version 2.4.1
     ```
 
 ## Delete the ThreatStryker Management Console

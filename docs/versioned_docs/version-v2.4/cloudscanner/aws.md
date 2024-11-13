@@ -16,7 +16,7 @@ Cloud Scanner can be deployed using one of the following:
 
 Log in to the AWS management console account and open the following url link to deploy Cloud Scanner using CloudFormation in `us-east-1` region.
 
-[Deploy across multiple AWS accounts in AWS organization](https://us-east-1.console.aws.amazon.com/cloudformation/home?region=us-east-1#/stacks/create/review?templateURL=https://deepfence-public.s3.amazonaws.com/cloud-scanner/self-hosted/organization-deployment/deepfence-cloud-scanner-org-common.template&stackName=Deepfence-Cloud-Scanner&param_CloudScannerImage=quay.io/deepfenceio/cloud_scanner:2.4.0)
+[Deploy across multiple AWS accounts in AWS organization](https://us-east-1.console.aws.amazon.com/cloudformation/home?region=us-east-1#/stacks/create/review?templateURL=https://deepfence-public.s3.amazonaws.com/cloud-scanner/self-hosted/organization-deployment/deepfence-cloud-scanner-org-common.template&stackName=Deepfence-Cloud-Scanner&param_CloudScannerImage=quay.io/deepfenceio/cloud_scanner:2.4.1)
 
 (Template URL: https://deepfence-public.s3.amazonaws.com/cloud-scanner/self-hosted/organization-deployment/deepfence-cloud-scanner-org-common.template)
 
@@ -27,7 +27,7 @@ Then, fill in the below parameters as needed:
 |           Cloud Scanner Configuration            |
 
 :::info
-Cloud Scanner Image: quay.io/deepfenceio/cloud_scanner:2.4.0
+Cloud Scanner Image: quay.io/deepfenceio/cloud_scanner:2.4.1
 :::
 
 | ![Cloud Scanner](../img/cloud-scanner-aws-2.png) |
@@ -38,7 +38,7 @@ Cloud Scanner Image: quay.io/deepfenceio/cloud_scanner:2.4.0
 
 Log in to the AWS management console account and open the following url link to deploy Cloud Scanner using CloudFormation in `us-east-1` region.
 
-[Deploy on a single AWS account](https://us-east-1.console.aws.amazon.com/cloudformation/home?region=us-east-1#/stacks/create/review?templateURL=https://deepfence-public.s3.amazonaws.com/cloud-scanner/self-hosted/single-account-deployment/deepfence-cloud-scanner.template&stackName=Deepfence-Cloud-Scanner&param_CloudScannerImage=quay.io/deepfenceio/cloud_scanner:2.4.0)
+[Deploy on a single AWS account](https://us-east-1.console.aws.amazon.com/cloudformation/home?region=us-east-1#/stacks/create/review?templateURL=https://deepfence-public.s3.amazonaws.com/cloud-scanner/self-hosted/single-account-deployment/deepfence-cloud-scanner.template&stackName=Deepfence-Cloud-Scanner&param_CloudScannerImage=quay.io/deepfenceio/cloud_scanner:2.4.1)
 
 (Template URL: https://deepfence-public.s3.amazonaws.com/cloud-scanner/self-hosted/single-account-deployment/deepfence-cloud-scanner.template)
 
@@ -93,7 +93,7 @@ module "deepfence-cloud-scanner_example_single-account" {
   deepfence-key                 = "<Deepfence key>"
   # AWS Account Name (Optional, for easy identification)
   account_name                  = ""
-  image                         = "quay.io/deepfenceio/cloud_scanner:2.4.0"
+  image                         = "quay.io/deepfenceio/cloud_scanner:2.4.1"
   # Task CPU Units (Default: 4 vCPU)
   cpu                           = "4096"
   # Task Memory (Default: 8 GB)
@@ -160,7 +160,7 @@ For full details, refer to the GitHub repository: https://github.com/deepfence/t
     ```
 5. Download the helm chart values for depfence-cloud-scanner chart to file **cloud-scanner.yaml**
     ```
-    helm show values cloud-scanner/deepfence-cloud-scanner --version 2.4.0 > cloud-scanner.yaml
+    helm show values cloud-scanner/deepfence-cloud-scanner --version 2.4.1 > cloud-scanner.yaml
     ```
 6. Update the following values in the values.yaml. Add service account annotation and service account name in **cloud-scanner.yaml** as shown in the example below
     ```yaml
@@ -209,7 +209,7 @@ For full details, refer to the GitHub repository: https://github.com/deepfence/t
     helm install -f cloud-scanner.yaml cloud-scanner cloud-scanner/deepfence-cloud-scanner \
         --namespace deepfence \
         --create-namespace \
-        --version 2.4.0
+        --version 2.4.1
     ```
 
 ### Organization Account Cloud Scanner on EKS cluster using IRSA
@@ -222,7 +222,7 @@ For full details, refer to the GitHub repository: https://github.com/deepfence/t
     ```
 4. Download the helm chart values for depfence-cloud-scanner chart to file **cloud-scanner.yaml**
     ```
-    helm show values cloud-scanner/deepfence-cloud-scanner --version 2.4.0 > cloud-scanner.yaml
+    helm show values cloud-scanner/deepfence-cloud-scanner --version 2.4.1 > cloud-scanner.yaml
     ```
 5. Update the following values in the values.yaml. Add service account annotation and service account name in **cloud-scanner.yaml** as shown in the example below
     ```yaml
@@ -285,7 +285,7 @@ For full details, refer to the GitHub repository: https://github.com/deepfence/t
     helm install -f cloud-scanner.yaml cloud-scanner cloud-scanner/deepfence-cloud-scanner \
         --namespace deepfence \
         --create-namespace \
-        --version 2.4.0
+        --version 2.4.1
     ```
 
 ## Cloud Scanner on EC2 Instance
@@ -311,7 +311,7 @@ For full details, refer to the GitHub repository: https://github.com/deepfence/t
     ```
 5. Update the account details and console details in the docker-compose.yaml
     ```
-    image: quay.io/deepfenceio/cloud_scanner:2.4.0
+    image: quay.io/deepfenceio/cloud_scanner:2.4.1
     environment:
       MGMT_CONSOLE_URL: "<CONSOLE_URL>"
       MGMT_CONSOLE_PORT: <CONSOLE_PORT>
@@ -350,7 +350,7 @@ For full details, refer to the GitHub repository: https://github.com/deepfence/t
     ```
 5. Update the organization account details and console details in the docker-compose.yaml
     ```
-    image: quay.io/deepfenceio/cloud_scanner:2.4.0
+    image: quay.io/deepfenceio/cloud_scanner:2.4.1
     environment:
       MGMT_CONSOLE_URL: "<CONSOLE_URL>"
       MGMT_CONSOLE_PORT: <CONSOLE_PORT>

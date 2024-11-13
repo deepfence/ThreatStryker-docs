@@ -28,7 +28,7 @@ module "cloud-scanner_example_single-project" {
   deepfence-key       = "<Deepfence-key>"
   # GCP Project Name (Optional, for easy identification)
   project_name        = ""
-  image_name          = "us-east1-docker.pkg.dev/deepfenceio/deepfence/cloud_scanner:2.4.0"
+  image_name          = "us-east1-docker.pkg.dev/deepfenceio/deepfence/cloud_scanner:2.4.1"
   # project_id example: dev1-123456
   project_id          = "<PROJECT_ID>"
   # region example: asia-east1
@@ -61,7 +61,7 @@ module "cloud-scanner_example_multiple-projects" {
   mgmt-console-url    = "<Console URL>"
   mgmt-console-port   = "443"
   deepfence-key       = "<Deepfence-key>"
-  image_name          = "us-east1-docker.pkg.dev/deepfenceio/deepfence/cloud_scanner:2.4.0"
+  image_name          = "us-east1-docker.pkg.dev/deepfenceio/deepfence/cloud_scanner:2.4.1"
   # project_id example: dev1-123456
   project_id          = "<PROJECT_ID>"
   # region example: asia-east1
@@ -137,7 +137,7 @@ module "cloud_scanner_example_single_project" {
   mgmt-console-url           = "<Console URL>"
   deepfence-key              = "<Deepfence-key>"
   image_name                 = "us-east1-docker.pkg.dev/deepfenceio/deepfence/cloud_scanner"
-  image_tag                  = "2.4.0"
+  image_tag                  = "2.4.1"
   # project_id example: dev1-123456
   project_id                 = "<PROJECT_ID>"
   # region example: asia-east1
@@ -173,7 +173,7 @@ module "cloud_scanner_example_multiple_project" {
   mgmt-console-url           = "<Console URL>"
   deepfence-key              = "<Deepfence-key>"
   image_name                 = "us-east1-docker.pkg.dev/deepfenceio/deepfence/cloud_scanner"
-  image_tag                  = "2.4.0"
+  image_tag                  = "2.4.1"
   # project_id example: dev1-123456
   project_id                 = "<PROJECT_ID>"
   # region example: asia-east1
@@ -259,7 +259,7 @@ module "cloud_scanner_example_multiple_project" {
     ```
 5. Update the account details and console details in the docker-compose.yaml
     ```
-    image: quay.io/deepfenceio/cloud_scanner:2.4.0
+    image: quay.io/deepfenceio/cloud_scanner:2.4.1
     environment:
       MGMT_CONSOLE_URL: "<CONSOLE_URL>"
       MGMT_CONSOLE_PORT: <CONSOLE_PORT>

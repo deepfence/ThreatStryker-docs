@@ -165,7 +165,7 @@ start_agent() {
     -e http_proxy="$MGMT_CONSOLE_HTTP_PROXY" \
     -e https_proxy="$MGMT_CONSOLE_HTTPS_PROXY" \
     -e no_proxy="$NO_PROXY" \
-    "$IMAGE_REPOSITORY"/deepfence_agent:"${DF_IMG_TAG:-2.4.0}"
+    "$IMAGE_REPOSITORY"/deepfence_agent:"${DF_IMG_TAG:-2.4.1}"
 }
 
 main() {
