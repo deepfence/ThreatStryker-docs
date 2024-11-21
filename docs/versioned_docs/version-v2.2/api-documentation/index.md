@@ -1,11 +1,12 @@
 ---
-title: ThreatStryker Api Reference
+title: ThreatStryker API Documentation
 ---
 
-# ThreatStryker Api Reference
+# ThreatStryker API Documentation
 
 Resources:
- * [How To Use Python Sdk](https://github.com/deepfence/threatstryker-python-client/blob/main/README.md)
+ * [REST API Reference](api-reference)
+ * [How To Use Python Sdk](python-sdk)
 
 ```mdx-code-block
 import DocCardList from '@theme/DocCardList';
