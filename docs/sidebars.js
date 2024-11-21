@@ -209,6 +209,7 @@ const sidebars = {
         id: 'api-documentation/index'
       },
       items: [
+        'api-documentation/api-reference',
         'api-documentation/python-sdk'
       ],
     },

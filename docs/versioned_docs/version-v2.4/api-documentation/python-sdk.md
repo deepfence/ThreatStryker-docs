@@ -2,7 +2,7 @@
 title: How to Use Python Sdk
 ---
 
-# threatstryker
+# ThreatStryker Python SDK
 A client library for accessing Deepfence ThreatStryker
 
 ## How to Install
