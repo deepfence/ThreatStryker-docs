@@ -32,11 +32,14 @@ The following instructions explain how to get started with a docker-based instal
     wget https://docs.deepfence.io/threatstryker/files/v2.3/docker-compose.yml
     ```
 
-   For more verbose network alerts, please download this file instead: [docker-compose-poc.yml 🔗](https://docs.deepfence.io/threatstryker/files/v2.3/docker-compose-poc.yml).
+[//]: # (   For more verbose network alerts, please download this file instead: [docker-compose-poc.yml 🔗]&#40;https://docs.deepfence.io/threatstryker/files/v2.3/docker-compose-poc.yml&#41;.)
 
-    ```bash
-    wget https://docs.deepfence.io/threatstryker/files/v2.3/docker-compose-poc.yml -O docker-compose.yml
-    ```
+[//]: # ()
+[//]: # (    ```bash)
+
+[//]: # (    wget https://docs.deepfence.io/threatstryker/files/v2.3/docker-compose-poc.yml -O docker-compose.yml)
+
+[//]: # (    ```)
 
 3. Execute the following command to install and start the latest build of the Console
 
