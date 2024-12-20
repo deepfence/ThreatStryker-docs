@@ -167,7 +167,7 @@ Then create the new policy.
                 "value": "<MGMT_CONSOLE_URL>"
               },
               {
-                "name": "USER_DEFINED_TAGS",
+                "name": "CUSTOM_TAGS",
                 "value": ""
               }
             ],

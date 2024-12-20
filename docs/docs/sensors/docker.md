@@ -67,7 +67,7 @@ Image tags `quay.io/deepfenceio/deepfence_agent:THREATSTRYKER_VERSION-multiarch`
     ```
 
 :::tip
-Optionally the sensor container can be further tagged using ```USER_DEFINED_TAGS=""``` in the above command. Tags should be comma separated, for example, ```"dev,front-end"```.
+Optionally the sensor container can be further tagged using ```CUSTOM_TAGS=""``` in the above command. Tags should be comma separated, for example, ```"dev,front-end"```.
 :::
 
 ## Upgrade the ThreatStryker Sensors

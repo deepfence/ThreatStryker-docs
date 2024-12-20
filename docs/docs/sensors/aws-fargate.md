@@ -131,7 +131,7 @@ If you are using json to configure your task definitions, you can use the follow
         "value": "info"
     },
     {
-        "name": "USER_DEFINED_TAGS",
+        "name": "CUSTOM_TAGS",
         "value": ""
     },
     {
@@ -385,7 +385,7 @@ Then create the new policy.
           "value": "info"
         },
         {
-          "name": "USER_DEFINED_TAGS",
+          "name": "CUSTOM_TAGS",
           "value": ""
         },
         {
