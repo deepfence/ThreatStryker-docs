@@ -86,6 +86,7 @@ const sidebars = {
                 'console/manage-users',
                 'console/database-export-import',
                 'console/troubleshooting',
+                'console/air-gapped',
               ],
             },
           ],
