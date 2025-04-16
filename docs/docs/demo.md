@@ -6,7 +6,7 @@ title: Quickstart Demo
 
 To get a quick overview of the ThreatStryker UI and operational processes, you can access the Demo sandbox:
 
- * URL: https://threatstryker.deepfence.show/
+ * URL: https://threatstryker.deepfence.com/
 
  * Username: `community@deepfence.io`
 
